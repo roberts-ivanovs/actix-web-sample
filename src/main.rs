@@ -5,7 +5,7 @@ mod db;
 mod models;
 mod views;
 
-use crate::views::{index_handler, park_handler};
+use crate::views::index_handler;
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
 use actix_web::http::StatusCode;
@@ -13,6 +13,7 @@ use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
+use views::parks::{park_all_handler, park_single_handler};
 
 static DB_URL: &'static str = "mysql://root:password@localhost:3308/disku_golfs";
 
@@ -36,7 +37,8 @@ async fn main() -> std::io::Result<()> {
             .data(tera)
             .wrap(middleware::Logger::default()) // enable logger
             .service(web::resource("/").route(web::get().to(index_handler)))
-            .service(web::resource("/parks/").route(web::get().to(park_handler)))
+            .service(web::resource("/parks/").route(web::get().to(park_all_handler)))
+            .service(web::resource("/parks/{parkid}").route(web::get().to(park_single_handler)))
             .service(web::scope("").wrap(error_handlers()))
     })
     .bind("127.0.0.1:8080")?

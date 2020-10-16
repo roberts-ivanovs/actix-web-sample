@@ -1,4 +1,4 @@
-use mysql::serde::{Serialize, Deserialize};
+use mysql::serde::{Serialize};
 
 #[derive(Debug, PartialEq, Eq, Serialize)]
 pub struct Parks {

@@ -1,6 +1,6 @@
 use crate::models::Parks;
-use mysql::prelude::*;
 use mysql::Pool;
+use mysql::{params, prelude::*};
 use std::fs::File;
 use std::io::prelude::*;
 
@@ -28,7 +28,6 @@ impl DatabaseWrapper {
 
     pub fn get_parks(&self) -> Result<Vec<Parks>, mysql::Error> {
         let mut conn = self.pool.get_conn().unwrap();
-
         let selected_payments: Vec<Parks> = conn.query_map(
             "SELECT id, adrese, telefona_numurs, apraksts, darba_laiks_sakums, nosaukums, darba_laiks_beigas FROM ShowAllParks",
             |(id, adrese, telefona_numurs, apraksts, darba_laiks_sakums, nosaukums, darba_laiks_beigas)| Parks {
@@ -36,5 +35,31 @@ impl DatabaseWrapper {
             },
         )?;
         Ok(selected_payments)
+    }
+
+    pub fn get_parks_single(&self, id: u32) -> Result<Option<Parks>, mysql::Error> {
+        let mut conn = self.pool.get_conn().unwrap();
+
+        let stmt = conn.prep("SELECT id, adrese, telefona_numurs, apraksts, darba_laiks_sakums, nosaukums, darba_laiks_beigas FROM ShowAllParks WHERE id=:id")?;
+        let res: Option<Parks> = conn.exec_first(&stmt, params! {"id" => id})?.map(
+            |(
+                id,
+                adrese,
+                telefona_numurs,
+                apraksts,
+                darba_laiks_sakums,
+                nosaukums,
+                darba_laiks_beigas,
+            )| Parks {
+                id,
+                adrese,
+                telefona_numurs,
+                apraksts,
+                darba_laiks_sakums,
+                nosaukums,
+                darba_laiks_beigas,
+            },
+        );
+        Ok(res)
     }
 }
