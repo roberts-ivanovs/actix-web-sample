@@ -1,21 +1,20 @@
 #[macro_use]
 extern crate lazy_static;
 
+mod db;
 mod models;
 mod views;
-mod db;
 
-use crate::views::{index};
+use crate::views::{index_handler, park_handler};
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
 use actix_web::http::StatusCode;
 use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
-use tera::Tera;
 use db::DatabaseWrapper;
+use tera::Tera;
 
-
-static DB_URL: &'static str = "mysql://root:password@localhost:3308";
+static DB_URL: &'static str = "mysql://root:password@localhost:3308/disku_golfs";
 
 lazy_static! {
     pub static ref DB_WRAPPER: DatabaseWrapper = DatabaseWrapper::new(DB_URL);
@@ -36,8 +35,8 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .data(tera)
             .wrap(middleware::Logger::default()) // enable logger
-            .service(web::resource("/").route(web::get().to(index)))
-            // .service(web::resource("/parks").route(web::get().to(park_handler)))
+            .service(web::resource("/").route(web::get().to(index_handler)))
+            .service(web::resource("/parks").route(web::get().to(park_handler)))
             .service(web::scope("").wrap(error_handlers()))
     })
     .bind("127.0.0.1:8080")?
