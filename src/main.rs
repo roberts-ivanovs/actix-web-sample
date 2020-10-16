@@ -1,24 +1,33 @@
+#[macro_use]
+extern crate lazy_static;
+
+mod models;
 mod views;
 mod db;
 
-use crate::views::index;
+use crate::views::{index};
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
 use actix_web::http::StatusCode;
 use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use tera::Tera;
-use db::init_db;
+use db::DatabaseWrapper;
+
+
+static DB_URL: &'static str = "mysql://root:password@localhost:3308";
+
+lazy_static! {
+    pub static ref DB_WRAPPER: DatabaseWrapper = DatabaseWrapper::new(DB_URL);
+}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_web=info");
     env_logger::init();
-    println!("inicializing the database");
-    let db_res = init_db();
-    if db_res.is_err() {
-        println!("Error inicializing the database");
-    }
+    println!("initializing the database");
+    DB_WRAPPER.init_db();
+
     println!("DB init OK");
 
     HttpServer::new(|| {
@@ -28,6 +37,7 @@ async fn main() -> std::io::Result<()> {
             .data(tera)
             .wrap(middleware::Logger::default()) // enable logger
             .service(web::resource("/").route(web::get().to(index)))
+            // .service(web::resource("/parks").route(web::get().to(park_handler)))
             .service(web::scope("").wrap(error_handlers()))
     })
     .bind("127.0.0.1:8080")?

@@ -665,6 +665,7 @@ dependencies = [
  "actix-http",
  "actix-web",
  "env_logger",
+ "lazy_static",
  "mysql",
  "tera",
 ]
