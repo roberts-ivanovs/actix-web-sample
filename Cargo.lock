@@ -667,6 +667,7 @@ dependencies = [
  "env_logger",
  "lazy_static",
  "mysql",
+ "serde",
  "tera",
 ]
 
