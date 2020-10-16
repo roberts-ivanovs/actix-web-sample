@@ -1,3 +1,6 @@
+use mysql::prelude::*;
+use mysql::*;
+
 use std::collections::HashMap;
 
 use actix_http::{body::Body, Response};
@@ -32,8 +35,7 @@ async fn main() -> std::io::Result<()> {
     env_logger::init();
 
     HttpServer::new(|| {
-        let tera =
-            Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*")).unwrap();
+        let tera = Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*")).unwrap();
 
         App::new()
             .data(tera)
