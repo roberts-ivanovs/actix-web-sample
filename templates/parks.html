@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  Displaying parks
-  {% for park in parks -%}
-    <li><a href="park/{{ park.id }}">{{ park.nosaukums }}</a></li>
-  {%- endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <ul>
+    {% for park in parks -%}
+    <li><a href="{{ park.id }}">{{ park.nosaukums }}</a></li>
+    {%- endfor %}
+  </ul>
+{% endblock content %}

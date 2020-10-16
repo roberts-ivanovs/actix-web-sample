@@ -18,13 +18,9 @@ pub async fn park_handler(
     tmpl: web::Data<tera::Tera>,
     query: web::Query<HashMap<String, String>>,
 ) -> Result<HttpResponse, Error> {
-
     let park_instances = DB_WRAPPER.get_parks().unwrap_or(Vec::new());
-    println!("{:#?}", park_instances);
-
     let mut context = Context::new();
     context.insert("parks", &park_instances);
-
     let s = tmpl
         .render("parks.html", &context)
         .map_err(|_| error::ErrorInternalServerError("Template error"))?;

@@ -24,9 +24,9 @@ lazy_static! {
 async fn main() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_web=info");
     env_logger::init();
+
     println!("initializing the database");
     DB_WRAPPER.init_db();
-
     println!("DB init OK");
 
     HttpServer::new(|| {
@@ -36,7 +36,7 @@ async fn main() -> std::io::Result<()> {
             .data(tera)
             .wrap(middleware::Logger::default()) // enable logger
             .service(web::resource("/").route(web::get().to(index_handler)))
-            .service(web::resource("/parks").route(web::get().to(park_handler)))
+            .service(web::resource("/parks/").route(web::get().to(park_handler)))
             .service(web::scope("").wrap(error_handlers()))
     })
     .bind("127.0.0.1:8080")?
