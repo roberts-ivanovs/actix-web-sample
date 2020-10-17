@@ -1,3 +1,5 @@
+pub mod parks;
+pub mod trase;
 use mysql::serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -17,3 +19,4 @@ pub struct Trase {
     pub laiks_trases_iziesanai: Option<String>,
     pub parks_fk: u32,
 }
+
