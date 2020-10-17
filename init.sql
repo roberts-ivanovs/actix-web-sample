@@ -156,7 +156,7 @@ CREATE TABLE `Rezultats` (
   PRIMARY KEY (`id`),
   KEY `Rezultats_FK` (`trase_grozs_FK`),
   CONSTRAINT `Rezultats_FK` FOREIGN KEY (`trase_grozs_FK`) REFERENCES `TraseGrozs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (1,4,29768);
@@ -168,6 +168,15 @@ INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (6,4,29773);
 INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (7,3,29774);
 INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (8,3,29775);
 INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (9,3,29776);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (10,3,29768);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (11,5,29769);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (12,2,29771);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (13,4,29772);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (14,3,29773);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (15,6,29774);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (16,3,29770);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (17,5,29775);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (18,2,29776);
 DROP TABLE IF EXISTS `ShowAllParks`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllParks`*/;
 SET @saved_cs_client     = @@character_set_client;
@@ -314,9 +323,27 @@ CREATE TABLE `TurnirsSpeletajs` (
   CONSTRAINT `TurnirsSpeletajs_FK` FOREIGN KEY (`speletajs_FK`) REFERENCES `Speletajs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `TurnirsSpeletajs_FK_1` FOREIGN KEY (`turnirs_FK`) REFERENCES `Turnirs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `TurnirsSpeletajs_FK_2` FOREIGN KEY (`rezultats_FK`) REFERENCES `Rezultats` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,2,1);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,3,2);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,4,3);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,5,4);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,6,5);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,7,6);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,8,7);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,9,8);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,10,9);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,11,10);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,12,11);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,13,12);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,14,13);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,15,14);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,16,15);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,17,16);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,18,17);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,19,18);
 /*!50003 DROP PROCEDURE IF EXISTS `count_trase_summary` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -331,7 +358,7 @@ BEGIN
 	SELECT tg.trase_FK, COUNT(g.id) as grozu_skaits, SUM(g.maksimalais_metienu_skaits) as Maksimalais_punktu_skaits, SUM(g.attalums_lidz_grozam) AS trases_garums
 	FROM Grozs g JOIN TraseGrozs tg ON tg.grozs_FK = g.id GROUP BY tg.trase_FK ORDER BY tg.trase_FK desc;
 
-END;
+END ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
@@ -347,10 +374,24 @@ END;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `hardest_grozs_in_trase`(IN trase_id INT)
 BEGIN
-	SELECT tg.trase_FK, SUM(r.metieni) as Rezultats FROM Trase t JOIN TraseGrozs tg ON tg.trase_FK = t.id
-		JOIN Rezultats r ON r.trase_grozs_FK = tg.id GROUP BY tg.trase_FK
-			ORDER BY Rezultats desc LIMIT 3;
-END;
+	SELECT
+	tg.trase_FK,
+	g.id  as grozs_id,
+	SUM(r.metieni) / COUNT(r.id) as Videjais_rezultats
+	FROM
+		Trase t
+	JOIN TraseGrozs tg ON
+		tg.trase_FK = t.id
+	JOIN Rezultats r ON
+		r.trase_grozs_FK = tg.id
+	JOIN Grozs g ON
+		tg.grozs_FK = g.id
+	GROUP BY
+		tg.trase_FK, g.id
+	ORDER BY
+		Videjais_rezultats desc
+	LIMIT 3;
+END ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
