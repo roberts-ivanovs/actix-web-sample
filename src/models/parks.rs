@@ -14,7 +14,7 @@ impl Parks {
         Ok(parks)
     }
 
-    pub fn get_parks_single(conn: &mut PooledConn, id: u32) -> Result<Option<Parks>, mysql::Error> {
+    pub fn get(conn: &mut PooledConn, id: u32) -> Result<Option<Parks>, mysql::Error> {
         let query = format!("SELECT id, adrese, telefona_numurs, apraksts, darba_laiks_sakums, nosaukums, darba_laiks_beigas FROM ShowAllParks WHERE id={}", id);
 
         let parks = conn

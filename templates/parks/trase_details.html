@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h3>Grūtākie grozi</h3>
+
+
+
+  <table>
+    <tr>
+      <th>Groza ID</th>
+      <th>attālums līdz grozam</th>
+      <th>soda punkti</th>
+      <th>Maksimālais atļautais metienu skaits</th>
+      <th>Vidējais rezultāts</th>
+    </tr>
+
+    {% for hardcode in hard_grozi -%}
+      <tr>
+        <td>{{ hardcode.grozs.id }}</td>
+        <td>{{ hardcode.grozs.attalums_lidz_grozam }}</td>
+        <td>{{ hardcode.grozs.maksimalais_metienu_skaits }}</td>
+        <td>{{ hardcode.grozs.soda_punkti }}</td>
+        <td>{{ hardcode.rezultats }}</td>
+      </tr>
+    {%- endfor %}
+  </table>
+
+{% endblock content %}

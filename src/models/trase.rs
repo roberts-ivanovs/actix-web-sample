@@ -7,7 +7,6 @@ impl Trase {
             "SELECT id, laiks_trases_iziesanai, parks_FK FROM ShowAllTrase WHERE parks_FK={}",
             id
         );
-        println!("{:?}", query);
         let trases: Vec<Trase> =
             conn.query_map(query, |(id, laiks_trases_iziesanai, parks_fk)| Trase {
                 id,
@@ -16,4 +15,6 @@ impl Trase {
             })?;
         Ok(trases)
     }
+
+    // pub fn get_hardest_grozs_in_trase(conn: &mut PooledConn)  -> Result<Vec<Trase>, mysql::Error> {}
 }

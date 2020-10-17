@@ -22,7 +22,7 @@ pub async fn park_single_handler(
     tmpl: web::Data<tera::Tera>,
 ) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
-    let park_instances = Parks::get_parks_single(&mut conn, info.0.0).unwrap();
+    let park_instances = Parks::get(&mut conn, info.0.0).unwrap();
     let trases_instances = Trase::get_trases(&mut conn, info.0.0).unwrap();
     let mut context = Context::new();
     context.insert("parks", &park_instances);

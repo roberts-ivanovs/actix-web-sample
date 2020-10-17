@@ -317,6 +317,44 @@ CREATE TABLE `TurnirsSpeletajs` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+/*!50003 DROP PROCEDURE IF EXISTS `count_trase_summary` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count_trase_summary`()
+BEGIN
+	SELECT tg.trase_FK, COUNT(g.id) as grozu_skaits, SUM(g.maksimalais_metienu_skaits) as Maksimalais_punktu_skaits, SUM(g.attalums_lidz_grozam) AS trases_garums
+	FROM Grozs g JOIN TraseGrozs tg ON tg.grozs_FK = g.id GROUP BY tg.trase_FK ORDER BY tg.trase_FK desc;
+
+END;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `hardest_grozs_in_trase` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `hardest_grozs_in_trase`(IN trase_id INT)
+BEGIN
+	SELECT tg.trase_FK, SUM(r.metieni) as Rezultats FROM Trase t JOIN TraseGrozs tg ON tg.trase_FK = t.id
+		JOIN Rezultats r ON r.trase_grozs_FK = tg.id GROUP BY tg.trase_FK
+			ORDER BY Rezultats desc LIMIT 3;
+END;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 USE `disku_golfs`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllParks`*/;

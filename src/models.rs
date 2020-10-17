@@ -1,5 +1,6 @@
 pub mod parks;
 pub mod trase;
+pub mod grozs;
 use mysql::serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -20,3 +21,10 @@ pub struct Trase {
     pub parks_fk: u32,
 }
 
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct Grozs {
+    pub id: u32,
+    pub soda_punkti: Option<i32>,
+    pub maksimalais_metienu_skaits: Option<u32>,
+    pub attalums_lidz_grozam: u32,
+}
