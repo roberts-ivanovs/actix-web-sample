@@ -5,6 +5,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP DATABASE `disku_golfs`;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `disku_golfs` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE `disku_golfs`;
@@ -181,7 +182,7 @@ DROP TABLE IF EXISTS `ShowAllParks`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllParks`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowAllParks` AS SELECT
+/*!50001 CREATE VIEW `ShowAllParks` AS SELECT 
  1 AS `id`,
  1 AS `adrese`,
  1 AS `telefona_numurs`,
@@ -194,7 +195,7 @@ DROP TABLE IF EXISTS `ShowAllTrase`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllTrase`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowAllTrase` AS SELECT
+/*!50001 CREATE VIEW `ShowAllTrase` AS SELECT 
  1 AS `id`,
  1 AS `laiks_trases_iziesanai`,
  1 AS `parks_FK`*/;
@@ -203,7 +204,7 @@ DROP TABLE IF EXISTS `ShowAllTurnirs`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllTurnirs`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowAllTurnirs` AS SELECT
+/*!50001 CREATE VIEW `ShowAllTurnirs` AS SELECT 
  1 AS `id`,
  1 AS `turnira_datums`,
  1 AS `turnira_nosaukums`*/;
@@ -212,16 +213,7 @@ DROP TABLE IF EXISTS `ShowBestPlayersInTrase`;
 /*!50001 DROP VIEW IF EXISTS `ShowBestPlayersInTrase`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowBestPlayersInTrase` AS SELECT
- 1 AS `trase_FK`,
- 1 AS `id`,
- 1 AS `rezultats`*/;
-SET character_set_client = @saved_cs_client;
-DROP TABLE IF EXISTS `ShowHardestGrozs`;
-/*!50001 DROP VIEW IF EXISTS `ShowHardestGrozs`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT
+/*!50001 CREATE VIEW `ShowBestPlayersInTrase` AS SELECT 
  1 AS `trase_FK`,
  1 AS `id`,
  1 AS `rezultats`*/;
@@ -344,6 +336,15 @@ INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_F
 INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,17,16);
 INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,18,17);
 INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,19,18);
+DROP TABLE IF EXISTS `ShowHardestGrozs`;
+/*!50001 DROP VIEW IF EXISTS `ShowHardestGrozs`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT 
+ 1 AS `trase_id`,
+ 1 AS `grozs_id`,
+ 1 AS `Videjais_rezultats`*/;
+SET character_set_client = @saved_cs_client;
 /*!50003 DROP PROCEDURE IF EXISTS `count_trase_summary` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -355,9 +356,86 @@ INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_F
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `count_trase_summary`()
 BEGIN
-	SELECT tg.trase_FK, COUNT(g.id) as grozu_skaits, SUM(g.maksimalais_metienu_skaits) as Maksimalais_punktu_skaits, SUM(g.attalums_lidz_grozam) AS trases_garums
-	FROM Grozs g JOIN TraseGrozs tg ON tg.grozs_FK = g.id GROUP BY tg.trase_FK ORDER BY tg.trase_FK desc;
+SELECT
+	tg.trase_FK,
+	COUNT(g.id) as grozu_skaits,
+	SUM(g.maksimalais_metienu_skaits) as Maksimalais_punktu_skaits,
+	SUM(g.attalums_lidz_grozam) AS trases_garums
+FROM
+	Grozs g
+JOIN TraseGrozs tg ON
+	tg.grozs_FK = g.id
+GROUP BY
+	tg.trase_FK
+ORDER BY
+	tg.trase_FK desc;
+END ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `count_turnirs_summary` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count_turnirs_summary`()
+BEGIN
+SELECT
+	turnirs_FK as turnirs,
+	ts.speletajs_FK as spletajs,
+	t.id as trase,
+	SUM(r.metieni) as speletaja_rezultats,
+	SUM(g.maksimalais_metienu_skaits) as trases_metienu_skaits
+FROM
+	TurnirsSpeletajs ts
+JOIN Speletajs s ON
+	s.id = ts.speletajs_FK
+JOIN Rezultats r ON
+	r.id = ts.rezultats_FK
+JOIN TraseGrozs tg ON
+	tg.id=r.trase_grozs_FK
+JOIN Grozs g ON
+	tg.grozs_FK = g.id
+JOIN Trase t ON
+	tg.trase_FK = t.id
+GROUP BY speletajs_FK, turnirs_FK, t.id;
 
+END ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_trase_grozu_seciba` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_trase_grozu_seciba`()
+BEGIN
+SELECT
+	t.id as trase,
+	g.id as grozs,
+	tg.numurs_pec_kartas as kartas_numurs,
+	g.maksimalais_metienu_skaits as punkti
+FROM
+	TraseGrozs tg
+JOIN Trase t ON
+	tg.trase_FK = t.id
+JOIN Grozs g ON
+	tg.grozs_FK = g.id
+GROUP BY
+	t.id, g.id, tg.numurs_pec_kartas 
+ORDER BY
+	tg.numurs_pec_kartas;
 END ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -372,25 +450,26 @@ END ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `hardest_grozs_in_trase`(IN trase_id INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `hardest_grozs_in_trase`()
 BEGIN
-	SELECT
+SELECT
 	tg.trase_FK,
-	g.id  as grozs_id,
+	g.id as grozs_id,
 	SUM(r.metieni) / COUNT(r.id) as Videjais_rezultats
-	FROM
-		Trase t
-	JOIN TraseGrozs tg ON
-		tg.trase_FK = t.id
-	JOIN Rezultats r ON
-		r.trase_grozs_FK = tg.id
-	JOIN Grozs g ON
-		tg.grozs_FK = g.id
-	GROUP BY
-		tg.trase_FK, g.id
-	ORDER BY
-		Videjais_rezultats desc
-	LIMIT 3;
+FROM
+	Trase t
+JOIN TraseGrozs tg ON
+	tg.trase_FK = t.id
+JOIN Rezultats r ON
+	r.trase_grozs_FK = tg.id
+JOIN Grozs g ON
+	tg.grozs_FK = g.id
+GROUP BY
+	tg.trase_FK,
+	g.id
+ORDER BY
+	Videjais_rezultats desc
+LIMIT 3;
 END ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -431,9 +510,7 @@ USE `disku_golfs`;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowAllTurnirs` AS select `Turnirs`.`id` AS `id`,`Turnirs`.`turnira_datums` AS `turnira_datums`,`Turnirs`.`turnira_nosaukums` AS `turnira_nosaukums` from `Turnirs` */;
+/*!50001 CREATE VIEW `ShowAllTurnirs` AS SELECT * FROM Turnirs */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -457,9 +534,7 @@ USE `disku_golfs`;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowHardestGrozs` AS select `tg`.`trase_FK` AS `trase_FK`,`g`.`id` AS `id`,count(`r`.`metieni`) AS `rezultats` from (((`Rezultats` `r` join `TraseGrozs` `tg` on((`r`.`trase_grozs_FK` = `tg`.`id`))) join `Grozs` `g` on((`tg`.`grozs_FK` = `g`.`id`))) join `Trase` `t` on((`tg`.`trase_FK` = `t`.`id`))) group by `t`.`id` order by `rezultats` desc limit 3 */;
+/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT tg.trase_FK as trase_id, g.id as grozs_id, SUM(r.metieni) / COUNT(r.id) as Videjais_rezultats FROM Trase t JOIN TraseGrozs tg ON tg.trase_FK = t.id JOIN Rezultats r ON r.trase_grozs_FK = tg.id JOIN Grozs g ON tg.grozs_FK = g.id GROUP BY tg.trase_FK, g.id ORDER BY Videjais_rezultats desc LIMIT 3*/;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
