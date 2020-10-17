@@ -19,16 +19,10 @@ pub async fn park_all_handler(
 pub async fn park_single_handler(
     info: web::Path<(u32,)>,
     tmpl: web::Data<tera::Tera>,
-    query: web::Query<HashMap<String, String>>,
 ) -> Result<HttpResponse, Error> {
-
-
     let park_instances = DB_WRAPPER.get_parks_single(info.0.0).unwrap();
-
     let mut context = Context::new();
-    context.insert("parks", &park_instances.get(0));
-
-
+    context.insert("parks", &park_instances);
     let s = tmpl
         .render("parks/parks_single.html", &context)
         .map_err(|_| error::ErrorInternalServerError("Template error"))?;

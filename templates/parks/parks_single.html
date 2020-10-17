@@ -1,17 +1,12 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <div>
   {% if parks %}
-    <p>
-      {{ parks.nosaukums }}
-    </p>
-    <div>
-      {{ parks.apraksts }}
-    </div>
-  {% else %}
-    Sorry, parks isn't defined.
-  {% endif %}
+  <p>{{ parks.nosaukums }}</p>
+  <div>{{ parks.apraksts }}</div>
+  <div>{{ parks.adrese }}</div>
+  <div>{{ parks.telefona_numurs }}</div>
+  <div>{{ parks.darba_laiks_sakums }} - {{parks.darba_laiks_beigas}}</div>
+  {% else %} Sorry, parks isn't defined. {% endif %}
 </div>
 {% endblock content %}
