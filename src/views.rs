@@ -1,3 +1,4 @@
+pub mod trase;
 pub mod parks;
 
 use actix_web::{error, web, Error, HttpResponse, Result};

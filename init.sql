@@ -156,9 +156,18 @@ CREATE TABLE `Rezultats` (
   PRIMARY KEY (`id`),
   KEY `Rezultats_FK` (`trase_grozs_FK`),
   CONSTRAINT `Rezultats_FK` FOREIGN KEY (`trase_grozs_FK`) REFERENCES `TraseGrozs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (1,4,29768);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (2,3,29769);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (3,3,29770);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (4,2,29771);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (5,1,29772);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (6,4,29773);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (7,3,29774);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (8,3,29775);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (9,3,29776);
 DROP TABLE IF EXISTS `ShowAllParks`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllParks`*/;
 SET @saved_cs_client     = @@character_set_client;
@@ -180,6 +189,33 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `id`,
  1 AS `laiks_trases_iziesanai`,
  1 AS `parks_FK`*/;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `ShowAllTurnirs`;
+/*!50001 DROP VIEW IF EXISTS `ShowAllTurnirs`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `ShowAllTurnirs` AS SELECT
+ 1 AS `id`,
+ 1 AS `turnira_datums`,
+ 1 AS `turnira_nosaukums`*/;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `ShowBestPlayersInTrase`;
+/*!50001 DROP VIEW IF EXISTS `ShowBestPlayersInTrase`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `ShowBestPlayersInTrase` AS SELECT
+ 1 AS `trase_FK`,
+ 1 AS `id`,
+ 1 AS `rezultats`*/;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `ShowHardestGrozs`;
+/*!50001 DROP VIEW IF EXISTS `ShowHardestGrozs`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT
+ 1 AS `trase_FK`,
+ 1 AS `id`,
+ 1 AS `rezultats`*/;
 SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `Speletajs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -236,9 +272,18 @@ CREATE TABLE `TraseGrozs` (
   KEY `TraseGrozs_FK` (`grozs_FK`),
   CONSTRAINT `TraseGrozs_FK` FOREIGN KEY (`grozs_FK`) REFERENCES `Grozs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `TraseGrozs_FK_1` FOREIGN KEY (`trase_FK`) REFERENCES `Trase` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29777 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (1,29768,1,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (2,29769,2,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (3,29770,3,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (4,29771,4,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (5,29772,5,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (6,29773,6,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (7,29774,7,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (8,29775,8,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (9,29776,9,11);
 DROP TABLE IF EXISTS `Turnirs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -296,7 +341,46 @@ USE `disku_golfs`;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowAllTrase` AS select `t`.`id` AS `id`,`t`.`laiks_trases_iziesanai` AS `laiks_trases_iziesanai`,`t`.`parks_FK` AS `parks_FK` from `Trase` `t` where (`t`.`parks_FK` = 1) */;
+/*!50001 VIEW `ShowAllTrase` AS select `t`.`id` AS `id`,`t`.`laiks_trases_iziesanai` AS `laiks_trases_iziesanai`,`t`.`parks_FK` AS `parks_FK` from `Trase` `t` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP VIEW IF EXISTS `ShowAllTurnirs`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ShowAllTurnirs` AS select `Turnirs`.`id` AS `id`,`Turnirs`.`turnira_datums` AS `turnira_datums`,`Turnirs`.`turnira_nosaukums` AS `turnira_nosaukums` from `Turnirs` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP VIEW IF EXISTS `ShowBestPlayersInTrase`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ShowBestPlayersInTrase` AS select `tg`.`trase_FK` AS `trase_FK`,`g`.`id` AS `id`,count(`r`.`metieni`) AS `rezultats` from (((`Rezultats` `r` join `TraseGrozs` `tg` on((`r`.`trase_grozs_FK` = `tg`.`id`))) join `Grozs` `g` on((`tg`.`grozs_FK` = `g`.`id`))) join `Trase` `t` on((`tg`.`trase_FK` = `t`.`id`))) group by `t`.`id` order by `rezultats` desc limit 3 */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP VIEW IF EXISTS `ShowHardestGrozs`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ShowHardestGrozs` AS select `tg`.`trase_FK` AS `trase_FK`,`g`.`id` AS `id`,count(`r`.`metieni`) AS `rezultats` from (((`Rezultats` `r` join `TraseGrozs` `tg` on((`r`.`trase_grozs_FK` = `tg`.`id`))) join `Grozs` `g` on((`tg`.`grozs_FK` = `g`.`id`))) join `Trase` `t` on((`tg`.`trase_FK` = `t`.`id`))) group by `t`.`id` order by `rezultats` desc limit 3 */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;

@@ -2,11 +2,23 @@
 
 <div>
   {% if parks %}
-  <p>{{ parks.nosaukums }}</p>
+  <h2>{{ parks.nosaukums }}</h2>
   <div>{{ parks.apraksts }}</div>
   <div>{{ parks.adrese }}</div>
   <div>{{ parks.telefona_numurs }}</div>
   <div>{{ parks.darba_laiks_sakums }} - {{parks.darba_laiks_beigas}}</div>
   {% else %} Sorry, parks isn't defined. {% endif %}
+
+
+  {% if trases %}
+  <h3>Parka trases</h3>
+  <div>
+    <ul>
+      {% for trase in trases -%}
+      <li><a href="/trase/{{ trase.id }}"> Trase NR. {{ trase.id }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {% endif %}
 </div>
 {% endblock content %}

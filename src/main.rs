@@ -39,6 +39,7 @@ async fn main() -> std::io::Result<()> {
             .service(web::resource("/").route(web::get().to(index_handler)))
             .service(web::resource("/parks/").route(web::get().to(park_all_handler)))
             .service(web::resource("/parks/{parkid}").route(web::get().to(park_single_handler)))
+            // .service(web::resource("/trase/{traseid}").route(web::get().to(trase_details)))
             .service(web::scope("").wrap(error_handlers()))
     })
     .bind("127.0.0.1:8080")?

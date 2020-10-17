@@ -21,8 +21,10 @@ pub async fn park_single_handler(
     tmpl: web::Data<tera::Tera>,
 ) -> Result<HttpResponse, Error> {
     let park_instances = DB_WRAPPER.get_parks_single(info.0.0).unwrap();
+    let trases_instances = DB_WRAPPER.get_trases(info.0.0).unwrap();
     let mut context = Context::new();
     context.insert("parks", &park_instances);
+    context.insert("trases", &trases_instances);
     let s = tmpl
         .render("parks/parks_single.html", &context)
         .map_err(|_| error::ErrorInternalServerError("Template error"))?;

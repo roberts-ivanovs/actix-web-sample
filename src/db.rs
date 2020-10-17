@@ -1,4 +1,4 @@
-use crate::models::Parks;
+use crate::models::{Parks, Trase};
 use mysql::Pool;
 use mysql::Row;
 use mysql::{params, prelude::*};
@@ -67,5 +67,21 @@ impl DatabaseWrapper {
             None => None,
         };
         Ok(res)
+    }
+
+    pub fn get_trases(&self, id: u32) -> Result<Vec<Trase>, mysql::Error> {
+        let mut conn = self.pool.get_conn().unwrap();
+        let query = format!(
+            "SELECT id, laiks_trases_iziesanai, parks_FK FROM ShowAllTrase WHERE parks_FK={}",
+            id
+        );
+        println!("{:?}", query);
+        let trases: Vec<Trase> =
+            conn.query_map(query, |(id, laiks_trases_iziesanai, parks_fk)| Trase {
+                id,
+                laiks_trases_iziesanai,
+                parks_fk,
+            })?;
+        Ok(trases)
     }
 }
