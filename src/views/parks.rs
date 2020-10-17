@@ -23,9 +23,10 @@ pub async fn park_single_handler(
 ) -> Result<HttpResponse, Error> {
 
 
-    let park_instances = DB_WRAPPER.get_parks_single(info.0.0).unwrap_or(None);
+    let park_instances = DB_WRAPPER.get_parks_single(info.0.0).unwrap();
+
     let mut context = Context::new();
-    context.insert("parks", &park_instances);
+    context.insert("parks", &park_instances.get(0));
 
 
     let s = tmpl

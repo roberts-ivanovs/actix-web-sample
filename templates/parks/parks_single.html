@@ -4,7 +4,12 @@
 
 <div>
   {% if parks %}
-    {{ parks }}
+    <p>
+      {{ parks.nosaukums }}
+    </p>
+    <div>
+      {{ parks.apraksts }}
+    </div>
   {% else %}
     Sorry, parks isn't defined.
   {% endif %}
