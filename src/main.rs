@@ -5,7 +5,8 @@ mod db;
 mod models;
 mod views;
 
-use crate::views::admin::admin_update_parks;
+use crate::views::admin::admin_update_parks_get;
+use crate::views::admin::admin_delete_parks;
 use crate::views::index_handler;
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
@@ -14,7 +15,7 @@ use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
-use views::admin::{admin_list_parks, admin_root};
+use views::admin::{admin_list_parks, admin_root, admin_update_parks_post};
 use views::{
     parks::{park_all_handler, park_single_handler},
     trase::trase_details,
@@ -49,7 +50,9 @@ async fn main() -> std::io::Result<()> {
                 web::scope("/admin")
                     .service(admin_root)
                     .service(admin_list_parks)
-                    .service(admin_update_parks),
+                    .service(admin_update_parks_get)
+                    .service(admin_update_parks_post)
+                    .service(admin_delete_parks),
             )
             .service(web::scope("").wrap(error_handlers()))
     })

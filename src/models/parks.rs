@@ -1,9 +1,8 @@
-use mysql::{PooledConn, prelude::Queryable};
+use mysql::{prelude::Queryable, PooledConn};
 
 use super::Parks;
 
 impl Parks {
-
     pub fn get_parks(conn: &mut PooledConn) -> Result<Vec<Parks>, mysql::Error> {
         let parks: Vec<Parks> = conn.query_map(
             "SELECT id, adrese, telefona_numurs, apraksts, darba_laiks_sakums, nosaukums, darba_laiks_beigas FROM ShowAllParks",
@@ -46,11 +45,23 @@ impl Parks {
 
     pub fn delete(conn: &mut PooledConn, id: u32) -> Result<bool, mysql::Error> {
         let query = format!("DELETE FROM Parks WHERE id={}", id);
-
         conn.query_drop(query)?;
-
         Ok(true)
     }
 
-
+    pub fn update(conn: &mut PooledConn, parks: Parks) -> Result<bool, mysql::Error> {
+        let query = format!(
+            "UPDATE Parks SET adrese='{adrese}', telefona_numurs='{telefona_numurs}', apraksts='{apraksts}', darba_laiks_sakums='{darba_laiks_sakums}', nosaukums='{nosaukums}', darba_laiks_beigas='{darba_laiks_beigas}' WHERE id='{id}'",
+            adrese=parks.adrese.unwrap_or("NULL".to_owned()),
+            telefona_numurs=parks.telefona_numurs.unwrap_or("NULL".to_owned()),
+            apraksts=parks.apraksts.unwrap_or("NULL".to_owned()),
+            darba_laiks_sakums=parks.darba_laiks_sakums,
+            darba_laiks_beigas=parks.darba_laiks_beigas,
+            nosaukums=parks.nosaukums,
+            id=parks.id,
+        );
+        println!("{}", query);
+        conn.query_drop(query)?;
+        Ok(true)
+    }
 }

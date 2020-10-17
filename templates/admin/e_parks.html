@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block content %}
+
+<form method="POST">
+  {% if original -%}
+  <input type="hidden" name="id" required value="{{ original.id }}" />
+  {% else %}
+  <input type="hidden" name="id" required value="-1" />
+  {%- endif %}
+
+
+  <div>
+    <input
+      type="text"
+      name="nosaukums"
+      required
+      value="{% if original -%}{{ original.nosaukums }}{%- endif %}"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      name="adrese"
+      value="{% if original -%}{{ original.adrese }}{%- endif %}"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      name="telefona_numurs"
+      value="{% if original -%}{{ original.telefona_numurs }}{%- endif %}"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      name="apraksts"
+      value="{% if original -%}{{ original.apraksts }}{%- endif %}"
+    />
+  </div>
+  <div>
+    <input
+      type="time"
+      required
+      name="darba_laiks_sakums"
+      value="{% if original -%}{{ original.darba_laiks_sakums }}{%- endif %}"
+    />
+  </div>
+  <div>
+    <input
+      type="time"
+      required
+      name="darba_laiks_beigas"
+      value="{% if original -%}{{ original.darba_laiks_beigas }}{%- endif %}"
+    />
+  </div>
+
+  <div>
+    <input type="submit" name="METHOD" value="SAVE" />
+  </div>
+</form>
+{% endblock content %}
