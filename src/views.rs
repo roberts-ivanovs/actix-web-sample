@@ -13,12 +13,3 @@ pub async fn index_handler(
         .map_err(|_| error::ErrorInternalServerError("Template error"))?;
     Ok(HttpResponse::Ok().content_type("text/html").body(s))
 }
-
-pub async fn admin_handler(
-    tmpl: web::Data<tera::Tera>,
-) -> Result<HttpResponse, Error> {
-    let s = tmpl
-        .render("admin/main.html", &tera::Context::new())
-        .map_err(|_| error::ErrorInternalServerError("Template error"))?;
-    Ok(HttpResponse::Ok().content_type("text/html").body(s))
-}

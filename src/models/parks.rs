@@ -44,5 +44,13 @@ impl Parks {
         Ok(res)
     }
 
+    pub fn delete(conn: &mut PooledConn, id: u32) -> Result<bool, mysql::Error> {
+        let query = format!("DELETE FROM Parks WHERE id={}", id);
+
+        conn.query_drop(query)?;
+
+        Ok(true)
+    }
+
 
 }
