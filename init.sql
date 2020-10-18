@@ -211,11 +211,11 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `ShowBestPlayersInTrase`;
 /*!50001 DROP VIEW IF EXISTS `ShowBestPlayersInTrase`*/;
-SET @saved_cs_client     = @@character_set_client;
+SET @saved_cs_client = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `ShowBestPlayersInTrase` AS SELECT 
  1 AS `trase_FK`,
- 1 AS `id`,
+ 1 AS `s_id`,
  1 AS `rezultats`*/;
  SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `Speletajs`;
@@ -527,7 +527,7 @@ USE `disku_golfs`;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowBestPlayersInTrase` AS select `tg`.`trase_FK` AS `trase_FK`,`g`.`id` AS `id`,count(`r`.`metieni`) AS `rezultats` from (((`Rezultats` `r` join `TraseGrozs` `tg` on((`r`.`trase_grozs_FK` = `tg`.`id`))) join `Grozs` `g` on((`tg`.`grozs_FK` = `g`.`id`))) join `Trase` `t` on((`tg`.`trase_FK` = `t`.`id`))) group by `t`.`id` order by `rezultats` desc limit 3 */;
+/*!50001 VIEW `ShowBestPlayersInTrase` AS SELECT tg.trase_FK as trase_FK, ts.speletajs_FK as s_id, SUM(r.metieni) as rezultats FROM Rezultats r JOIN TraseGrozs tg ON r.trase_grozs_FK = tg.id JOIN TurnirsSpeletajs ts ON ts.rezultats_FK = r.id GROUP BY trase_FK, s_id ORDER BY rezultats ASC LIMIT 3*/;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
