@@ -5,6 +5,9 @@ mod db;
 mod models;
 mod views;
 
+// use crate::views::admin::admin_delete_parks;
+// use crate::views::admin::admin_update_parks_get;
+use crate::views::admin::admin_root;
 use crate::views::index_handler;
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
@@ -13,7 +16,20 @@ use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
-use views::{parks::{park_all_handler, park_single_handler}, trase::trase_details};
+// use views::admin::{
+//     admin_create_parks_get, admin_create_parks_post, admin_list_parks, admin_root,
+//     admin_update_parks_post,
+// };
+use views::{
+    admin::parks::create_parks_get,
+    admin::parks::create_parks_post,
+    admin::parks::delete_parks,
+    admin::parks::list_parks,
+    admin::parks::update_parks_get,
+    admin::parks::update_parks_post,
+    parks::{park_all_handler, park_single_handler},
+    trase::trase_details,
+};
 
 static DB_URL: &'static str = "mysql://root:password@localhost:3308/disku_golfs";
 
@@ -34,12 +50,25 @@ async fn main() -> std::io::Result<()> {
         let tera = Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*")).unwrap();
         println!("Spawning thread");
         App::new()
-            .data(tera)
-            .wrap(middleware::Logger::default()) // enable logger
+            .data(tera) // enable logger
+            .wrap(middleware::Logger::default())
             .service(web::resource("/").route(web::get().to(index_handler)))
             .service(web::resource("/parks/").route(web::get().to(park_all_handler)))
             .service(web::resource("/parks/{parkid}").route(web::get().to(park_single_handler)))
             .service(web::resource("/trase/{traseid}").route(web::get().to(trase_details)))
+            .service(
+                web::scope("/admin")
+                    .service(
+                        web::scope("/parks")
+                            .service(list_parks)
+                            .service(update_parks_get)
+                            .service(update_parks_post)
+                            .service(create_parks_get)
+                            .service(create_parks_post)
+                            .service(delete_parks),
+                    )
+                    .service(admin_root),
+            )
             .service(web::scope("").wrap(error_handlers()))
     })
     .bind("127.0.0.1:8080")?
