@@ -1,5 +1,6 @@
 pub mod trase;
 pub mod parks;
+pub mod turnirs;
 
 use actix_web::{error, web, Error, HttpResponse, Result};
 

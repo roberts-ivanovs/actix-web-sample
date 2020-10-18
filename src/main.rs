@@ -14,7 +14,7 @@ use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
 use views::{parks::{park_all_handler, park_single_handler}, trase::trase_details};
-
+use views::turnirs::{turnirs_all_handler, turnirs_single_handler};
 static DB_URL: &'static str = "mysql://root:password@localhost:3308/disku_golfs";
 
 lazy_static! {
@@ -39,6 +39,8 @@ async fn main() -> std::io::Result<()> {
             .service(web::resource("/").route(web::get().to(index_handler)))
             .service(web::resource("/parks/").route(web::get().to(park_all_handler)))
             .service(web::resource("/parks/{parkid}").route(web::get().to(park_single_handler)))
+            .service(web::resource("/turnirs/").route(web::get().to(turnirs_all_handler)))
+            .service(web::resource("/turnirs/{turnirsid}").route(web::get().to(turnirs_single_handler)))
             .service(web::resource("/trase/{traseid}").route(web::get().to(trase_details)))
             .service(web::scope("").wrap(error_handlers()))
     })
