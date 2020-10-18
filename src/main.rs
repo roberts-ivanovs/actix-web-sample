@@ -20,7 +20,16 @@ use tera::Tera;
 //     admin_create_parks_get, admin_create_parks_post, admin_list_parks, admin_root,
 //     admin_update_parks_post,
 // };
-use views::{admin::parks::admin_create_parks_get, admin::parks::admin_create_parks_post, admin::parks::admin_delete_parks, admin::parks::admin_list_parks, admin::parks::admin_update_parks_get, admin::parks::admin_update_parks_post, parks::{park_all_handler, park_single_handler}, trase::trase_details};
+use views::{
+    admin::parks::create_parks_get,
+    admin::parks::create_parks_post,
+    admin::parks::delete_parks,
+    admin::parks::list_parks,
+    admin::parks::update_parks_get,
+    admin::parks::update_parks_post,
+    parks::{park_all_handler, park_single_handler},
+    trase::trase_details,
+};
 
 static DB_URL: &'static str = "mysql://root:password@localhost:3308/disku_golfs";
 
@@ -49,16 +58,16 @@ async fn main() -> std::io::Result<()> {
             .service(web::resource("/trase/{traseid}").route(web::get().to(trase_details)))
             .service(
                 web::scope("/admin")
-                .service(
-                    web::scope("/parks")
-                        .service(admin_list_parks)
-                        .service(admin_update_parks_get)
-                        .service(admin_update_parks_post)
-                        .service(admin_create_parks_get)
-                        .service(admin_create_parks_post)
-                        .service(admin_delete_parks),
-                )
-                .service(admin_root)
+                    .service(
+                        web::scope("/parks")
+                            .service(list_parks)
+                            .service(update_parks_get)
+                            .service(update_parks_post)
+                            .service(create_parks_get)
+                            .service(create_parks_post)
+                            .service(delete_parks),
+                    )
+                    .service(admin_root),
             )
             .service(web::scope("").wrap(error_handlers()))
     })

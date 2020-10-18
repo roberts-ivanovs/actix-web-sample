@@ -9,8 +9,8 @@ use tera::Context;
 
 
 #[get("/")]
-pub async fn admin_list_parks(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
-    admin_park_list(tmpl, HttpResponse::Ok())
+pub async fn list_parks(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
+    park_list(tmpl, HttpResponse::Ok())
 }
 
 #[derive(Deserialize)]
@@ -19,7 +19,7 @@ pub struct ParkMethods {
 }
 
 #[post("/")]
-pub async fn admin_delete_parks(
+pub async fn delete_parks(
     req: HttpRequest,
     query_data: web::Form<ParkMethods>,
 ) -> Result<HttpResponse, Error> {
@@ -30,7 +30,7 @@ pub async fn admin_delete_parks(
 }
 
 #[get("/{id}")]
-pub async fn admin_update_parks_get(
+pub async fn update_parks_get(
     path: web::Path<(u32,)>,
     tmpl: web::Data<tera::Tera>,
 ) -> Result<HttpResponse, Error> {
@@ -45,7 +45,7 @@ pub async fn admin_update_parks_get(
 }
 
 #[post("/{id}")]
-pub async fn admin_update_parks_post(
+pub async fn update_parks_post(
     req: HttpRequest,
     path: web::Path<(u32,)>,
     query_data: web::Form<Parks>,
@@ -65,7 +65,7 @@ pub async fn admin_update_parks_post(
 }
 
 #[get("/new/")]
-pub async fn admin_create_parks_get(
+pub async fn create_parks_get(
     tmpl: web::Data<tera::Tera>,
 ) -> Result<HttpResponse, Error> {
 
@@ -87,7 +87,7 @@ pub async fn admin_create_parks_get(
 }
 
 #[post("/new/")]
-pub async fn admin_create_parks_post(
+pub async fn create_parks_post(
     req: HttpRequest,
     query_data: web::Form<Parks>,
 ) -> Result<HttpResponse, Error> {
@@ -103,10 +103,9 @@ pub async fn admin_create_parks_post(
             Ok(redirect_to(req.path()))
         }
     }
-    // Ok(redirect_to("/parks/new/"))
 }
 
-fn admin_park_list(
+fn park_list(
     tmpl: web::Data<tera::Tera>,
     mut resp: ResponseBuilder,
 ) -> Result<HttpResponse, Error> {
