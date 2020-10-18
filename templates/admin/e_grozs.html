@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+
+<form method="POST">
+  {% if original -%}
+  <input type="hidden" name="id" required value="{{ original.id }}" />
+  {% else %}
+  <input type="hidden" name="id" required value="-1" />
+  {%- endif %}
+
+
+  <div>
+    Soda punkti
+    <input
+      type="number"
+      name="soda_punkti"
+      required
+      value="{% if original -%}{{ original.soda_punkti }}{%- endif %}"
+    />
+  </div>
+  <div>
+    Maksimālais metienu skaits
+    <input
+      min="0"
+      type="number"
+      name="maksimalais_metienu_skaits"
+      value="{% if original -%}{{ original.maksimalais_metienu_skaits }}{%- endif %}"
+    />
+  </div>
+  <div>
+    Attālums līdz grozam
+    <input
+      min="0"
+      type="number"
+      name="attalums_lidz_grozam"
+      value="{% if original -%}{{ original.attalums_lidz_grozam }}{%- endif %}"
+    />
+  </div>
+  <div>
+    <input type="submit" name="METHOD" value="SAVE" />
+  </div>
+</form>
+{% endblock content %}

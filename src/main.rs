@@ -24,6 +24,14 @@ use views::{
     admin::parks::update_parks_get,
     admin::parks::update_parks_post,
 };
+use views::{
+    admin::grozs::create_grozs_get,
+    admin::grozs::create_grozs_post,
+    admin::grozs::delete_grozs,
+    admin::grozs::list_grozs,
+    admin::grozs::update_grozs_get,
+    admin::grozs::update_grozs_post,
+};
 
 use views::{parks::{park_all_handler, park_single_handler}, trase::trase_details};
 use views::turnirs::{turnirs_all_handler, turnirs_single_handler};
@@ -64,6 +72,15 @@ async fn main() -> std::io::Result<()> {
                             .service(create_parks_get)
                             .service(create_parks_post)
                             .service(delete_parks),
+                    )
+                    .service(
+                        web::scope("/grozs")
+                            .service(list_grozs)
+                            .service(update_grozs_get)
+                            .service(update_grozs_post)
+                            .service(create_grozs_get)
+                            .service(create_grozs_post)
+                            .service(delete_grozs),
                     )
                     .service(admin_root),
             )

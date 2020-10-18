@@ -36,7 +36,6 @@ impl Turnirs {
         let turnirs = conn
             .query_first::<(u32, Option<String>, Option<String>), String>(query)
             .unwrap_or(None);
-        // let query = format!("SELECT id, turnira_datums, turnira_nosaukums FROM ShowTurnirsResult WHERE id={}", id);
 
         let res = match turnirs {
             Some(val) => Some(Turnirs {

@@ -1,4 +1,5 @@
 pub mod parks;
+pub mod grozs;
 
 use actix_web::{Error, HttpResponse, Result, error, get, web};
 
