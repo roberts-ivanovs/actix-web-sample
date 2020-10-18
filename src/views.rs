@@ -21,9 +21,3 @@ pub fn redirect_to(location: &str) -> HttpResponse {
         .header(http::header::LOCATION, location)
         .finish()
 }
-
-pub fn redirect_to_builder(base_builder: ResponseBuilder, location: &str) -> HttpResponse {
-    HttpResponse::Found()
-        .header(http::header::LOCATION, location)
-        .finish()
-}

@@ -1,23 +1,14 @@
-use crate::views::redirect_to_builder;
+use crate::views::admin::extract_base_path;
 use crate::views::redirect_to;
 use crate::models::Parks;
-use crate::{models::Grozs, DB_WRAPPER};
-use actix_http::{ResponseBuilder, http::StatusCode};
+use crate::{DB_WRAPPER};
+use actix_http::{ResponseBuilder};
 use actix_web::{Error, HttpRequest, HttpResponse, Result, error, get, post, web};
 use serde::Deserialize;
 use tera::Context;
 
+
 #[get("/")]
-pub async fn admin_root(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
-    let s = tmpl
-        .render("admin/main.html", &tera::Context::new())
-        .map_err(|_| error::ErrorInternalServerError("Template error"))?;
-    Ok(HttpResponse::Ok().content_type("text/html").body(s))
-}
-
-// ------------- PARKS ------------------
-
-#[get("/parks/")]
 pub async fn admin_list_parks(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
     admin_park_list(tmpl, HttpResponse::Ok())
 }
@@ -27,7 +18,7 @@ pub struct ParkMethods {
     pub PARKS: u64,
 }
 
-#[post("/parks/")]
+#[post("/")]
 pub async fn admin_delete_parks(
     req: HttpRequest,
     query_data: web::Form<ParkMethods>,
@@ -35,10 +26,10 @@ pub async fn admin_delete_parks(
     let path = req.path();
     let mut conn = DB_WRAPPER.get_conn();
     Parks::delete(&mut conn, query_data.PARKS as u32).unwrap();
-    Ok(redirect_to_builder(HttpResponse::Accepted(), path))
+    Ok(redirect_to(path))
 }
 
-#[get("/parks/{id}")]
+#[get("/{id}")]
 pub async fn admin_update_parks_get(
     path: web::Path<(u32,)>,
     tmpl: web::Data<tera::Tera>,
@@ -53,22 +44,27 @@ pub async fn admin_update_parks_get(
     Ok(HttpResponse::Ok().content_type("text/html").body(s))
 }
 
-#[post("/parks/{id}")]
+#[post("/{id}")]
 pub async fn admin_update_parks_post(
     req: HttpRequest,
     path: web::Path<(u32,)>,
     query_data: web::Form<Parks>,
 ) -> Result<HttpResponse, Error> {
-    let path_str = req.path();
     let id = format!("{}",path.0.0);
-    let path_str: Vec<&str> = path_str.split(&id).collect();
-    let base_path = path_str.get(0).unwrap();
+    let base_path = extract_base_path(req.path(), &id);
     let mut conn = DB_WRAPPER.get_conn();
-    Parks::update(&mut conn, query_data.0).unwrap();
-    Ok(redirect_to_builder(HttpResponse::Accepted(), base_path))
+    let updated = Parks::update(&mut conn, query_data.0);
+    match updated {
+        Ok(_) => {
+            Ok(redirect_to(base_path))
+        }
+        Err(_) => {
+            Ok(redirect_to(req.path()))
+        }
+    }
 }
 
-#[get("/parks/new/")]
+#[get("/new/")]
 pub async fn admin_create_parks_get(
     tmpl: web::Data<tera::Tera>,
 ) -> Result<HttpResponse, Error> {
@@ -90,16 +86,25 @@ pub async fn admin_create_parks_get(
     Ok(HttpResponse::Created().content_type("text/html").body(s))
 }
 
-#[post("/parks/new/")]
+#[post("/new/")]
 pub async fn admin_create_parks_post(
+    req: HttpRequest,
     query_data: web::Form<Parks>,
 ) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
-    Parks::create(&mut conn, query_data.0).unwrap();
-    Ok(redirect_to_builder(HttpResponse::Accepted(),"/parks/new/"))
-}
+    let created = Parks::create(&mut conn, query_data.0);
 
-// ----------- HELPERS -----------------
+    let base_path = extract_base_path(req.path(), "new/");
+    match created {
+        Ok(_) => {
+            Ok(redirect_to(base_path))
+        }
+        Err(_) => {
+            Ok(redirect_to(req.path()))
+        }
+    }
+    // Ok(redirect_to("/parks/new/"))
+}
 
 fn admin_park_list(
     tmpl: web::Data<tera::Tera>,

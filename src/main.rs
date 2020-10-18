@@ -5,8 +5,9 @@ mod db;
 mod models;
 mod views;
 
-use crate::views::admin::admin_update_parks_get;
-use crate::views::admin::admin_delete_parks;
+// use crate::views::admin::admin_delete_parks;
+// use crate::views::admin::admin_update_parks_get;
+use crate::views::admin::admin_root;
 use crate::views::index_handler;
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
@@ -15,11 +16,11 @@ use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
-use views::admin::{admin_create_parks_get, admin_create_parks_post, admin_list_parks, admin_root, admin_update_parks_post};
-use views::{
-    parks::{park_all_handler, park_single_handler},
-    trase::trase_details,
-};
+// use views::admin::{
+//     admin_create_parks_get, admin_create_parks_post, admin_list_parks, admin_root,
+//     admin_update_parks_post,
+// };
+use views::{admin::parks::admin_create_parks_get, admin::parks::admin_create_parks_post, admin::parks::admin_delete_parks, admin::parks::admin_list_parks, admin::parks::admin_update_parks_get, admin::parks::admin_update_parks_post, parks::{park_all_handler, park_single_handler}, trase::trase_details};
 
 static DB_URL: &'static str = "mysql://root:password@localhost:3308/disku_golfs";
 
@@ -48,13 +49,16 @@ async fn main() -> std::io::Result<()> {
             .service(web::resource("/trase/{traseid}").route(web::get().to(trase_details)))
             .service(
                 web::scope("/admin")
-                    .service(admin_root)
-                    .service(admin_list_parks)
-                    .service(admin_update_parks_get)
-                    .service(admin_update_parks_post)
-                    .service(admin_create_parks_get)
-                    .service(admin_create_parks_post)
-                    .service(admin_delete_parks),
+                .service(
+                    web::scope("/parks")
+                        .service(admin_list_parks)
+                        .service(admin_update_parks_get)
+                        .service(admin_update_parks_post)
+                        .service(admin_create_parks_get)
+                        .service(admin_create_parks_post)
+                        .service(admin_delete_parks),
+                )
+                .service(admin_root)
             )
             .service(web::scope("").wrap(error_handlers()))
     })
