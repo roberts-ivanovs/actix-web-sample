@@ -3,9 +3,6 @@
 {% block content %}
 
   <h3>Grūtākie grozi</h3>
-
-
-
   <table>
     <tr>
       <th>Groza ID</th>
@@ -22,6 +19,22 @@
         <td>{{ hardcode.grozs.maksimalais_metienu_skaits }}</td>
         <td>{{ hardcode.grozs.soda_punkti }}</td>
         <td>{{ hardcode.rezultats }}</td>
+      </tr>
+    {%- endfor %}
+  </table>
+
+
+  <h3>Labākie spēlētāji</h3>
+  <table>
+    <tr>
+      <th>Spēlētājs</th>
+      <th>Rezultāts trasē</th>
+    </tr>
+
+    {% for player in best_players_in_trase -%}
+      <tr>
+        <td>{{ player.speletajs.vards }} {{ player.speletajs.uzvards }}</td>
+        <td>{{ player.metienu_skaits_trase }}</td>
       </tr>
     {%- endfor %}
   </table>

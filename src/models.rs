@@ -1,6 +1,8 @@
 pub mod parks;
 pub mod trase;
 pub mod grozs;
+pub mod turnirs;
+pub mod speletajs;
 use mysql::serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -27,4 +29,19 @@ pub struct Grozs {
     pub soda_punkti: Option<i32>,
     pub maksimalais_metienu_skaits: Option<u32>,
     pub attalums_lidz_grozam: u32,
+}
+
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct Turnirs {
+    pub id: u32,
+    pub turnira_datums: Option<String>,
+    pub turnira_nosaukums: Option<String>,
+}
+
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct Speletajs {
+    pub id: u32,
+    pub vards: Option<String>,
+    pub uzvards: Option<String>,
+    pub dzimsanas_dati: Option<String>,
 }

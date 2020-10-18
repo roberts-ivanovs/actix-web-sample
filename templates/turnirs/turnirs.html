@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+    {% for turnirs in turniri -%}
+    <li><a href="{{ turnirs.id }}">{{ turnirs.turnira_nosaukums }}</a></li>
+    {%- endfor %}
+</ul>
+{% endblock content %}

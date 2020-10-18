@@ -5,10 +5,10 @@ use mysql::serde::{Deserialize, Serialize};
 use super::Grozs;
 
 
-#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct HardGrozs {
     pub grozs: Grozs,
-    pub rezultats: u32,
+    pub rezultats: f32,
 }
 impl Grozs {
     pub fn get_hardest_grozi_in_trase(
@@ -18,7 +18,7 @@ impl Grozs {
         let mut iter_conn = DB_WRAPPER.get_conn();
         let grozi_hardest: Vec<HardGrozs> = conn.query_map(
             format!(
-                "SELECT id, rezultats FROM ShowHardestGrozs WHERE trase_FK={}",
+                "SELECT grozs_id, Videjais_rezultats FROM ShowHardestGrozs WHERE trase_id={}",
                 trase_fk
             ),
             |(id, rezultats)| HardGrozs {
@@ -36,7 +36,7 @@ impl Grozs {
             id,
             soda_punkti,
             maksimalais_metienu_skaits,
-            attalums_lidz_grozam,
+            attalums_lidz_grozam
         FROM Grozs WHERE id={}"#,
             id
         );

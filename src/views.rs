@@ -1,6 +1,7 @@
 pub mod trase;
 pub mod parks;
 pub mod admin;
+pub mod turnirs;
 
 use actix_http::ResponseBuilder;
 use actix_http::http;

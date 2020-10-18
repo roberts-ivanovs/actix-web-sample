@@ -1,4 +1,4 @@
-use crate::models::{Parks, Trase};
+use crate::models::{Parks, Trase, Turnirs, Speletajs};
 use mysql::{Pool, PooledConn};
 use mysql::Row;
 use mysql::{params, prelude::*};
