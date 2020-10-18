@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+
+
+<a href="new/">IZVEIDOT JAUNU PARKU</a>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Soda punkti</th>
+    <th>Maksimalais metienu skaits</th>
+    <th>Attālums līdz grozam</th>
+    <th>Rediģēt</th>
+    <th>Dzēst</th>
+  </tr>
+
+  {% for grozs in all_grozi -%}
+  <form method="POST">
+    <tr>
+      <input type="hidden" name="PARKS" value="{{ grozs.id }}" />
+      <td>{{ grozs.id }}</td>
+      <td>{{ grozs.soda_punkti }}</td>
+      <td>{{ grozs.maksimalais_metienu_skaits }}</td>
+      <td>{{ grozs.attalums_lidz_grozam }}</td>
+      <td><a href="{{ grozs.id }}">EDIT </a></td>
+      <td><input type="submit" name="METHOD" value="DELETE" /></td>
+    </tr>
+  </form>
+  {%- endfor %}
+</table>
+{% endblock content %}

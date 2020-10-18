@@ -31,6 +31,7 @@ pub struct Grozs {
     pub attalums_lidz_grozam: u32,
 }
 
+
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Turnirs {
     pub id: u32,

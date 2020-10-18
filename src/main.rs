@@ -17,22 +17,22 @@ use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
 use views::{
-    admin::parks::create_parks_get,
-    admin::parks::create_parks_post,
-    admin::parks::delete_parks,
-    admin::parks::list_parks,
-    admin::parks::update_parks_get,
-    admin::parks::update_parks_post,
-    admin::speletajs::create_speletajs_get,
-    admin::speletajs::create_speletajs_post,
-    admin::speletajs::delete_speletajs,
-    admin::speletajs::list_speletajs,
-    admin::speletajs::update_speletajs_get,
-    admin::speletajs::update_speletajs_post,
+    admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs,
+    admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post,
+};
+use views::{
+    admin::parks::create_parks_get, admin::parks::create_parks_post, admin::parks::delete_parks,
+    admin::parks::list_parks, admin::parks::update_parks_get, admin::parks::update_parks_post,
+    admin::speletajs::create_speletajs_get, admin::speletajs::create_speletajs_post,
+    admin::speletajs::delete_speletajs, admin::speletajs::list_speletajs,
+    admin::speletajs::update_speletajs_get, admin::speletajs::update_speletajs_post,
 };
 
-use views::{parks::{park_all_handler, park_single_handler}, trase::trase_details};
 use views::turnirs::{turnirs_all_handler, turnirs_single_handler};
+use views::{
+    parks::{park_all_handler, park_single_handler},
+    trase::trase_details,
+};
 static DB_URL: &'static str = "mysql://root:password@localhost:3308/disku_golfs";
 
 lazy_static! {
@@ -58,7 +58,9 @@ async fn main() -> std::io::Result<()> {
             .service(web::resource("/parks/").route(web::get().to(park_all_handler)))
             .service(web::resource("/parks/{parkid}").route(web::get().to(park_single_handler)))
             .service(web::resource("/turnirs/").route(web::get().to(turnirs_all_handler)))
-            .service(web::resource("/turnirs/{turnirsid}").route(web::get().to(turnirs_single_handler)))
+            .service(
+                web::resource("/turnirs/{turnirsid}").route(web::get().to(turnirs_single_handler)),
+            )
             .service(web::resource("/trase/{traseid}").route(web::get().to(trase_details)))
             .service(
                 web::scope("/admin")
@@ -79,6 +81,15 @@ async fn main() -> std::io::Result<()> {
                             .service(create_speletajs_get)
                             .service(create_speletajs_post)
                             .service(delete_speletajs),
+                    )
+                    .service(
+                        web::scope("/grozs")
+                            .service(list_grozs)
+                            .service(update_grozs_get)
+                            .service(update_grozs_post)
+                            .service(create_grozs_get)
+                            .service(create_grozs_post)
+                            .service(delete_grozs),
                     )
                     .service(admin_root),
             )
