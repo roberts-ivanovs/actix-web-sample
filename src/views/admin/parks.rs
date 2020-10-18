@@ -75,9 +75,9 @@ pub async fn create_parks_get(
         adrese: Some(String::new()),
         telefona_numurs: Some(String::new()),
         apraksts: Some(String::new()),
-        darba_laiks_sakums: String::new(),
+        darba_laiks_sakums: Some(String::new()),
         nosaukums: String::new(),
-        darba_laiks_beigas: String::new(),
+        darba_laiks_beigas: Some(String::new()),
     };
     context.insert("original", &empty_parks);
     let s = tmpl
