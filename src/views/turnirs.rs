@@ -8,7 +8,7 @@ pub async fn turnirs_all_handler(
     query: web::Query<HashMap<String, String>>,
 ) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
-    let turnirs_instances = Turnirs::get_turnirs(&mut conn).unwrap();
+    let turnirs_instances = Turnirs::get_turniri(&mut conn).unwrap();
     let mut context = Context::new();
     context.insert("turniri", &turnirs_instances);
     let s = tmpl

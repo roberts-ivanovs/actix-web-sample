@@ -1,7 +1,7 @@
 use crate::DB_WRAPPER;
 
-use mysql::{prelude::Queryable, PooledConn};
 use mysql::serde::{Deserialize, Serialize};
+use mysql::{prelude::Queryable, PooledConn};
 
 use super::{Speletajs, Turnirs};
 
@@ -15,7 +15,7 @@ pub struct SummaryTurnirs {
 }
 
 impl Turnirs {
-    pub fn get_turnirs(conn: &mut PooledConn) -> Result<Vec<Turnirs>, mysql::Error> {
+    pub fn get_turniri(conn: &mut PooledConn) -> Result<Vec<Turnirs>, mysql::Error> {
         let turnirs: Vec<Turnirs> = conn.query_map(
             "SELECT id, turnira_datums, turnira_nosaukums FROM ShowAllTurnirs",
             |(id, turnira_datums, turnira_nosaukums)| Turnirs {
@@ -48,11 +48,16 @@ impl Turnirs {
         Ok(res)
     }
 
+    pub fn delete(conn: &mut PooledConn, id: u32) -> Result<bool, mysql::Error> {
+        let query = format!("DELETE FROM Turnirs WHERE id={}", id);
+        conn.query_drop(query)?;
+        Ok(true)
+    }
+
     pub fn count_turnirs_summary(
         conn: &mut PooledConn,
         turnirs_id: u32,
     ) -> Result<Vec<SummaryTurnirs>, mysql::Error> {
-
         let mut iter_conn = DB_WRAPPER.get_conn();
 
         let turnirs_summary: Vec<SummaryTurnirs> = conn.query_map(
@@ -68,5 +73,38 @@ impl Turnirs {
             },
         )?;
         Ok(turnirs_summary)
+    }
+
+    pub fn update(conn: &mut PooledConn, turnirs: Turnirs) -> Result<bool, mysql::Error> {
+        let turnira_datums = match turnirs.turnira_datums {
+            Some(val) => format!("{}", val),
+            None => "NULL".to_owned(),
+        };
+        let turnira_nosaukums = match turnirs.turnira_nosaukums {
+            Some(val) => format!("{}", val),
+            None => "NULL".to_owned(),
+        };
+        let query = format!(
+            "UPDATE Turnirs SET turnira_datums='{turnira_datums}', turnira_nosaukums='{turnira_nosaukums}' WHERE id='{id}'",
+            id=turnirs.id,
+            turnira_datums=turnira_datums,
+            turnira_nosaukums=turnira_nosaukums,
+        );
+        conn.query_drop(query)?;
+        Ok(true)
+    }
+
+    pub fn create(conn: &mut PooledConn, turnirs: Turnirs) -> Result<bool, mysql::Error> {
+        let query = format!(
+            "INSERT INTO Turnirs(
+                turnira_datums, turnira_nosaukums
+            ) VALUES (
+                '{turnira_datums}', '{turnira_nosaukums}'
+            )",
+            turnira_nosaukums=turnirs.turnira_nosaukums.unwrap_or("NULL".to_owned()),
+            turnira_datums=turnirs.turnira_datums.unwrap_or("NULL".to_owned()),
+        );
+        conn.query_drop(query)?;
+        Ok(true)
     }
 }

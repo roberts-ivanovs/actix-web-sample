@@ -7,6 +7,12 @@ mod views;
 
 // use crate::views::admin::admin_delete_parks;
 // use crate::views::admin::admin_update_parks_get;
+use crate::views::admin::turnirs::delete_turnirs;
+use crate::views::admin::turnirs::create_turnirs_get;
+use crate::views::admin::turnirs::create_turnirs_post;
+use crate::views::admin::turnirs::update_turnirs_post;
+use crate::views::admin::turnirs::update_turnirs_get;
+use crate::views::admin::turnirs::list_turnirs;
 use crate::views::admin::admin_root;
 use crate::views::index_handler;
 use actix_http::{body::Body, Response};
@@ -90,6 +96,15 @@ async fn main() -> std::io::Result<()> {
                             .service(create_grozs_get)
                             .service(create_grozs_post)
                             .service(delete_grozs),
+                    )
+                    .service(
+                        web::scope("/turnirs")
+                            .service(list_turnirs)
+                            .service(update_turnirs_get)
+                            .service(update_turnirs_post)
+                            .service(create_turnirs_get)
+                            .service(create_turnirs_post)
+                            .service(delete_turnirs),
                     )
                     .service(admin_root),
             )

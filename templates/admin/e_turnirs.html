@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %}
+
+<form method="POST">
+  {% if original -%}
+  <input type="hidden" name="id" required value="{{ original.id }}" />
+  {% else %}
+  <input type="hidden" name="id" required value="-1" />
+  {%- endif %}
+
+  Nosaukums
+  <div>
+    <input
+      type="text"
+      name="turnira_nosaukums"
+      required
+      value="{% if original -%}{{ original.turnira_nosaukums }}{%- endif %}"
+    />
+  </div>
+  Datums
+  <div>
+    <input
+      type="datetime"
+      name="turnira_datums"
+      required
+      value="{% if original -%}{{ original.turnira_datums }}{%- endif %}"
+    />
+  </div>
+
+  <div>
+    <input type="submit" name="METHOD" value="SAVE" />
+  </div>
+</form>
+{% endblock content %}

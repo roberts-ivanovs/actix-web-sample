@@ -1,6 +1,7 @@
 pub mod parks;
 pub mod speletajs;
 pub mod grozs;
+pub mod turnirs;
 
 use actix_web::{Error, HttpResponse, Result, error, get, web};
 
