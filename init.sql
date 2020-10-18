@@ -217,7 +217,7 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `trase_FK`,
  1 AS `id`,
  1 AS `rezultats`*/;
-SET character_set_client = @saved_cs_client;
+ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `Speletajs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -383,10 +383,10 @@ END ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `count_turnirs_summary`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count_turnirs_summary`(IN turnirs_id INT)
 BEGIN
 SELECT
-	turnirs_FK as turnirs,
+	ts.turnirs_FK as turnirs,
 	ts.speletajs_FK as spletajs,
 	t.id as trase,
 	SUM(r.metieni) as speletaja_rezultats,
@@ -398,13 +398,17 @@ JOIN Speletajs s ON
 JOIN Rezultats r ON
 	r.id = ts.rezultats_FK
 JOIN TraseGrozs tg ON
-	tg.id=r.trase_grozs_FK
+	tg.id = r.trase_grozs_FK
 JOIN Grozs g ON
 	tg.grozs_FK = g.id
 JOIN Trase t ON
 	tg.trase_FK = t.id
-GROUP BY speletajs_FK, turnirs_FK, t.id;
-
+WHERE
+	ts.turnirs_FK = turnirs_id
+GROUP BY
+	speletajs_FK,
+	turnirs_FK,
+	t.id;
 END ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
