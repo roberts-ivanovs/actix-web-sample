@@ -2,6 +2,8 @@ pub mod trase;
 pub mod parks;
 pub mod admin;
 
+use actix_http::ResponseBuilder;
+use actix_http::http;
 use actix_web::{error, web, Error, HttpResponse, Result};
 
 // store tera template in application state
@@ -12,4 +14,16 @@ pub async fn index_handler(
         .render("index.html", &tera::Context::new())
         .map_err(|_| error::ErrorInternalServerError("Template error"))?;
     Ok(HttpResponse::Ok().content_type("text/html").body(s))
+}
+
+pub fn redirect_to(location: &str) -> HttpResponse {
+    HttpResponse::Found()
+        .header(http::header::LOCATION, location)
+        .finish()
+}
+
+pub fn redirect_to_builder(base_builder: ResponseBuilder, location: &str) -> HttpResponse {
+    HttpResponse::Found()
+        .header(http::header::LOCATION, location)
+        .finish()
 }

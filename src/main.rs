@@ -15,7 +15,7 @@ use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
-use views::admin::{admin_list_parks, admin_root, admin_update_parks_post};
+use views::admin::{admin_create_parks_get, admin_create_parks_post, admin_list_parks, admin_root, admin_update_parks_post};
 use views::{
     parks::{park_all_handler, park_single_handler},
     trase::trase_details,
@@ -40,8 +40,8 @@ async fn main() -> std::io::Result<()> {
         let tera = Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/templates/**/*")).unwrap();
         println!("Spawning thread");
         App::new()
-            .data(tera)
-            .wrap(middleware::Logger::default()) // enable logger
+            .data(tera) // enable logger
+            .wrap(middleware::Logger::default())
             .service(web::resource("/").route(web::get().to(index_handler)))
             .service(web::resource("/parks/").route(web::get().to(park_all_handler)))
             .service(web::resource("/parks/{parkid}").route(web::get().to(park_single_handler)))
@@ -52,6 +52,8 @@ async fn main() -> std::io::Result<()> {
                     .service(admin_list_parks)
                     .service(admin_update_parks_get)
                     .service(admin_update_parks_post)
+                    .service(admin_create_parks_get)
+                    .service(admin_create_parks_post)
                     .service(admin_delete_parks),
             )
             .service(web::scope("").wrap(error_handlers()))

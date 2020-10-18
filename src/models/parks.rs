@@ -60,7 +60,24 @@ impl Parks {
             nosaukums=parks.nosaukums,
             id=parks.id,
         );
-        println!("{}", query);
+        conn.query_drop(query)?;
+        Ok(true)
+    }
+
+    pub fn create(conn: &mut PooledConn, parks: Parks) -> Result<bool, mysql::Error> {
+        let query = format!(
+            "INSERT INTO Parks(
+                adrese, telefona_numurs, apraksts, darba_laiks_sakums, darba_laiks_beigas, nosaukums
+            ) VALUES (
+                '{adrese}', '{telefona_numurs}', '{apraksts}', '{darba_laiks_sakums}', '{darba_laiks_beigas}', '{nosaukums}'
+            )",
+            adrese=parks.adrese.unwrap_or("NULL".to_owned()),
+            telefona_numurs=parks.telefona_numurs.unwrap_or("NULL".to_owned()),
+            apraksts=parks.apraksts.unwrap_or("NULL".to_owned()),
+            darba_laiks_sakums=parks.darba_laiks_sakums,
+            darba_laiks_beigas=parks.darba_laiks_beigas,
+            nosaukums=parks.nosaukums,
+        );
         conn.query_drop(query)?;
         Ok(true)
     }
