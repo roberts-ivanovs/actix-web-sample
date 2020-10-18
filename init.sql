@@ -133,10 +133,10 @@ CREATE TABLE `Parks` (
   `id` int NOT NULL AUTO_INCREMENT,
   `adrese` varchar(200) DEFAULT NULL,
   `telefona_numurs` varchar(15) DEFAULT NULL,
-  `apraksts` text,
+  `apraksts` text DEFAULT NULL,
   `darba_laiks_sakums` time DEFAULT NULL,
   `nosaukums` varchar(100) NOT NULL,
-  `darba_laiks_beigas` time NOT NULL,
+  `darba_laiks_beigas` time DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -223,8 +223,8 @@ DROP TABLE IF EXISTS `Speletajs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Speletajs` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `vards` varchar(60) DEFAULT NULL,
-  `uzvards` varchar(60) DEFAULT NULL,
+  `vards` varchar(60) NOT NULL,
+  `uzvards` varchar(60) NOT NULL,
   `dzimsanas_dati` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

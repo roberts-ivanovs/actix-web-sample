@@ -11,9 +11,9 @@ pub struct Parks {
     pub adrese: Option<String>,
     pub telefona_numurs: Option<String>,
     pub apraksts: Option<String>,
-    pub darba_laiks_sakums: String,
+    pub darba_laiks_sakums: Option<String>,
     pub nosaukums: String,
-    pub darba_laiks_beigas: String,
+    pub darba_laiks_beigas: Option<String>,
 }
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -41,7 +41,7 @@ pub struct Turnirs {
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Speletajs {
     pub id: u32,
-    pub vards: Option<String>,
-    pub uzvards: Option<String>,
+    pub vards: String,
+    pub uzvards: String,
     pub dzimsanas_dati: Option<String>,
 }

@@ -23,6 +23,12 @@ use views::{
     admin::parks::list_parks,
     admin::parks::update_parks_get,
     admin::parks::update_parks_post,
+    admin::speletajs::create_speletajs_get,
+    admin::speletajs::create_speletajs_post,
+    admin::speletajs::delete_speletajs,
+    admin::speletajs::list_speletajs,
+    admin::speletajs::update_speletajs_get,
+    admin::speletajs::update_speletajs_post,
 };
 
 use views::{parks::{park_all_handler, park_single_handler}, trase::trase_details};
@@ -64,6 +70,15 @@ async fn main() -> std::io::Result<()> {
                             .service(create_parks_get)
                             .service(create_parks_post)
                             .service(delete_parks),
+                    )
+                    .service(
+                        web::scope("/speletajs")
+                            .service(list_speletajs)
+                            .service(update_speletajs_get)
+                            .service(update_speletajs_post)
+                            .service(create_speletajs_get)
+                            .service(create_speletajs_post)
+                            .service(delete_speletajs),
                     )
                     .service(admin_root),
             )

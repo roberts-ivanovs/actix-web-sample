@@ -22,9 +22,9 @@ impl Parks {
                 Option<String>,
                 Option<String>,
                 Option<String>,
+                Option<String>,
                 String,
-                String,
-                String,
+                Option<String>,
             ), String>(query)
             .unwrap_or(None);
 
@@ -55,8 +55,8 @@ impl Parks {
             adrese=parks.adrese.unwrap_or("NULL".to_owned()),
             telefona_numurs=parks.telefona_numurs.unwrap_or("NULL".to_owned()),
             apraksts=parks.apraksts.unwrap_or("NULL".to_owned()),
-            darba_laiks_sakums=parks.darba_laiks_sakums,
-            darba_laiks_beigas=parks.darba_laiks_beigas,
+            darba_laiks_sakums=parks.darba_laiks_sakums.unwrap_or("NULL".to_owned()),
+            darba_laiks_beigas=parks.darba_laiks_beigas.unwrap_or("NULL".to_owned()),
             nosaukums=parks.nosaukums,
             id=parks.id,
         );
@@ -74,8 +74,8 @@ impl Parks {
             adrese=parks.adrese.unwrap_or("NULL".to_owned()),
             telefona_numurs=parks.telefona_numurs.unwrap_or("NULL".to_owned()),
             apraksts=parks.apraksts.unwrap_or("NULL".to_owned()),
-            darba_laiks_sakums=parks.darba_laiks_sakums,
-            darba_laiks_beigas=parks.darba_laiks_beigas,
+            darba_laiks_sakums=parks.darba_laiks_sakums.unwrap_or("NULL".to_owned()),
+            darba_laiks_beigas=parks.darba_laiks_beigas.unwrap_or("NULL".to_owned()),
             nosaukums=parks.nosaukums,
         );
         conn.query_drop(query)?;

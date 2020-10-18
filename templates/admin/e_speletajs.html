@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+
+<form method="POST">
+    {% if original -%}
+    <input type="hidden" name="id" required value="{{ original.id }}" />
+    {% else %}
+    <input type="hidden" name="id" required value="-1" />
+    {%- endif %}
+
+
+    <div>
+        <input type="text" name="vards" required value="{% if original -%}{{ original.vards }}{%- endif %}" />
+    </div>
+    <div>
+        <input type="text" name="uzvards" value="{% if original -%}{{ original.uzvards }}{%- endif %}" />
+    </div>
+    <div>
+        <input type="date" name="dzimsanas_dati"
+            value="{% if original -%}{{ original.dzimsanas_dati }}{%- endif %}" />
+    </div>
+
+    <div>
+        <input type="submit" name="METHOD" value="SAVE" />
+    </div>
+</form>
+{% endblock content %}
