@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<a href="add/">IZVEIDOT JAUNU TURNIRU</a>
 <ul>
     {% for turnirs in turniri -%}
     <li><a href="{{ turnirs.id }}">{{ turnirs.turnira_nosaukums }}</a></li>

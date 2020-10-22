@@ -22,10 +22,7 @@ use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
-use views::{
-    admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs,
-    admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post,
-};
+use views::{admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs, admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post};
 use views::{
     admin::parks::create_parks_get, admin::parks::create_parks_post, admin::parks::delete_parks,
     admin::parks::list_parks, admin::parks::update_parks_get, admin::parks::update_parks_post,
@@ -34,7 +31,7 @@ use views::{
     admin::speletajs::update_speletajs_get, admin::speletajs::update_speletajs_post,
 };
 
-use views::turnirs::{turnirs_all_handler, turnirs_single_handler};
+use views::turnirs::{turnirs_all_handler, turnirs_single_handler, add_turnirs_get};
 use views::{
     parks::{park_all_handler, park_single_handler},
     trase::trase_details,
@@ -61,13 +58,18 @@ async fn main() -> std::io::Result<()> {
             .data(tera) // enable logger
             .wrap(middleware::Logger::default())
             .service(web::resource("/").route(web::get().to(index_handler)))
-            .service(web::resource("/parks/").route(web::get().to(park_all_handler)))
-            .service(web::resource("/parks/{parkid}").route(web::get().to(park_single_handler)))
-            .service(web::resource("/turnirs/").route(web::get().to(turnirs_all_handler)))
             .service(
-                web::resource("/turnirs/{turnirsid}").route(web::get().to(turnirs_single_handler)),
-            )
-            .service(web::resource("/trase/{traseid}").route(web::get().to(trase_details)))
+                web::scope("/turnirs")
+                    .service(add_turnirs_get)
+                    .service(turnirs_single_handler)
+                    .service(turnirs_all_handler))
+            .service(
+                web::scope("/parks")
+                    .service(park_all_handler)
+                    .service(park_single_handler))
+            .service(
+                web::scope("/trase")
+                    .service(trase_details))
             .service(
                 web::scope("/admin")
                     .service(

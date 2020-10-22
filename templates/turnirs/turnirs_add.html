@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block content %}
+
+<table>
+    <tr>
+        <th>Turnira nosaukums</th>
+        <th>{{ turnirs.turnira_nosaukums }}</th>
+    </tr>
+    <tr>
+        <th style="margin-left: 2cm;">Turnira datums un laiks</th>
+        <th style="margin-left: 2cm;">{{ turnirs.turnira_datums }}</th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Spēlētāji</th>
+    </tr>
+    <tr>
+        <th style="margin-left: 2cm;">Spēlētāji</th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Parks</th>
+    </tr>
+    <tr>
+        <th style="margin-left: 2cm;">Trase</th>
+    </tr>
+</table>
+
+{% endblock content %}

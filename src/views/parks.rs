@@ -1,8 +1,10 @@
 use tera::Context;
 use crate::{DB_WRAPPER, models::Parks, models::Trase};
-use actix_web::{error, web, Error, HttpResponse, Result};
+use actix_web::{Error, HttpRequest, HttpResponse, Result, error, get, post, web};
 use std::collections::HashMap;
 
+
+#[get("/")]
 pub async fn park_all_handler(
     tmpl: web::Data<tera::Tera>,
     query: web::Query<HashMap<String, String>>,
@@ -17,6 +19,8 @@ pub async fn park_all_handler(
     Ok(HttpResponse::Ok().content_type("text/html").body(s))
 }
 
+
+#[get("/{parkid}")]
 pub async fn park_single_handler(
     info: web::Path<(u32,)>,
     tmpl: web::Data<tera::Tera>,

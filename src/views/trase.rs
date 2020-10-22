@@ -1,7 +1,9 @@
 use tera::Context;
 use crate::{DB_WRAPPER, models::Grozs, models::Trase};
-use actix_web::{error, web, Error, HttpResponse, Result};
+use actix_web::{Error, HttpRequest, HttpResponse, Result, error, get, post, web};
 
+
+#[get("/{traseid}")]
 pub async fn trase_details(
     info: web::Path<(u32,)>,
     tmpl: web::Data<tera::Tera>,
