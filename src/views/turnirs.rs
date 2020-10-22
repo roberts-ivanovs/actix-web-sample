@@ -54,16 +54,23 @@ pub async fn add_turnirs_get(
     };
     let speletajs_list = Speletajs::get_all_speletaji(&mut conn).unwrap();
     let parks_list  = Parks::get_parks(&mut conn).unwrap();
+    // let trases_list  = Trase::get_trases(&mut conn).unwrap();
 
-    let mut parks_trase_map = HashMap::new();
+    let mut result: Vec<(String, u32)> = vec![];
+
+    // let mut parks_trase_map = HashMap::new();
     for parks in parks_list.iter(){
         let trase = Trase::get_trases(&mut conn, parks.id).unwrap();
-        parks_trase_map.insert(parks.id, trase);
+        for trase_iter in trase.iter() {
+            result.push((format!("{} - {}", parks.nosaukums, trase_iter.id), trase_iter.id));
+
+        }
+        // parks_trase_map.insert(parks.id, trase);
     }
     
     context.insert("turnirs", &empty_turnirs);
     context.insert("speletaji", &speletajs_list);
-    context.insert("parks_trase_map", &parks_trase_map);
+    context.insert("parks_trase_list", &result);
     let s = tmpl
         .render("turnirs/turnirs_add.html", &context)
         .map_err(|_| error::ErrorInternalServerError("Template error"))?;
@@ -78,7 +85,7 @@ pub async fn add_turnirs_post(
     let mut conn = DB_WRAPPER.get_conn();
     let created = Turnirs::create(&mut conn, query_data.0);
 
-    let base_path = extract_base_path(req.path(), "new/");
+    let base_path = extract_base_path(req.path(), "add/");
     match created {
         Ok(_) => {
             Ok(redirect_to(base_path))
