@@ -154,30 +154,21 @@ CREATE TABLE `Rezultats` (
   `id` int NOT NULL AUTO_INCREMENT,
   `metieni` int DEFAULT NULL,
   `trase_grozs_FK` int NOT NULL,
+  `TurnirsSpeletajs_FK` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `Rezultats_FK` (`trase_grozs_FK`),
-  CONSTRAINT `Rezultats_FK` FOREIGN KEY (`trase_grozs_FK`) REFERENCES `TraseGrozs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `Rezultats_FK_1` (`TurnirsSpeletajs_FK`),
+  CONSTRAINT `Rezultats_FK` FOREIGN KEY (`trase_grozs_FK`) REFERENCES `TraseGrozs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `Rezultats_FK_1` FOREIGN KEY (`TurnirsSpeletajs_FK`) REFERENCES `TurnirsSpeletajs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (1,4,29768);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (2,3,29769);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (3,3,29770);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (4,2,29771);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (5,1,29772);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (6,4,29773);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (7,3,29774);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (8,3,29775);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (9,3,29776);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (10,3,29768);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (11,5,29769);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (12,2,29771);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (13,4,29772);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (14,3,29773);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (15,6,29774);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (16,3,29770);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (17,5,29775);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`) VALUES (18,2,29776);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (2,3,29769,3);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (10,3,29768,11);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (27,4,29768,20);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (28,2,29769,20);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (29,3,29768,21);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (30,2,29769,21);
 DROP TABLE IF EXISTS `ShowAllParks`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllParks`*/;
 SET @saved_cs_client     = @@character_set_client;
@@ -208,6 +199,18 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `id`,
  1 AS `turnira_datums`,
  1 AS `turnira_nosaukums`*/;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `ShowAllTurnirsSummary`;
+/*!50001 DROP VIEW IF EXISTS `ShowAllTurnirsSummary`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `ShowAllTurnirsSummary` AS SELECT
+ 1 AS `turnirs`,
+ 1 AS `speletajs`,
+ 1 AS `trase`,
+ 1 AS `speletaja_rezultats`,
+ 1 AS `trases_metienu_skaits`,
+ 1 AS `uzvaretajs`*/;
 SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `ShowBestPlayersInTrase`;
 /*!50001 DROP VIEW IF EXISTS `ShowBestPlayersInTrase`*/;
@@ -316,44 +319,120 @@ CREATE TABLE `TurnirsSpeletajs` (
   `turnirs_FK` int NOT NULL,
   `speletajs_FK` int NOT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
-  `rezultats_FK` int NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `TurnirsSpeletajs_UN` (`speletajs_FK`,`turnirs_FK`),
   KEY `TurnirsSpeletajs_FK` (`speletajs_FK`),
   KEY `TurnirsSpeletajs_FK_1` (`turnirs_FK`),
-  KEY `TurnirsSpeletajs_FK_2` (`rezultats_FK`),
   CONSTRAINT `TurnirsSpeletajs_FK` FOREIGN KEY (`speletajs_FK`) REFERENCES `Speletajs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `TurnirsSpeletajs_FK_1` FOREIGN KEY (`turnirs_FK`) REFERENCES `Turnirs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `TurnirsSpeletajs_FK_2` FOREIGN KEY (`rezultats_FK`) REFERENCES `Rezultats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `TurnirsSpeletajs_FK_1` FOREIGN KEY (`turnirs_FK`) REFERENCES `Turnirs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,2,1);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,3,2);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,4,3);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,5,4);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,6,5);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,7,6);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,8,7);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,9,8);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,4,10,9);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,11,10);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,12,11);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,13,12);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,14,13);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,15,14);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,16,15);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,17,16);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,18,17);
-INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`, `rezultats_FK`) VALUES (4,5,19,18);
-DROP TABLE IF EXISTS `ShowHardestGrozs`;
-/*!50001 DROP VIEW IF EXISTS `ShowHardestGrozs`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT
- 1 AS `trase_id`,
- 1 AS `grozs_id`,
- 1 AS `Videjais_rezultats`*/;
-SET character_set_client = @saved_cs_client;
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (4,4,3);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (5,4,21);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (4,5,11);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (5,6,20);
+/*!50003 DROP FUNCTION IF EXISTS `speletaja_uzvaras_procentuali` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+CREATE DEFINER=`root`@`localhost` FUNCTION `speletaja_uzvaras_procentuali`(speletajs_id INT) RETURNS float
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+SELECT
+	COUNT(DISTINCT ts.turnirs_FK),
+	(SELECT COUNT(sats.speletajs)
+			FROM ShowAllTurnirsSummary sats
+			WHERE sats.speletajs = speletajs_id AND
+			sats.uzvaretajs = 1)
+INTO
+	@turniru_skaits,
+	@uzvaru_skaits
+FROM
+	Speletajs s
+JOIN TurnirsSpeletajs ts ON
+	ts.speletajs_FK = s.id
+JOIN Rezultats rez ON
+	ts.id = rez.TurnirsSpeletajs_FK
+WHERE
+	speletajs_id = s.id;
+
+RETURN @uzvaru_skaits / @turniru_skaits;
+END ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `videjais_metienu_skaits_grozam` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+CREATE DEFINER=`root`@`localhost` FUNCTION `videjais_metienu_skaits_grozam`(grozs_id INT) RETURNS float
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+SELECT
+	COUNT(r.id),
+	SUM(r.metieni)
+INTO
+	@rezultatu_skaits,
+	@metienu_skaits
+FROM
+	Rezultats r
+JOIN TraseGrozs tg ON
+	tg.id = r.trase_grozs_FK
+WHERE
+	tg.grozs_FK = grozs_id;
+RETURN @metienu_skaits / @rezultatu_skaits;
+END ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `videjais_metienu_skaits_speletajam` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+CREATE DEFINER=`root`@`localhost` FUNCTION `videjais_metienu_skaits_speletajam`(speletajs_id INT) RETURNS float
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+SELECT
+	COUNT(r.trase_grozs_FK),
+	SUM(r.metieni)
+INTO
+	@grozu_skaits,
+	@metienu_skaits
+FROM
+	Speletajs s
+JOIN TurnirsSpeletajs tg ON
+	tg.speletajs_FK = s.id
+JOIN Rezultats r ON
+	tg.id = r.TurnirsSpeletajs_FK
+WHERE
+	s.id = speletajs_id;
+RETURN @metienu_skaits / @grozu_skaits;
+END ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `count_trase_summary` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -405,7 +484,7 @@ FROM
 JOIN Speletajs s ON
 	s.id = ts.speletajs_FK
 JOIN Rezultats r ON
-	r.id = ts.rezultats_FK
+	r.TurnirsSpeletajs_FK = ts.id
 JOIN TraseGrozs tg ON
 	tg.id = r.trase_grozs_FK
 JOIN Grozs g ON
@@ -523,7 +602,25 @@ USE `disku_golfs`;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE VIEW `ShowAllTurnirs` AS SELECT * FROM Turnirs */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ShowAllTurnirs` AS SELECT
+	*
+FROM
+	Turnirs */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP VIEW IF EXISTS `ShowAllTurnirsSummary`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ShowAllTurnirsSummary` AS SELECT ts.turnirs_FK as turnirs, ts.speletajs_FK as speletajs,t.id as trase, SUM(r.metieni) as speletaja_rezultats, SUM(g.maksimalais_metienu_skaits) as trases_metienu_skaits,(SELECT CASE WHEN (SELECT ts2.speletajs_FK FROM Turnirs t JOIN TurnirsSpeletajs ts2 ON ts2.turnirs_FK = t.id JOIN Rezultats r2 ON r2.TurnirsSpeletajs_FK = ts2.id WHERE ts2.turnirs_FK = ts.turnirs_FK GROUP BY ts2.speletajs_FK ORDER BY SUM(r2.metieni) ASC LIMIT 1) = ts.speletajs_FK THEN 1 ELSE 0 end ) as uzvaretajs FROM TurnirsSpeletajs ts JOIN Speletajs s ON s.id = ts.speletajs_FK JOIN Rezultats r ON r.TurnirsSpeletajs_FK = ts.id JOIN TraseGrozs tg ON tg.id = r.trase_grozs_FK JOIN Grozs g ON tg.grozs_FK = g.id JOIN Trase t ON tg.trase_FK = t.id GROUP BY speletajs_FK, turnirs_FK, t.id */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -536,7 +633,7 @@ USE `disku_golfs`;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowBestPlayersInTrase` AS SELECT tg.trase_FK as trase_FK, ts.speletajs_FK as s_id, SUM(r.metieni) as rezultats FROM Rezultats r JOIN TraseGrozs tg ON r.trase_grozs_FK = tg.id JOIN TurnirsSpeletajs ts ON ts.rezultats_FK = r.id GROUP BY trase_FK, s_id ORDER BY rezultats ASC LIMIT 3*/;
+/*!50001 VIEW `ShowBestPlayersInTrase` AS SELECT tg.trase_FK as trase_FK, ts.speletajs_FK as s_id, SUM(r.metieni) as rezultats FROM Rezultats r JOIN TraseGrozs tg ON r.trase_grozs_FK = tg.id JOIN TurnirsSpeletajs ts ON ts.id = r.TurnirsSpeletajs_FK GROUP BY trase_FK, s_id ORDER BY rezultats ASC LIMIT 3 */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -547,7 +644,9 @@ USE `disku_golfs`;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT tg.trase_FK as trase_id, g.id as grozs_id, SUM(r.metieni) / COUNT(r.id) as Videjais_rezultats FROM Trase t JOIN TraseGrozs tg ON tg.trase_FK = t.id JOIN Rezultats r ON r.trase_grozs_FK = tg.id JOIN Grozs g ON tg.grozs_FK = g.id GROUP BY tg.trase_FK, g.id ORDER BY Videjais_rezultats desc LIMIT 3*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `ShowHardestGrozs` AS SELECT tg.trase_FK as trase_id, g.id as grozs_id, SUM(r.metieni) / COUNT(r.id) as Videjais_rezultats FROM Trase t JOIN TraseGrozs tg ON tg.trase_FK = t.id JOIN Rezultats r ON r.trase_grozs_FK = tg.id JOIN Grozs g ON tg.grozs_FK = g.id GROUP BY tg.trase_FK, g.id ORDER BY Videjais_rezultats desc LIMIT 3 */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
