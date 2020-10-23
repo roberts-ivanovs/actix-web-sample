@@ -1,8 +1,7 @@
+use super::{Speletajs, Trase};
 use crate::DB_WRAPPER;
-use super::{Trase, Speletajs};
-use mysql::{prelude::Queryable, PooledConn};
 use mysql::serde::{Deserialize, Serialize};
-
+use mysql::{prelude::Queryable, PooledConn};
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct BestPlayerResult {

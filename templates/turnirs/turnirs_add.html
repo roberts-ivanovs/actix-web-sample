@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %}
+
+<form method="POST">
+<table>
+    <tr>
+        <th>Turnira nosaukums</th>
+        <th style="margin-left: 2cm;"><input type="text" name="name" value=""></input></th>
+    </tr>
+    <tr>
+        <th>Turnira datums un laiks</th>
+        <th style="margin-left: 2cm;"><input type="datetime-local" name="datetime" value=""></input></th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Spēlētāji</th>
+        <th style="margin-left: 2cm;">
+            <select multiple="multiple" id="myMulti" name="players[]">
+                {% for speletajs in speletaji%}
+                    <option value="{{ speletajs.id }}">{{ speletajs.vards }} {{ speletajs.uzvards }}</option>
+                {% endfor %}
+            </select>
+        </th>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Parks - Trase</th>
+        <th style="margin-left: 2cm;">
+            <select name="tracks">
+                {% for parks_trase in parks_trase_list %}
+                    <option value="{{ parks_trase.1 }}">{{ parks_trase.0 }}</option>
+                {% endfor %}
+            </select>
+        </th>
+    </tr>
+</table>
+<input type="submit" name="METHOD" value="SUBMIT" />
+</form>
+{% endblock content %}

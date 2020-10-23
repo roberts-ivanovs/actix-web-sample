@@ -7,13 +7,13 @@ mod views;
 
 // use crate::views::admin::admin_delete_parks;
 // use crate::views::admin::admin_update_parks_get;
-use crate::views::admin::turnirs::delete_turnirs;
+use crate::views::admin::admin_root;
 use crate::views::admin::turnirs::create_turnirs_get;
 use crate::views::admin::turnirs::create_turnirs_post;
-use crate::views::admin::turnirs::update_turnirs_post;
-use crate::views::admin::turnirs::update_turnirs_get;
+use crate::views::admin::turnirs::delete_turnirs;
 use crate::views::admin::turnirs::list_turnirs;
-use crate::views::admin::admin_root;
+use crate::views::admin::turnirs::update_turnirs_get;
+use crate::views::admin::turnirs::update_turnirs_post;
 use crate::views::index_handler;
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
@@ -25,6 +25,7 @@ use tera::Tera;
 use views::{
     admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs,
     admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post,
+    turnirs::add_turnirs_post,
 };
 use views::{
     admin::parks::create_parks_get, admin::parks::create_parks_post, admin::parks::delete_parks,
@@ -34,7 +35,7 @@ use views::{
     admin::speletajs::update_speletajs_get, admin::speletajs::update_speletajs_post,
 };
 
-use views::turnirs::{turnirs_all_handler, turnirs_single_handler};
+use views::turnirs::{add_turnirs_get, turnirs_all_handler, turnirs_single_handler};
 use views::{
     parks::{park_all_handler, park_single_handler},
     trase::trase_details,
@@ -61,13 +62,19 @@ async fn main() -> std::io::Result<()> {
             .data(tera) // enable logger
             .wrap(middleware::Logger::default())
             .service(web::resource("/").route(web::get().to(index_handler)))
-            .service(web::resource("/parks/").route(web::get().to(park_all_handler)))
-            .service(web::resource("/parks/{parkid}").route(web::get().to(park_single_handler)))
-            .service(web::resource("/turnirs/").route(web::get().to(turnirs_all_handler)))
             .service(
-                web::resource("/turnirs/{turnirsid}").route(web::get().to(turnirs_single_handler)),
+                web::scope("/turnirs")
+                    .service(add_turnirs_get)
+                    .service(add_turnirs_post)
+                    .service(turnirs_single_handler)
+                    .service(turnirs_all_handler),
             )
-            .service(web::resource("/trase/{traseid}").route(web::get().to(trase_details)))
+            .service(
+                web::scope("/parks")
+                    .service(park_all_handler)
+                    .service(park_single_handler),
+            )
+            .service(web::scope("/trase").service(trase_details))
             .service(
                 web::scope("/admin")
                     .service(

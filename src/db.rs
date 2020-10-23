@@ -1,7 +1,7 @@
-use crate::models::{Parks, Trase, Turnirs, Speletajs};
-use mysql::{Pool, PooledConn};
+use crate::models::{Parks, Speletajs, Trase, Turnirs};
 use mysql::Row;
 use mysql::{params, prelude::*};
+use mysql::{Pool, PooledConn};
 use std::fs::File;
 use std::io::prelude::*;
 
