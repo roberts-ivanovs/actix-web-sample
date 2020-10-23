@@ -442,7 +442,7 @@ END ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `count_trase_summary`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count_trase_summary`(IN trase_id INT)
 BEGIN
 SELECT
 	tg.trase_FK,
@@ -453,6 +453,8 @@ FROM
 	Grozs g
 JOIN TraseGrozs tg ON
 	tg.grozs_FK = g.id
+WHERE
+	tg.trase_FK = trase_id
 GROUP BY
 	tg.trase_FK
 ORDER BY

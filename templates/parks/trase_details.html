@@ -2,6 +2,24 @@
 
 {% block content %}
 
+  <h3>Vispārigs trases pārskatas</h3>
+   <table>
+    <tr>
+      <th>Grozu skaits</th>
+      <th>Maksimālais punktu skaits</th>
+      <th>Trases garums</th>
+    </tr>
+
+    {% for trase in trase_overview -%}
+      <tr>
+        <td>{{ trase.grozu_skaits }}</td>
+        <td>{{ trase.Maksimalais_punktu_skaits }}</td>
+        <td>{{ trase.trases_garums }}</td>
+      </tr>
+    {%- endfor %}
+  </table>
+
+
   <h3>Grūtākie grozi</h3>
   <table>
     <tr>

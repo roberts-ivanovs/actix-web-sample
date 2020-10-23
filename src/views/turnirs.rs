@@ -14,7 +14,6 @@ use tera::Context;
 #[get("/")]
 pub async fn turnirs_all_handler(
     tmpl: web::Data<tera::Tera>,
-    query: web::Query<HashMap<String, String>>,
 ) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
     let turnirs_instances = Turnirs::get_turniri(&mut conn).unwrap();
@@ -35,6 +34,7 @@ pub async fn turnirs_single_handler(
 
     let turnirs_instances = Turnirs::get(&mut conn, (info.0).0).unwrap();
     let turnirs_results = Turnirs::count_turnirs_summary(&mut conn, (info.0).0).unwrap();
+
     let mut context = Context::new();
     context.insert("turnirs", &turnirs_instances);
     context.insert("turnirs_result", &turnirs_results);

@@ -44,5 +44,31 @@ impl Trase {
         Ok(best_players_in_trase)
     }
 
-    // pub fn get_hardest_grozs_in_trase(conn: &mut PooledConn)  -> Result<Vec<Trase>, mysql::Error> {}
+    pub fn trase_summary(
+        conn: &mut PooledConn,
+        trase_id: u32,
+    ) -> Result<Vec<CountTraseSummary>, mysql::Error> {
+        let mut iter_conn = DB_WRAPPER.get_conn();
+
+        let turnirs_summary: Vec<CountTraseSummary> = conn.query_map(
+            format!("CALL count_trase_summary({})", trase_id),
+            |(trase_FK, grozu_skaits, Maksimalais_punktu_skaits, trases_garums)| {
+                CountTraseSummary {
+                    trase_FK,
+                    grozu_skaits,
+                    Maksimalais_punktu_skaits,
+                    trases_garums,
+                }
+            },
+        )?;
+        Ok(turnirs_summary)
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct CountTraseSummary {
+    trase_FK: u32,
+    grozu_skaits: u32,
+    Maksimalais_punktu_skaits: u32,
+    trases_garums: u32,
 }
