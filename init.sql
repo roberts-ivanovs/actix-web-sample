@@ -546,7 +546,7 @@ END ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `hardest_grozs_in_trase`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `hardest_grozs_in_trase`(IN trase_id INT)
 BEGIN
 SELECT
 	tg.trase_FK,
@@ -560,6 +560,8 @@ JOIN Rezultats r ON
 	r.trase_grozs_FK = tg.id
 JOIN Grozs g ON
 	tg.grozs_FK = g.id
+WHERE
+	tg.trase_FK = trase_id
 GROUP BY
 	tg.trase_FK,
 	g.id
@@ -650,7 +652,7 @@ FROM
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowHardestGrozs` AS SELECT tg.trase_FK as trase_id, g.id as grozs_id, SUM(r.metieni) / COUNT(r.id) as Videjais_rezultats FROM Trase t JOIN TraseGrozs tg ON tg.trase_FK = t.id JOIN Rezultats r ON r.trase_grozs_FK = tg.id JOIN Grozs g ON tg.grozs_FK = g.id GROUP BY tg.trase_FK, g.id ORDER BY Videjais_rezultats desc LIMIT 3 */;
+/*!50001 VIEW `ShowHardestGrozs` AS SELECT tg.trase_FK as trase_id, g.id as grozs_id, SUM(r.metieni) / COUNT(r.id) as Videjais_rezultats FROM Trase t JOIN TraseGrozs tg ON tg.trase_FK = t.id JOIN Rezultats r ON r.trase_grozs_FK = tg.id JOIN Grozs g ON tg.grozs_FK = g.id GROUP BY tg.trase_FK, g.id ORDER BY Videjais_rezultats */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;

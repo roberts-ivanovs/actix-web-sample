@@ -1,3 +1,4 @@
+use crate::models::Trase;
 use crate::DB_WRAPPER;
 use mysql::serde::{Deserialize, Serialize};
 use mysql::{prelude::Queryable, PooledConn};
@@ -6,6 +7,7 @@ use super::Grozs;
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct HardGrozs {
+    pub trase: u32,
     pub grozs: Grozs,
     pub rezultats: f32,
 }
@@ -13,16 +15,14 @@ pub struct HardGrozs {
 impl Grozs {
     pub fn get_hardest_grozi_in_trase(
         conn: &mut PooledConn,
-        trase_fk: u32,
     ) -> Result<Vec<HardGrozs>, mysql::Error> {
         let mut iter_conn = DB_WRAPPER.get_conn();
+        let mut iter_conn2 = DB_WRAPPER.get_conn();
         let grozi_hardest: Vec<HardGrozs> = conn.query_map(
-            format!(
-                "SELECT grozs_id, Videjais_rezultats FROM ShowHardestGrozs WHERE trase_id={}",
-                trase_fk
-            ),
-            |(id, rezultats)| HardGrozs {
-                grozs: Grozs::get(&mut iter_conn, id).unwrap(),
+            "SELECT * FROM ShowHardestGrozs",
+            |(trase_id, grozs_id, rezultats)| HardGrozs {
+                trase: trase_id,
+                grozs: Grozs::get(&mut iter_conn, grozs_id).unwrap(),
                 rezultats,
             },
         )?;

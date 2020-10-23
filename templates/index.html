@@ -1,19 +1,40 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<ul>
+  <li>
+    <a href="parks/">Visi parki</a>
+  </li>
+  <li>
+    <a href="admin/">Administrācijas panelis</a>
+  </li>
+  <li>
+    <a href="turnirs/">Visi turniri</a>
+  </li>
+  <li>
+    <a href="speletajs/">Visi speletaji</a>
+  </li>
+</ul>
 
-{% block content %}
-    <ul>
-      <li>
-        <a href="parks/">Visi parki</a>
-      </li>
-      <li>
-        <a href="admin/">Administrācijas panelis</a>
-      </li>
-      <li>
-        <a href="turnirs/">Visi turniri</a>
-      </li>
-      <li>
-        <a href="speletajs/">Visi speletaji</a>
-      </li>
-    </ul>
+<hr />
+
+<h3>Grūtākie grozi sistēmā</h3>
+<table>
+  <tr>
+    <th>Groza ID</th>
+    <th>attālums līdz grozam</th>
+    <th>soda punkti</th>
+    <th>Maksimālais atļautais metienu skaits</th>
+    <th>Vidējais rezultāts</th>
+  </tr>
+
+  {% for hardcode in hard_grozi -%}
+  <tr>
+    <td>{{ hardcode.grozs.id }}</td>
+    <td>{{ hardcode.grozs.attalums_lidz_grozam }}</td>
+    <td>{{ hardcode.grozs.maksimalais_metienu_skaits }}</td>
+    <td>{{ hardcode.grozs.soda_punkti }}</td>
+    <td>{{ hardcode.rezultats }}</td>
+  </tr>
+  {%- endfor %}
+</table>
 
 {% endblock content %}
