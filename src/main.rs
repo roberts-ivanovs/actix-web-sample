@@ -7,13 +7,13 @@ mod views;
 
 // use crate::views::admin::admin_delete_parks;
 // use crate::views::admin::admin_update_parks_get;
-use crate::views::admin::turnirs::delete_turnirs;
+use crate::views::admin::admin_root;
 use crate::views::admin::turnirs::create_turnirs_get;
 use crate::views::admin::turnirs::create_turnirs_post;
-use crate::views::admin::turnirs::update_turnirs_post;
-use crate::views::admin::turnirs::update_turnirs_get;
+use crate::views::admin::turnirs::delete_turnirs;
 use crate::views::admin::turnirs::list_turnirs;
-use crate::views::admin::admin_root;
+use crate::views::admin::turnirs::update_turnirs_get;
+use crate::views::admin::turnirs::update_turnirs_post;
 use crate::views::index_handler;
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
@@ -22,7 +22,11 @@ use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
-use views::{turnirs::add_turnirs_post, admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs, admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post};
+use views::{
+    admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs,
+    admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post,
+    turnirs::add_turnirs_post,
+};
 use views::{
     admin::parks::create_parks_get, admin::parks::create_parks_post, admin::parks::delete_parks,
     admin::parks::list_parks, admin::parks::update_parks_get, admin::parks::update_parks_post,
@@ -31,7 +35,7 @@ use views::{
     admin::speletajs::update_speletajs_get, admin::speletajs::update_speletajs_post,
 };
 
-use views::turnirs::{turnirs_all_handler, turnirs_single_handler, add_turnirs_get};
+use views::turnirs::{add_turnirs_get, turnirs_all_handler, turnirs_single_handler};
 use views::{
     parks::{park_all_handler, park_single_handler},
     trase::trase_details,
@@ -63,14 +67,14 @@ async fn main() -> std::io::Result<()> {
                     .service(add_turnirs_get)
                     .service(add_turnirs_post)
                     .service(turnirs_single_handler)
-                    .service(turnirs_all_handler))
+                    .service(turnirs_all_handler),
+            )
             .service(
                 web::scope("/parks")
                     .service(park_all_handler)
-                    .service(park_single_handler))
-            .service(
-                web::scope("/trase")
-                    .service(trase_details))
+                    .service(park_single_handler),
+            )
+            .service(web::scope("/trase").service(trase_details))
             .service(
                 web::scope("/admin")
                     .service(

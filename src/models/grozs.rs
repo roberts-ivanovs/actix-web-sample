@@ -33,7 +33,10 @@ impl Grozs {
         let grozs: Vec<Grozs> = conn.query_map(
             "SELECT id, soda_punkti, maksimalais_metienu_skaits, attalums_lidz_grozam FROM Grozs",
             |(id, soda_punkti, maksimalais_metienu_skaits, attalums_lidz_grozam)| Grozs {
-                id, soda_punkti, maksimalais_metienu_skaits, attalums_lidz_grozam
+                id,
+                soda_punkti,
+                maksimalais_metienu_skaits,
+                attalums_lidz_grozam,
             },
         )?;
         Ok(grozs)
@@ -108,9 +111,9 @@ impl Grozs {
             ) VALUES (
                 '{soda_punkti}', '{maksimalais_metienu_skaits}', '{attalums_lidz_grozam}'
             )",
-            soda_punkti=soda_punkti,
-            maksimalais_metienu_skaits=maksimalais_metienu_skaits,
-            attalums_lidz_grozam=grozs.attalums_lidz_grozam,
+            soda_punkti = soda_punkti,
+            maksimalais_metienu_skaits = maksimalais_metienu_skaits,
+            attalums_lidz_grozam = grozs.attalums_lidz_grozam,
         );
         conn.query_drop(query)?;
         Ok(true)

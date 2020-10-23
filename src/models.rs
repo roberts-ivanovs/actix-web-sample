@@ -1,8 +1,8 @@
-pub mod parks;
-pub mod trase;
 pub mod grozs;
-pub mod turnirs;
+pub mod parks;
 pub mod speletajs;
+pub mod trase;
+pub mod turnirs;
 use mysql::serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -30,7 +30,6 @@ pub struct Grozs {
     pub maksimalais_metienu_skaits: Option<u32>,
     pub attalums_lidz_grozam: u32,
 }
-
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize, Clone)]
 pub struct Turnirs {

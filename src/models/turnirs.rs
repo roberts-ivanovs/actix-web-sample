@@ -101,8 +101,8 @@ impl Turnirs {
             ) VALUES (
                 '{turnira_datums}', '{turnira_nosaukums}'
             )",
-            turnira_nosaukums=turnirs.turnira_nosaukums.unwrap_or("NULL".to_owned()),
-            turnira_datums=turnirs.turnira_datums.unwrap_or("NULL".to_owned()),
+            turnira_nosaukums = turnirs.turnira_nosaukums.unwrap_or("NULL".to_owned()),
+            turnira_datums = turnirs.turnira_datums.unwrap_or("NULL".to_owned()),
         );
         conn.query_drop(query)?;
         Ok(true)
