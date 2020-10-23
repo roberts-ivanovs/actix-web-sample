@@ -133,10 +133,10 @@ CREATE TABLE `Parks` (
   `id` int NOT NULL AUTO_INCREMENT,
   `adrese` varchar(200) DEFAULT NULL,
   `telefona_numurs` varchar(15) DEFAULT NULL,
-  `apraksts` text DEFAULT NULL,
+  `apraksts` text,
   `darba_laiks_sakums` time DEFAULT NULL,
   `nosaukums` varchar(100) NOT NULL,
-  `darba_laiks_beigas` time DEFAULT NULL,
+  `darba_laiks_beigas` time NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -182,7 +182,7 @@ DROP TABLE IF EXISTS `ShowAllParks`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllParks`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowAllParks` AS SELECT 
+/*!50001 CREATE VIEW `ShowAllParks` AS SELECT
  1 AS `id`,
  1 AS `adrese`,
  1 AS `telefona_numurs`,
@@ -195,7 +195,7 @@ DROP TABLE IF EXISTS `ShowAllTrase`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllTrase`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowAllTrase` AS SELECT 
+/*!50001 CREATE VIEW `ShowAllTrase` AS SELECT
  1 AS `id`,
  1 AS `laiks_trases_iziesanai`,
  1 AS `parks_FK`*/;
@@ -204,7 +204,7 @@ DROP TABLE IF EXISTS `ShowAllTurnirs`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllTurnirs`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowAllTurnirs` AS SELECT 
+/*!50001 CREATE VIEW `ShowAllTurnirs` AS SELECT
  1 AS `id`,
  1 AS `turnira_datums`,
  1 AS `turnira_nosaukums`*/;
@@ -213,18 +213,27 @@ DROP TABLE IF EXISTS `ShowBestPlayersInTrase`;
 /*!50001 DROP VIEW IF EXISTS `ShowBestPlayersInTrase`*/;
 SET @saved_cs_client = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowBestPlayersInTrase` AS SELECT 
+/*!50001 CREATE VIEW `ShowBestPlayersInTrase` AS SELECT
  1 AS `trase_FK`,
  1 AS `s_id`,
  1 AS `rezultats`*/;
- SET character_set_client = @saved_cs_client;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `ShowHardestGrozs`;
+/*!50001 DROP VIEW IF EXISTS `ShowHardestGrozs`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT
+ 1 AS `trase_id`,
+ 1 AS `grozs_id`,
+ 1 AS `Videjais_rezultats`*/;
+SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `Speletajs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Speletajs` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `vards` varchar(60) NOT NULL,
-  `uzvards` varchar(60) NOT NULL,
+  `vards` varchar(60) DEFAULT NULL,
+  `uzvards` varchar(60) DEFAULT NULL,
   `dzimsanas_dati` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -340,7 +349,7 @@ DROP TABLE IF EXISTS `ShowHardestGrozs`;
 /*!50001 DROP VIEW IF EXISTS `ShowHardestGrozs`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT 
+/*!50001 CREATE VIEW `ShowHardestGrozs` AS SELECT
  1 AS `trase_id`,
  1 AS `grozs_id`,
  1 AS `Videjais_rezultats`*/;
@@ -437,7 +446,7 @@ JOIN Trase t ON
 JOIN Grozs g ON
 	tg.grozs_FK = g.id
 GROUP BY
-	t.id, g.id, tg.numurs_pec_kartas 
+	t.id, g.id, tg.numurs_pec_kartas
 ORDER BY
 	tg.numurs_pec_kartas;
 END ;
@@ -490,7 +499,7 @@ USE `disku_golfs`;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowAllParks` AS select `Parks`.`id` AS `id`,`Parks`.`adrese` AS `adrese`,`Parks`.`telefona_numurs` AS `telefona_numurs`,`Parks`.`apraksts` AS `apraksts`,`Parks`.`darba_laiks_sakums` AS `darba_laiks_sakums`,`Parks`.`nosaukums` AS `nosaukums`,`Parks`.`darba_laiks_beigas` AS `darba_laiks_beigas` from `Parks` */;
+/*!50001 VIEW `ShowAllParks` AS SELECT * FROM Parks */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -503,7 +512,7 @@ USE `disku_golfs`;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowAllTrase` AS select `t`.`id` AS `id`,`t`.`laiks_trases_iziesanai` AS `laiks_trases_iziesanai`,`t`.`parks_FK` AS `parks_FK` from `Trase` `t` */;
+/*!50001 VIEW `ShowAllTrase` AS SELECT * FROM Trase */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
