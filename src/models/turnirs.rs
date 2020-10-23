@@ -10,7 +10,7 @@ pub struct SummaryTurnirs {
     pub turnirs: i32,
     pub speletajs: Speletajs,
     pub trase: i32,
-    pub speletaja_rezultats: i32,
+    pub speletaja_rezultats: Option<i32>,
     pub trases_metienu_skaits: i32,
 }
 

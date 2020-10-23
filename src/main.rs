@@ -22,7 +22,7 @@ use actix_web::middleware::errhandlers::{ErrorHandlerResponse, ErrorHandlers};
 use actix_web::{middleware, web, App, HttpServer, Result};
 use db::DatabaseWrapper;
 use tera::Tera;
-use views::{admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs, admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post};
+use views::{turnirs::add_turnirs_post, admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs, admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post};
 use views::{
     admin::parks::create_parks_get, admin::parks::create_parks_post, admin::parks::delete_parks,
     admin::parks::list_parks, admin::parks::update_parks_get, admin::parks::update_parks_post,
@@ -61,6 +61,7 @@ async fn main() -> std::io::Result<()> {
             .service(
                 web::scope("/turnirs")
                     .service(add_turnirs_get)
+                    .service(add_turnirs_post)
                     .service(turnirs_single_handler)
                     .service(turnirs_all_handler))
             .service(

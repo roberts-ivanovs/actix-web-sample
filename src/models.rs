@@ -32,7 +32,7 @@ pub struct Grozs {
 }
 
 
-#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize, Clone)]
 pub struct Turnirs {
     pub id: u32,
     pub turnira_datums: Option<String>,
@@ -45,4 +45,10 @@ pub struct Speletajs {
     pub vards: String,
     pub uzvards: String,
     pub dzimsanas_dati: Option<String>,
+}
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TurnirsSpeletajs {
+    pub id: u32,
+    pub turnirs_FK: u32,
+    pub speletajs_FK: u32,
 }
