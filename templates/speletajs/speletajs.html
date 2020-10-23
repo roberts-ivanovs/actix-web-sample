@@ -3,7 +3,7 @@
 {% block content %}
 <ul>
     {% for speletajs in speletajs_all -%}
-    <li><a href="{{ speletajs.id }}">{{ speletajs.id }}</a></li>
+    <li><a href="{{ speletajs.id }}">{{ speletajs.vards }} {{ speletajs.uzvards }}</a></li>
     {%- endfor %}
 </ul>
 {% endblock content %}

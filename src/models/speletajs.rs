@@ -110,6 +110,21 @@ impl Speletajs {
         )?;
         Ok(speletajs)
     }
+
+    pub fn uzvaras_proc(conn: &mut PooledConn, speletaja_id: u32) -> Result<f32, mysql::Error> {
+        let uzvaras_proc = conn.query_first::<f32, String>(format!(
+            "SELECT speletaja_uzvaras_procentuali({});",
+            speletaja_id
+        ));
+        match uzvaras_proc {
+            Ok(val) => {
+                return Ok(val.unwrap() * 100.);
+            }
+            Err(_) => {
+                return Ok(0.);
+            }
+        }
+    }
 }
 
 #[derive(Serialize, Deserialize)]
