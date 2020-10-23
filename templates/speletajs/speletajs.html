@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+    {% for speletajs in speletajs_all -%}
+    <li><a href="{{ speletajs.id }}">{{ speletajs.id }}</a></li>
+    {%- endfor %}
+</ul>
+{% endblock content %}

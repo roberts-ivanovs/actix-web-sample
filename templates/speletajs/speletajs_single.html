@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+
+{% if speletajs %}
+    <table>
+        <tr>
+            <th>Spēlētāja vārds</th>
+            <th>{{ speletajs.vards }} {{ speletajs.uzvards }}</th>
+        </tr>
+    </table>
+    {% if turnirs_details %}
+        <h2>Turnira rezultati</h2>
+        <table>
+            <tr>
+                <th>Turnīrs</th>
+                <th>Turnīra datums</th>
+                <th>Trase</th>
+                <th>Trases optimālais metienu skaits</th>
+                <th>Spēlētāja rezultāts</th>
+                <th>Uzvarēja</th>
+            </tr>
+            {% for viena_turnira_rezultats in turnirs_details -%}
+              <tr>
+                  <td>{{ viena_turnira_rezultats.turnirs.turnira_nosaukums}} </td>
+                  <td>{{ viena_turnira_rezultats.turnirs.turnira_datums}} </td>
+                  <td>{{ viena_turnira_rezultats.trase}}</td>
+                  <td>{{ viena_turnira_rezultats.trases_metienu_skaits }}</td>
+                  <td>{{ viena_turnira_rezultats.speletaja_rezultats }}</td>
+                  <td>{{ viena_turnira_rezultats.uzvaretajs }}</td>
+              </tr>
+            {%- endfor %}
+        </table>
+    {% endif %}
+{% else %}
+    Sorry, turnirs isn't defined.
+{% endif %}
+
+{% endblock content %}

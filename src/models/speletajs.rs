@@ -1,4 +1,7 @@
+use crate::models::Turnirs;
+use crate::DB_WRAPPER;
 use mysql::{prelude::Queryable, PooledConn};
+use serde::{Deserialize, Serialize};
 
 use super::Speletajs;
 
@@ -76,4 +79,45 @@ impl Speletajs {
         conn.query_drop(query)?;
         Ok(true)
     }
+
+    pub fn get_turniri_statistics(
+        conn: &mut PooledConn,
+        speletajs: &Speletajs,
+    ) -> Result<Vec<SpeletajsTurnirsSummary>, mysql::Error> {
+        let mut inner_conn = DB_WRAPPER.get_conn();
+        let mut inner_conn2 = DB_WRAPPER.get_conn();
+
+        let speletajs: Vec<SpeletajsTurnirsSummary> = conn.query_map(
+            format!(
+                "SELECT * FROM ShowAllTurnirsSummary WHERE speletajs={}",
+                &speletajs.id
+            ),
+            |(
+                turnirs,
+                speletajs,
+                trase,
+                speletaja_rezultats,
+                trases_metienu_skaits,
+                uzvaretajs,
+            ): (u32, u32, u32, u32, u32, u32)| SpeletajsTurnirsSummary {
+                turnirs: Turnirs::get(&mut inner_conn, turnirs).unwrap().unwrap(),
+                speletajs: Speletajs::get(&mut inner_conn2, speletajs).unwrap(),
+                trase,
+                speletaja_rezultats,
+                trases_metienu_skaits,
+                uzvaretajs: uzvaretajs == 1,
+            },
+        )?;
+        Ok(speletajs)
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct SpeletajsTurnirsSummary {
+    turnirs: Turnirs,
+    speletajs: Speletajs,
+    trase: u32,
+    speletaja_rezultats: u32,
+    trases_metienu_skaits: u32,
+    uzvaretajs: bool,
 }

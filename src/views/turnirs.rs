@@ -71,8 +71,6 @@ pub async fn add_turnirs_get(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse
     Ok(HttpResponse::Created().content_type("text/html").body(s))
 }
 
-//name=dkadjkaskhsadk&datetime=2020-04-08+10%3A00%3A00&players=4&players=5&tracks=21&METHOD=SUBMIT
-
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize, Clone)]
 struct TurniraIzveide {
     name: String,

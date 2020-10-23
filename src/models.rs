@@ -45,6 +45,7 @@ pub struct Speletajs {
     pub uzvards: String,
     pub dzimsanas_dati: Option<String>,
 }
+
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TurnirsSpeletajs {
     pub id: u32,

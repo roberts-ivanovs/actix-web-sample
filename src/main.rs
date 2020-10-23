@@ -5,8 +5,6 @@ mod db;
 mod models;
 mod views;
 
-// use crate::views::admin::admin_delete_parks;
-// use crate::views::admin::admin_update_parks_get;
 use crate::views::admin::admin_root;
 use crate::views::admin::turnirs::create_turnirs_get;
 use crate::views::admin::turnirs::create_turnirs_post;
@@ -25,14 +23,15 @@ use tera::Tera;
 use views::{
     admin::grozs::create_grozs_get, admin::grozs::create_grozs_post, admin::grozs::delete_grozs,
     admin::grozs::list_grozs, admin::grozs::update_grozs_get, admin::grozs::update_grozs_post,
-    turnirs::add_turnirs_post,
-};
-use views::{
     admin::parks::create_parks_get, admin::parks::create_parks_post, admin::parks::delete_parks,
     admin::parks::list_parks, admin::parks::update_parks_get, admin::parks::update_parks_post,
     admin::speletajs::create_speletajs_get, admin::speletajs::create_speletajs_post,
     admin::speletajs::delete_speletajs, admin::speletajs::list_speletajs,
     admin::speletajs::update_speletajs_get, admin::speletajs::update_speletajs_post,
+};
+use views::{
+    speletajs::speletajs_all_handler, speletajs::speletajs_single_handler,
+    turnirs::add_turnirs_post,
 };
 
 use views::turnirs::{add_turnirs_get, turnirs_all_handler, turnirs_single_handler};
@@ -68,6 +67,11 @@ async fn main() -> std::io::Result<()> {
                     .service(add_turnirs_post)
                     .service(turnirs_single_handler)
                     .service(turnirs_all_handler),
+            )
+            .service(
+                web::scope("/speletajs")
+                    .service(speletajs_all_handler)
+                    .service(speletajs_single_handler),
             )
             .service(
                 web::scope("/parks")
