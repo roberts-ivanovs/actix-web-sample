@@ -1,4 +1,5 @@
 use super::{Speletajs, Trase};
+use crate::models::Grozs;
 use crate::DB_WRAPPER;
 use mysql::serde::{Deserialize, Serialize};
 use mysql::{prelude::Queryable, PooledConn};
@@ -63,6 +64,24 @@ impl Trase {
         )?;
         Ok(turnirs_summary)
     }
+
+    pub fn get_trase_grozu_seciba(
+        conn: &mut PooledConn,
+        trase_id: u32,
+    ) -> Result<Vec<TraseGrozuSeciba>, mysql::Error> {
+        let mut iter_conn = DB_WRAPPER.get_conn();
+
+        let turnirs_summary: Vec<TraseGrozuSeciba> = conn.query_map(
+            format!("CALL get_trase_grozu_seciba({})", trase_id),
+            |(trase, grozs, kartas_numurs, punkti)| TraseGrozuSeciba {
+                trase,
+                grozs: Grozs::get(&mut iter_conn, grozs).unwrap(),
+                kartas_numurs,
+                punkti,
+            },
+        )?;
+        Ok(turnirs_summary)
+    }
 }
 
 #[derive(Serialize, Deserialize)]
@@ -71,4 +90,12 @@ pub struct CountTraseSummary {
     grozu_skaits: u32,
     Maksimalais_punktu_skaits: u32,
     trases_garums: u32,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct TraseGrozuSeciba {
+    trase: u32,
+    grozs: Grozs,
+    kartas_numurs: u32,
+    punkti: u32,
 }

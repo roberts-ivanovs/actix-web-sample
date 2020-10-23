@@ -11,10 +11,14 @@ pub async fn trase_details(
     let hard_grozi = Grozs::get_hardest_grozi_in_trase(&mut conn, (info.0).0).unwrap();
     let best_players_in_trase = Trase::get_best_players_in_trase(&mut conn, (info.0).0).unwrap();
     let trase_overview = Trase::trase_summary(&mut conn, (info.0).0).unwrap();
+    let get_trase_grozu_seciba = Trase::get_trase_grozu_seciba(&mut conn, (info.0).0).unwrap();
     let mut context = Context::new();
+
+    println!("{:?}", &get_trase_grozu_seciba);
     context.insert("hard_grozi", &hard_grozi);
     context.insert("best_players_in_trase", &best_players_in_trase);
     context.insert("trase_overview", &trase_overview);
+    context.insert("get_trase_grozu_seciba", &get_trase_grozu_seciba);
 
     let s = tmpl
         .render("parks/trase_details.html", &context)

@@ -12,9 +12,7 @@ use std::collections::HashMap;
 use tera::Context;
 
 #[get("/")]
-pub async fn turnirs_all_handler(
-    tmpl: web::Data<tera::Tera>,
-) -> Result<HttpResponse, Error> {
+pub async fn turnirs_all_handler(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
     let turnirs_instances = Turnirs::get_turniri(&mut conn).unwrap();
     let mut context = Context::new();

@@ -1,60 +1,84 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
+<h3>Vispārigs trases pārskatas</h3>
+<table>
+  <tr>
+    <th>Grozu skaits</th>
+    <th>Maksimālais punktu skaits</th>
+    <th>Trases garums</th>
+  </tr>
 
-  <h3>Vispārigs trases pārskatas</h3>
-   <table>
-    <tr>
-      <th>Grozu skaits</th>
-      <th>Maksimālais punktu skaits</th>
-      <th>Trases garums</th>
-    </tr>
+  {% for trase in trase_overview -%}
+  <tr>
+    <td>{{ trase.grozu_skaits }}</td>
+    <td>{{ trase.Maksimalais_punktu_skaits }}</td>
+    <td>{{ trase.trases_garums }}</td>
+  </tr>
+  {%- endfor %}
+</table>
 
-    {% for trase in trase_overview -%}
-      <tr>
-        <td>{{ trase.grozu_skaits }}</td>
-        <td>{{ trase.Maksimalais_punktu_skaits }}</td>
-        <td>{{ trase.trases_garums }}</td>
-      </tr>
-    {%- endfor %}
-  </table>
+  <hr>
 
+<h3>Trases grozu secība</h3>
+<table>
+  <tr>
+    <th>Kārtas nr.</th>
+    <th>Grozs</th>
+    <th>Maksimālais metienu skaits</th>
+    <th>Soda punkti</th>
+    <th>Attālums līdz grozam</th>
+    <th>Punkti</th>
+  </tr>
 
-  <h3>Grūtākie grozi</h3>
-  <table>
-    <tr>
-      <th>Groza ID</th>
-      <th>attālums līdz grozam</th>
-      <th>soda punkti</th>
-      <th>Maksimālais atļautais metienu skaits</th>
-      <th>Vidējais rezultāts</th>
-    </tr>
+  {% for secigs_grozs in get_trase_grozu_seciba -%}
+  <tr>
+    <td>{{ secigs_grozs.kartas_numurs }}</td>
+    <td>{{ secigs_grozs.grozs.id }}</td>
+    <td>{{ secigs_grozs.grozs.maksimalais_metienu_skaits }}</td>
+    <td>{{ secigs_grozs.grozs.soda_punkti }}</td>
+    <td>{{ secigs_grozs.grozs.attalums_lidz_grozam }}</td>
+    <td>{{ secigs_grozs.punkti }}</td>
+  </tr>
+  {%- endfor %}
+</table>
 
-    {% for hardcode in hard_grozi -%}
-      <tr>
-        <td>{{ hardcode.grozs.id }}</td>
-        <td>{{ hardcode.grozs.attalums_lidz_grozam }}</td>
-        <td>{{ hardcode.grozs.maksimalais_metienu_skaits }}</td>
-        <td>{{ hardcode.grozs.soda_punkti }}</td>
-        <td>{{ hardcode.rezultats }}</td>
-      </tr>
-    {%- endfor %}
-  </table>
+  <hr>
 
+<h3>Grūtākie grozi</h3>
+<table>
+  <tr>
+    <th>Groza ID</th>
+    <th>attālums līdz grozam</th>
+    <th>soda punkti</th>
+    <th>Maksimālais atļautais metienu skaits</th>
+    <th>Vidējais rezultāts</th>
+  </tr>
 
-  <h3>Labākie spēlētāji</h3>
-  <table>
-    <tr>
-      <th>Spēlētājs</th>
-      <th>Rezultāts trasē</th>
-    </tr>
+  {% for hardcode in hard_grozi -%}
+  <tr>
+    <td>{{ hardcode.grozs.id }}</td>
+    <td>{{ hardcode.grozs.attalums_lidz_grozam }}</td>
+    <td>{{ hardcode.grozs.maksimalais_metienu_skaits }}</td>
+    <td>{{ hardcode.grozs.soda_punkti }}</td>
+    <td>{{ hardcode.rezultats }}</td>
+  </tr>
+  {%- endfor %}
+</table>
 
-    {% for player in best_players_in_trase -%}
-      <tr>
-        <td>{{ player.speletajs.vards }} {{ player.speletajs.uzvards }}</td>
-        <td>{{ player.metienu_skaits_trase }}</td>
-      </tr>
-    {%- endfor %}
-  </table>
+  <hr>
+<h3>Labākie spēlētāji</h3>
+<table>
+  <tr>
+    <th>Spēlētājs</th>
+    <th>Rezultāts trasē</th>
+  </tr>
+
+  {% for player in best_players_in_trase -%}
+  <tr>
+    <td>{{ player.speletajs.vards }} {{ player.speletajs.uzvards }}</td>
+    <td>{{ player.metienu_skaits_trase }}</td>
+  </tr>
+  {%- endfor %}
+</table>
 
 {% endblock content %}

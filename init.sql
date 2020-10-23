@@ -513,7 +513,7 @@ END ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_trase_grozu_seciba`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_trase_grozu_seciba`(IN trase_id INT)
 BEGIN
 SELECT
 	t.id as trase,
@@ -526,6 +526,8 @@ JOIN Trase t ON
 	tg.trase_FK = t.id
 JOIN Grozs g ON
 	tg.grozs_FK = g.id
+WHERE
+	tg.trase_FK = trase_id
 GROUP BY
 	t.id, g.id, tg.numurs_pec_kartas
 ORDER BY
