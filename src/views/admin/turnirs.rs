@@ -1,12 +1,11 @@
+use crate::models::Turnirs;
 use crate::views::admin::extract_base_path;
 use crate::views::redirect_to;
-use crate::models::Turnirs;
-use crate::{DB_WRAPPER};
-use actix_http::{ResponseBuilder};
-use actix_web::{Error, HttpRequest, HttpResponse, Result, error, get, post, web};
+use crate::DB_WRAPPER;
+use actix_http::ResponseBuilder;
+use actix_web::{error, get, post, web, Error, HttpRequest, HttpResponse, Result};
 use serde::Deserialize;
 use tera::Context;
-
 
 #[get("/")]
 pub async fn list_turnirs(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
@@ -42,7 +41,7 @@ pub async fn update_turnirs_get(
     tmpl: web::Data<tera::Tera>,
 ) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
-    let park_instances = Turnirs::get(&mut conn, path.0.0).unwrap();
+    let park_instances = Turnirs::get(&mut conn, (path.0).0).unwrap();
     let mut context = Context::new();
     context.insert("original", &park_instances);
     let s = tmpl
@@ -57,25 +56,18 @@ pub async fn update_turnirs_post(
     path: web::Path<(u32,)>,
     query_data: web::Form<Turnirs>,
 ) -> Result<HttpResponse, Error> {
-    let id = format!("{}",path.0.0);
+    let id = format!("{}", (path.0).0);
     let base_path = extract_base_path(req.path(), &id);
     let mut conn = DB_WRAPPER.get_conn();
     let updated = Turnirs::update(&mut conn, query_data.0);
     match updated {
-        Ok(_) => {
-            Ok(redirect_to(base_path))
-        }
-        Err(_) => {
-            Ok(redirect_to(req.path()))
-        }
+        Ok(_) => Ok(redirect_to(base_path)),
+        Err(_) => Ok(redirect_to(req.path())),
     }
 }
 
 #[get("/new/")]
-pub async fn create_turnirs_get(
-    tmpl: web::Data<tera::Tera>,
-) -> Result<HttpResponse, Error> {
-
+pub async fn create_turnirs_get(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
     let mut context = Context::new();
     let empty_turnirs = Turnirs {
         id: 0,
@@ -99,11 +91,7 @@ pub async fn create_turnirs_post(
 
     let base_path = extract_base_path(req.path(), "new/");
     match created {
-        Ok(_) => {
-            Ok(redirect_to(base_path))
-        }
-        Err(_) => {
-            Ok(redirect_to(req.path()))
-        }
+        Ok(_) => Ok(redirect_to(base_path)),
+        Err(_) => Ok(redirect_to(req.path())),
     }
 }

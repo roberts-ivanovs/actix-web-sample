@@ -1,13 +1,15 @@
 use crate::views::admin::extract_base_path;
 use crate::views::redirect_to;
-use tera::Context;
-use crate::{DB_WRAPPER, models::Turnirs, models::Speletajs, models::Parks, models::Trase, models::TurnirsSpeletajs};
-use actix_web::{Error, HttpRequest, HttpResponse, Result, error, get, post, web};
-use std::collections::HashMap;
+use crate::{
+    models::Parks, models::Speletajs, models::Trase, models::Turnirs, models::TurnirsSpeletajs,
+    DB_WRAPPER,
+};
+use actix_web::{error, get, post, web, Error, HttpRequest, HttpResponse, Result};
 use mysql::serde::{Deserialize, Serialize};
 use mysql::{prelude::Queryable, PooledConn};
 use serde_qs::Config;
-
+use std::collections::HashMap;
+use tera::Context;
 
 #[get("/")]
 pub async fn turnirs_all_handler(
@@ -24,7 +26,6 @@ pub async fn turnirs_all_handler(
     Ok(HttpResponse::Ok().content_type("text/html").body(s))
 }
 
-
 #[get("/{turnirsid}")]
 pub async fn turnirs_single_handler(
     info: web::Path<(u32,)>,
@@ -32,8 +33,8 @@ pub async fn turnirs_single_handler(
 ) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
 
-    let turnirs_instances = Turnirs::get(&mut conn, info.0.0).unwrap();
-    let turnirs_results = Turnirs::count_turnirs_summary(&mut conn, info.0.0).unwrap();
+    let turnirs_instances = Turnirs::get(&mut conn, (info.0).0).unwrap();
+    let turnirs_results = Turnirs::count_turnirs_summary(&mut conn, (info.0).0).unwrap();
     let mut context = Context::new();
     context.insert("turnirs", &turnirs_instances);
     context.insert("turnirs_result", &turnirs_results);
@@ -44,20 +45,21 @@ pub async fn turnirs_single_handler(
 }
 
 #[get("/add/")]
-pub async fn add_turnirs_get(
-    tmpl: web::Data<tera::Tera>,
-) -> Result<HttpResponse, Error> {
+pub async fn add_turnirs_get(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
     let mut context = Context::new();
     let mut conn = DB_WRAPPER.get_conn();
     let speletajs_list = Speletajs::get_all_speletaji(&mut conn).unwrap();
-    let parks_list  = Parks::get_parks(&mut conn).unwrap();
+    let parks_list = Parks::get_parks(&mut conn).unwrap();
 
     let mut result: Vec<(String, u32)> = vec![];
 
-    for parks in parks_list.iter(){
+    for parks in parks_list.iter() {
         let trase = Trase::get_trases(&mut conn, parks.id).unwrap();
         for trase_iter in trase.iter() {
-            result.push((format!("{} - {}", parks.nosaukums, trase_iter.id), trase_iter.id));
+            result.push((
+                format!("{} - {}", parks.nosaukums, trase_iter.id),
+                trase_iter.id,
+            ));
         }
     }
 
@@ -77,7 +79,7 @@ struct TurniraIzveide {
     datetime: String,
     players: Vec<String>,
     tracks: String,
-    METHOD: String
+    METHOD: String,
 }
 
 #[post("/add/")]
@@ -102,21 +104,23 @@ pub async fn add_turnirs_post(
 
             let base_path = extract_base_path(req.path(), "add/");
             return Ok(redirect_to(base_path));
-        },
+        }
         Err((error, mut conn_ret)) => {
             let transaction_query_rollback = "ROLLBACK;";
             conn_ret.query_drop(transaction_query_rollback).unwrap();
-            return Ok(redirect_to(req.path()));}
+            return Ok(redirect_to(req.path()));
+        }
     };
 }
 
-
-fn perform_transaction_actions(mut conn: PooledConn, query_data: TurniraIzveide ) -> Result<PooledConn, (mysql::Error, PooledConn)> {
-
+fn perform_transaction_actions(
+    mut conn: PooledConn,
+    query_data: TurniraIzveide,
+) -> Result<PooledConn, (mysql::Error, PooledConn)> {
     let empty_turnirs = Turnirs {
         id: 0,
         turnira_datums: Some(query_data.datetime),
-        turnira_nosaukums: Some(query_data.name)
+        turnira_nosaukums: Some(query_data.name),
     };
 
     let created_turnirs = Turnirs::create(&mut conn, empty_turnirs.clone());
@@ -124,13 +128,12 @@ fn perform_transaction_actions(mut conn: PooledConn, query_data: TurniraIzveide 
     match created_turnirs {
         Err(err) => {
             return Err((err, conn));
-        },
+        }
         Ok(_) => {}
     }
 
     let turnirs_speletaji = query_data.players;
     let parks_trase = query_data.tracks;
-
 
     let query_select = format!("SELECT id from Turnirs ORDER BY id desc LIMIT 1");
     let turnirs_id = conn.query_first::<u32, String>(query_select);
@@ -139,17 +142,23 @@ fn perform_transaction_actions(mut conn: PooledConn, query_data: TurniraIzveide 
         Ok(turnirs_id) => {
             let mut turnirs_speletajs_saraksts: Vec<u32> = vec![];
             let unwrapper_turnirs_id = turnirs_id.unwrap();
-            for speletajs in &turnirs_speletaji{
-                let insert_query = format!("INSERT INTO TurnirsSpeletajs(turnirs_FK, speletajs_FK) values({}, {})", &unwrapper_turnirs_id, speletajs);
+            for speletajs in &turnirs_speletaji {
+                let insert_query = format!(
+                    "INSERT INTO TurnirsSpeletajs(turnirs_FK, speletajs_FK) values({}, {})",
+                    &unwrapper_turnirs_id, speletajs
+                );
                 let insert_query_result = conn.query_drop(insert_query);
 
                 match insert_query_result {
                     Ok(_) => {
-                        let query_turnirs_speletajs_select = format!("SELECT id FROM TurnirsSpeletajs ORDER BY id desc LIMIT 1");
-                        let turnirs_speletajs_id_result = conn.query_first::<u32, String>(query_turnirs_speletajs_select);
+                        let query_turnirs_speletajs_select =
+                            format!("SELECT id FROM TurnirsSpeletajs ORDER BY id desc LIMIT 1");
+                        let turnirs_speletajs_id_result =
+                            conn.query_first::<u32, String>(query_turnirs_speletajs_select);
                         match turnirs_speletajs_id_result {
                             Ok(turnirs_speletajs_id_result) => {
-                                turnirs_speletajs_saraksts.push(turnirs_speletajs_id_result.unwrap().clone());
+                                turnirs_speletajs_saraksts
+                                    .push(turnirs_speletajs_id_result.unwrap().clone());
                             }
                             Err(err) => {
                                 return Err((err, conn));
@@ -162,14 +171,18 @@ fn perform_transaction_actions(mut conn: PooledConn, query_data: TurniraIzveide 
                 }
             }
 
-            let query_trase_grozs_select = format!("SELECT id FROM TraseGrozs WHERE trase_FK = {} ", parks_trase);
-            let trase_grozs_result: Result<Vec<u32>, mysql::Error> = conn.query_map(query_trase_grozs_select, |trase_grozs_id| trase_grozs_id);
+            let query_trase_grozs_select = format!(
+                "SELECT id FROM TraseGrozs WHERE trase_FK = {} ",
+                parks_trase
+            );
+            let trase_grozs_result: Result<Vec<u32>, mysql::Error> =
+                conn.query_map(query_trase_grozs_select, |trase_grozs_id| trase_grozs_id);
             let trase_grozs_result = trase_grozs_result;
 
             match trase_grozs_result {
                 Ok(trase_grozs_result) => {
-                    for speletajs in &turnirs_speletajs_saraksts{
-                        for id in &trase_grozs_result{
+                    for speletajs in &turnirs_speletajs_saraksts {
+                        for id in &trase_grozs_result {
                             let query_add_results = format!("INSERT INTO Rezultats(trase_grozs_FK, TurnirsSpeletajs_FK) values({}, {})", id, speletajs);
                             let res = conn.query_drop(query_add_results);
                             match res {
@@ -181,12 +194,11 @@ fn perform_transaction_actions(mut conn: PooledConn, query_data: TurniraIzveide 
                         }
                     }
                 }
-                Err(err) =>  {
-                return Err((err, conn));
+                Err(err) => {
+                    return Err((err, conn));
                 }
             }
-
-        },
+        }
         Err(err) => {
             return Err((err, conn));
         }

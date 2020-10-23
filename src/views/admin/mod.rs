@@ -1,10 +1,9 @@
+pub mod grozs;
 pub mod parks;
 pub mod speletajs;
-pub mod grozs;
 pub mod turnirs;
 
-use actix_web::{Error, HttpResponse, Result, error, get, web};
-
+use actix_web::{error, get, web, Error, HttpResponse, Result};
 
 #[get("/")]
 pub async fn admin_root(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
@@ -14,9 +13,8 @@ pub async fn admin_root(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Err
     Ok(HttpResponse::Ok().content_type("text/html").body(s))
 }
 
-
-pub fn extract_base_path<'a >(path_str: &'a str, appendix: &'a str) -> &'a str {
+pub fn extract_base_path<'a>(path_str: &'a str, appendix: &'a str) -> &'a str {
     let path_str: Vec<&str> = path_str.split(&appendix).collect();
     let base_path = path_str.get(0).unwrap();
-    return base_path
+    return base_path;
 }
