@@ -28,6 +28,7 @@
     <th>Soda punkti</th>
     <th>Attālums līdz grozam</th>
     <th>Punkti</th>
+    <th>Videjais metienu skaits</th>
   </tr>
 
   {% for secigs_grozs in get_trase_grozu_seciba -%}
@@ -38,6 +39,7 @@
     <td>{{ secigs_grozs.grozs.soda_punkti }}</td>
     <td>{{ secigs_grozs.grozs.attalums_lidz_grozam }}</td>
     <td>{{ secigs_grozs.punkti }}</td>
+    <td>{{ secigs_grozs.videjais_metienu_skaits }}</td>
   </tr>
   {%- endfor %}
 </table>

@@ -70,6 +70,7 @@ impl Trase {
         trase_id: u32,
     ) -> Result<Vec<TraseGrozuSeciba>, mysql::Error> {
         let mut iter_conn = DB_WRAPPER.get_conn();
+        let mut iter_conn2 = DB_WRAPPER.get_conn();
 
         let turnirs_summary: Vec<TraseGrozuSeciba> = conn.query_map(
             format!("CALL get_trase_grozu_seciba({})", trase_id),
@@ -78,6 +79,8 @@ impl Trase {
                 grozs: Grozs::get(&mut iter_conn, grozs).unwrap(),
                 kartas_numurs,
                 punkti,
+                videjais_metienu_skaits: Grozs::get_videjais_metienu_skaits(&mut iter_conn2, grozs)
+                    .unwrap().unwrap(),
             },
         )?;
         Ok(turnirs_summary)
@@ -115,6 +118,7 @@ pub struct TraseGrozuSeciba {
     grozs: Grozs,
     kartas_numurs: u32,
     punkti: u32,
+    videjais_metienu_skaits: Option<f32>,
 }
 #[derive(Serialize, Deserialize, Debug)]
 pub struct HardestGrozsInTrase {
