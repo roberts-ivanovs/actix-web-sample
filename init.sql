@@ -14,118 +14,202 @@ DROP TABLE IF EXISTS `Grozs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Grozs` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `soda_punkti` int DEFAULT NULL,
-  `maksimalais_metienu_skaits` int DEFAULT NULL,
+  `optimalais_metienu_skaits` int DEFAULT NULL,
   `attalums_lidz_grozam` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=421 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (1,1,3,167);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (2,2,4,110);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (3,1,1,180);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (4,1,1,132);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (5,1,1,249);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (6,1,3,219);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (7,2,3,100);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (8,1,3,162);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (9,1,4,73);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (10,2,4,197);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (11,1,1,139);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (12,2,3,233);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (13,2,4,118);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (14,1,4,211);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (15,2,4,71);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (16,1,2,233);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (17,1,4,134);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (18,2,2,103);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (19,2,4,240);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (20,2,1,73);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (21,1,3,155);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (22,1,3,116);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (23,1,2,246);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (24,1,1,63);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (25,1,1,86);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (26,1,2,184);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (27,2,2,220);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (28,1,4,108);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (29,1,4,203);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (30,2,4,61);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (31,2,1,208);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (32,2,2,227);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (33,2,3,69);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (34,1,2,176);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (35,2,3,235);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (36,2,4,206);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (37,1,4,75);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (38,2,4,79);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (39,2,2,109);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (40,1,3,61);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (41,1,3,107);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (42,1,1,104);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (43,1,2,141);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (44,1,3,140);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (45,1,2,219);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (46,1,4,237);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (47,1,4,89);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (48,1,1,241);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (49,2,2,121);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (50,2,2,203);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (51,2,3,212);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (52,1,4,201);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (53,2,2,119);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (54,2,4,123);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (55,1,4,200);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (56,1,3,189);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (57,2,2,96);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (58,1,4,235);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (59,1,3,66);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (60,1,2,135);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (61,1,1,229);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (62,2,4,111);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (63,2,2,187);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (64,2,2,165);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (65,2,1,201);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (66,1,2,73);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (67,2,1,83);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (68,1,1,134);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (69,1,3,175);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (70,1,2,221);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (71,1,4,140);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (72,1,3,167);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (73,1,1,167);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (74,1,3,86);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (75,1,4,247);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (76,1,3,156);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (77,2,3,173);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (78,2,3,146);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (79,1,2,151);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (80,2,1,68);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (81,1,3,209);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (82,2,3,212);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (83,2,2,184);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (84,2,1,223);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (85,1,1,124);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (86,2,1,82);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (87,2,2,169);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (88,1,1,158);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (89,2,1,224);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (90,1,4,207);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (91,2,1,115);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (92,2,4,84);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (93,2,1,205);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (94,2,2,144);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (95,2,2,235);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (96,2,4,114);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (97,1,2,186);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (98,1,2,149);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (99,2,1,127);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (100,2,3,130);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (101,2,4,206);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (102,1,2,203);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (103,1,4,148);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (104,1,1,71);
-INSERT INTO `Grozs` (`id`, `soda_punkti`, `maksimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (105,2,1,233);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (1,3,167);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (3,1,180);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (4,1,132);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (5,1,249);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (6,3,219);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (7,3,100);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (8,3,162);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (9,4,73);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (11,1,139);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (12,3,233);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (13,4,118);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (14,4,211);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (15,4,71);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (16,2,233);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (17,4,134);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (18,2,103);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (19,4,240);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (20,1,73);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (21,3,155);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (22,3,116);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (23,2,246);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (24,1,63);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (25,1,86);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (26,2,184);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (27,2,220);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (28,4,108);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (29,4,203);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (30,4,61);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (31,1,208);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (32,2,227);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (33,3,69);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (34,2,176);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (35,3,235);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (36,4,206);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (37,4,75);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (38,4,79);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (39,2,109);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (40,3,61);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (41,3,107);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (42,1,104);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (43,2,141);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (44,3,140);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (45,2,219);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (46,4,237);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (47,4,89);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (48,1,241);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (49,2,121);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (50,2,203);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (51,3,212);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (52,4,201);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (53,2,119);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (54,4,123);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (55,4,200);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (56,3,189);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (57,2,96);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (58,4,235);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (59,3,66);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (60,2,135);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (61,1,229);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (62,4,111);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (63,2,187);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (64,2,165);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (65,1,201);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (66,2,73);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (67,1,83);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (68,1,134);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (69,3,175);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (70,2,221);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (71,4,140);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (72,3,167);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (73,1,167);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (74,3,86);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (75,4,247);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (76,3,156);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (77,3,173);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (78,3,146);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (79,2,151);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (80,1,68);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (81,3,209);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (82,3,212);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (83,2,184);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (84,1,223);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (85,1,124);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (86,1,82);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (87,2,169);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (88,1,158);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (89,1,224);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (90,4,207);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (91,1,115);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (92,4,84);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (93,1,205);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (94,2,144);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (95,2,235);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (96,4,114);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (97,2,186);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (98,2,149);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (99,1,127);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (100,3,130);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (101,4,206);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (102,2,203);
+INSERT INTO `Grozs` (`id`, `optimalais_metienu_skaits`, `attalums_lidz_grozam`) VALUES (103,4,148);
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `on_grozs_update` AFTER UPDATE ON `Grozs` FOR EACH ROW BEGIN
+UPDATE
+	Rezultats AS r SET
+	r.novecojis = TRUE
+WHERE
+	r.id IN(
+	SELECT
+		r.id
+	FROM
+		TraseGrozs tg
+	JOIN Grozs g ON
+		tg.grozs_FK = g.id
+		AND tg.id = r.trase_grozs_FK );
+
+END */;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `on_grozs_delete` AFTER DELETE ON `Grozs` FOR EACH ROW BEGIN
+
+-- visu trasu skaits, kura ir dzesamais grozs
+
+SELECT COUNT(*) INTO @trasu_skaits FROM (
+	SELECT tr.id FROM Trase tr JOIN TraseGrozs tg ON tg.trase_FK = tr.id AND tg.grozs_FK = OLD.id GROUP BY tr.id
+) as T;
+
+SET @counter = 1;
+WHILE @trasu_skaits > 0 DO
+	-- visas trases, kuras ir dzesamais grozs. Izvelas @counter -tas trases id
+	WITH
+	trases AS(
+		SELECT ROW_NUMBER() OVER(ORDER BY tr.id) row_num, tr.id FROM Trase tr JOIN TraseGrozs tg
+			ON tg.trase_FK = tr.id AND tg.grozs_FK = OLD.id GROUP BY tr.id
+		)
+	SELECT id into @trase_id FROM trases WHERE row_num = @counter;
+
+	-- cik grozu trase (traseGrozs), kuram trase_FK = noteiktas trases id;
+
+	SELECT COUNT(tg.id) INTO @grozi_to_update FROM TraseGrozs tg WHERE tg.trase_FK = @trase_id;
+
+	-- nakama groza kartas numurs
+	SELECT tg2.numurs_pec_kartas,tg2.numurs_pec_kartas + 1 INTO @dzesama_kartas_nr, @nakama_kartas_nr FROM TraseGrozs tg2 WHERE tg2.grozs_FK = OLD.id;
+
+	-- cik grozus vajag atjaunot
+	set @grozi_to_update = @grozi_to_update - @dzesama_kartas_nr;
+
+	SET @inner_counter = 1;
+	WHILE(@grozi_to_update > 0) # and trases !<> ?
+	DO
+		-- visas traseGrozs, kuras ir noteiktaja trase. Izvelas inner_counter -ta groza id;
+		WITH trase_grozi AS(
+			SELECT ROW_NUMBER() OVER(ORDER BY tg.numurs_pec_kartas) row_num, tg.id, tg.grozs_FK FROM TraseGrozs tg WHERE tg.trase_FK = @trase_id
+		)
+		SELECT grozs_FK into @grozs_id FROM trase_grozi WHERE row_num = @inner_counter;
+
+		-- atjauno groza kartas numuru trase;
+		UPDATE TraseGrozs SET numurs_pec_kartas = numurs_pec_kartas - 1 WHERE grozs_FK = @grozs_id;
+
+-- 		set @nakama_kartas_nr = @nakama_kartas_nr + 1;
+		set @inner_counter = @inner_counter + 1;
+		set @grozi_to_update = @grozi_to_update - 1;
+	END WHILE;
+
+	set @counter = @counter + 1;
+	set @trasu_skaits = @trasu_skaits - 1;
+END WHILE;
+
+END */;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 DROP TABLE IF EXISTS `Parks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -155,20 +239,142 @@ CREATE TABLE `Rezultats` (
   `metieni` int DEFAULT NULL,
   `trase_grozs_FK` int NOT NULL,
   `TurnirsSpeletajs_FK` int DEFAULT NULL,
+  `novecojis` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `Rezultats_FK` (`trase_grozs_FK`),
   KEY `Rezultats_FK_1` (`TurnirsSpeletajs_FK`),
   CONSTRAINT `Rezultats_FK` FOREIGN KEY (`trase_grozs_FK`) REFERENCES `TraseGrozs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Rezultats_FK_1` FOREIGN KEY (`TurnirsSpeletajs_FK`) REFERENCES `TurnirsSpeletajs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (2,3,29769,3);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (10,3,29768,11);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (27,4,29768,20);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (28,2,29769,20);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (29,3,29768,21);
-INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`) VALUES (30,2,29769,21);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (10,3,29768,11,1);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (27,4,29768,20,1);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (29,3,29768,21,1);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (31,2,29768,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (32,5,29770,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (33,4,29771,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (34,5,29772,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (35,3,29773,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (36,2,29774,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (37,1,29775,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (38,6,29776,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (39,4,29779,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (40,5,29783,3,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (41,2,29770,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (42,3,29771,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (43,3,29772,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (44,4,29773,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (45,2,29774,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (46,3,29775,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (47,2,29776,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (48,4,29779,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (49,5,29783,11,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (50,2,29770,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (51,7,29771,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (52,6,29772,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (53,5,29773,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (54,3,29774,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (55,2,29775,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (56,3,29776,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (57,3,29779,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (58,5,29783,21,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (59,1,29770,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (60,3,29771,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (61,1,29772,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (62,2,29773,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (63,3,29774,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (64,4,29775,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (65,5,29776,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (66,3,29779,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (67,2,29783,20,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (68,3,29820,25,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (69,1,29821,25,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (70,2,29822,25,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (71,5,29823,25,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (72,3,29824,25,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (73,2,29825,25,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (74,2,29826,25,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (75,1,29827,25,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (76,3,29820,26,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (77,2,29821,26,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (78,4,29822,26,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (79,3,29823,26,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (80,2,29824,26,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (81,5,29825,26,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (82,1,29826,26,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (83,5,29827,26,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (84,6,29820,27,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (85,4,29821,27,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (86,3,29822,27,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (87,1,29823,27,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (88,3,29824,27,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (89,4,29825,27,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (90,5,29826,27,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (91,1,29827,27,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (92,3,29820,28,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (93,1,29821,28,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (94,4,29822,28,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (95,5,29823,28,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (96,3,29824,28,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (97,2,29825,28,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (98,1,29826,28,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (99,1,29827,28,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (100,1,29802,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (101,5,29803,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (102,6,29804,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (103,4,29805,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (104,3,29806,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (105,1,29807,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (106,3,29808,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (107,4,29809,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (108,5,29810,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (109,1,29811,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (110,3,29812,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (111,1,29813,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (112,4,29814,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (113,5,29815,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (114,3,29816,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (115,2,29817,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (116,1,29818,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (117,1,29819,22,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (118,1,29802,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (119,2,29803,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (120,4,29804,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (121,1,29805,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (122,2,29806,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (123,4,29807,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (124,2,29808,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (125,3,29809,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (126,2,29810,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (127,2,29811,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (128,2,29812,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (129,3,29813,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (130,4,29814,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (131,2,29815,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (132,3,29816,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (133,2,29817,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (134,3,29818,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (135,1,29819,23,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (136,1,29802,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (137,4,29803,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (138,2,29804,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (139,4,29805,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (140,3,29806,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (141,4,29807,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (142,3,29808,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (143,4,29809,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (144,3,29810,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (145,2,29811,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (146,3,29812,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (147,3,29813,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (148,4,29814,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (149,1,29815,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (150,2,29816,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (151,2,29817,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (152,3,29818,24,0);
+INSERT INTO `Rezultats` (`id`, `metieni`, `trase_grozs_FK`, `TurnirsSpeletajs_FK`, `novecojis`) VALUES (153,2,29819,24,0);
+
 DROP TABLE IF EXISTS `ShowAllParks`;
 /*!50001 DROP VIEW IF EXISTS `ShowAllParks`*/;
 SET @saved_cs_client     = @@character_set_client;
@@ -238,16 +444,34 @@ CREATE TABLE `Speletajs` (
   `vards` varchar(60) DEFAULT NULL,
   `uzvards` varchar(60) DEFAULT NULL,
   `dzimsanas_dati` date DEFAULT NULL,
+  `atjaunots` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`) VALUES (4,'Arina','Solovjova','2020-01-01');
-INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`) VALUES (5,'Elza','Rozenberga','1865-03-16');
-INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`) VALUES (6,'Janis','Plieksans','1865-09-11');
-INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`) VALUES (7,'Paul','McBeth','1990-07-09');
-INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`) VALUES (8,'Avery','Jenkins','1978-07-24');
-INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`) VALUES (9,'Valarie','Jenkins','1986-05-06');
+INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`, `atjaunots`) VALUES (4,'Arina','Solovjova','2003-01-01','2020-10-23 14:14:25');
+INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`, `atjaunots`) VALUES (5,'Elza','Rozenberga','1865-03-16','2020-10-23 19:20:19');
+INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`, `atjaunots`) VALUES (6,'Janis','Plieksans','1865-09-11','2020-10-23 19:20:19');
+INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`, `atjaunots`) VALUES (7,'Paul','McBeth','1990-07-09','2020-10-23 19:20:19');
+INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`, `atjaunots`) VALUES (8,'Avery','Jenkins','1978-07-24','2020-10-23 19:20:19');
+INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`, `atjaunots`) VALUES (9,'Valarie','Jenkins','1986-05-06','2020-10-23 19:20:19');
+INSERT INTO `Speletajs` (`id`, `vards`, `uzvards`, `dzimsanas_dati`, `atjaunots`) VALUES (10,'Arnis','Briedis','1985-01-01','2020-10-23 20:09:15');
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/
+ /*!50003 TRIGGER `on_speletajs_update` BEFORE UPDATE ON `Speletajs` FOR EACH ROW BEGIN
+	SET NEW.atjaunots = NOW();
+END */;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 DROP TABLE IF EXISTS `Trase`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -261,8 +485,8 @@ CREATE TABLE `Trase` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `Trase` (`id`, `laiks_trases_iziesanai`, `parks_FK`) VALUES (11,NULL,2);
-INSERT INTO `Trase` (`id`, `laiks_trases_iziesanai`, `parks_FK`) VALUES (12,NULL,4);
+INSERT INTO `Trase` (`id`, `laiks_trases_iziesanai`, `parks_FK`) VALUES (11,'02:00:00',2);
+INSERT INTO `Trase` (`id`, `laiks_trases_iziesanai`, `parks_FK`) VALUES (12,'03:00:00',4);
 INSERT INTO `Trase` (`id`, `laiks_trases_iziesanai`, `parks_FK`) VALUES (13,NULL,2);
 INSERT INTO `Trase` (`id`, `laiks_trases_iziesanai`, `parks_FK`) VALUES (14,NULL,2);
 INSERT INTO `Trase` (`id`, `laiks_trases_iziesanai`, `parks_FK`) VALUES (15,NULL,4);
@@ -285,11 +509,10 @@ CREATE TABLE `TraseGrozs` (
   KEY `TraseGrozs_FK` (`grozs_FK`),
   CONSTRAINT `TraseGrozs_FK` FOREIGN KEY (`grozs_FK`) REFERENCES `Grozs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `TraseGrozs_FK_1` FOREIGN KEY (`trase_FK`) REFERENCES `Trase` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29777 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29829 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (1,29768,1,11);
-INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (2,29769,2,11);
 INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (3,29770,3,11);
 INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (4,29771,4,11);
 INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (5,29772,5,11);
@@ -297,6 +520,35 @@ INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VAL
 INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (7,29774,7,11);
 INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (8,29775,8,11);
 INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (9,29776,9,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (2,29779,11,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (11,29783,103,11);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (1,29802,12,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (2,29803,13,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (3,29804,14,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (4,29805,15,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (5,29806,16,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (6,29807,17,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (7,29808,18,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (8,29809,19,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (9,29810,20,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (10,29811,21,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (11,29812,22,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (12,29813,23,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (13,29814,24,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (14,29815,25,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (15,29816,26,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (16,29817,27,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (17,29818,28,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (18,29819,29,12);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (1,29820,30,16);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (2,29821,31,16);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (3,29822,32,16);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (4,29823,33,16);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (5,29824,34,16);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (6,29825,35,16);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (7,29826,36,16);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (8,29827,37,16);
+INSERT INTO `TraseGrozs` (`numurs_pec_kartas`, `id`, `grozs_FK`, `trase_FK`) VALUES (9,29828,38,16);
 DROP TABLE IF EXISTS `Turnirs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -325,13 +577,20 @@ CREATE TABLE `TurnirsSpeletajs` (
   KEY `TurnirsSpeletajs_FK_1` (`turnirs_FK`),
   CONSTRAINT `TurnirsSpeletajs_FK` FOREIGN KEY (`speletajs_FK`) REFERENCES `Speletajs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `TurnirsSpeletajs_FK_1` FOREIGN KEY (`turnirs_FK`) REFERENCES `Turnirs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (4,4,3);
 INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (5,4,21);
 INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (4,5,11);
 INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (5,6,20);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (2,7,28);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (3,7,22);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (2,8,27);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (3,8,23);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (2,9,26);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (3,9,24);
+INSERT INTO `TurnirsSpeletajs` (`turnirs_FK`, `speletajs_FK`, `id`) VALUES (2,10,25);
 /*!50003 DROP FUNCTION IF EXISTS `speletaja_uzvaras_procentuali` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -442,21 +701,23 @@ END ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `count_trase_summary`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE count_trase_summary(IN trase_id INT)
 BEGIN
 SELECT
-	tg.trase_FK,
-	COUNT(g.id) as grozu_skaits,
-	SUM(g.maksimalais_metienu_skaits) as Maksimalais_punktu_skaits,
-	SUM(g.attalums_lidz_grozam) AS trases_garums
+  tg.trase_FK,
+  COUNT(g.id) as grozu_skaits,
+  SUM(g.optimalais_metienu_skaits) as Optimalais_punktu_skaits,
+  SUM(g.attalums_lidz_grozam) AS trases_garums
 FROM
-	Grozs g
+  Grozs g
 JOIN TraseGrozs tg ON
-	tg.grozs_FK = g.id
+  tg.grozs_FK = g.id
+WHERE
+  tg.trase_FK = trase_id
 GROUP BY
-	tg.trase_FK
+  tg.trase_FK
 ORDER BY
-	tg.trase_FK desc;
+  tg.trase_FK desc;
 END ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -478,7 +739,7 @@ SELECT
 	ts.speletajs_FK as spletajs,
 	t.id as trase,
 	SUM(r.metieni) as speletaja_rezultats,
-	SUM(g.maksimalais_metienu_skaits) as trases_metienu_skaits
+	SUM(g.optimalais_metienu_skaits) as trases_metienu_skaits
 FROM
 	TurnirsSpeletajs ts
 JOIN Speletajs s ON
@@ -511,23 +772,25 @@ END ;
 /*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_trase_grozu_seciba`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE get_trase_grozu_seciba(IN trase_id INT)
 BEGIN
 SELECT
-	t.id as trase,
-	g.id as grozs,
-	tg.numurs_pec_kartas as kartas_numurs,
-	g.maksimalais_metienu_skaits as punkti
+  t.id as trase,
+  g.id as grozs,
+  tg.numurs_pec_kartas as kartas_numurs,
+  g.optimalais_metienu_skaits as punkti
 FROM
-	TraseGrozs tg
+  TraseGrozs tg
 JOIN Trase t ON
-	tg.trase_FK = t.id
+  tg.trase_FK = t.id
 JOIN Grozs g ON
-	tg.grozs_FK = g.id
+  tg.grozs_FK = g.id
+WHERE
+  tg.trase_FK = trase_id
 GROUP BY
-	t.id, g.id, tg.numurs_pec_kartas
+  t.id, g.id, tg.numurs_pec_kartas
 ORDER BY
-	tg.numurs_pec_kartas;
+  tg.numurs_pec_kartas;
 END ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -620,7 +883,7 @@ FROM
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowAllTurnirsSummary` AS SELECT ts.turnirs_FK as turnirs, ts.speletajs_FK as speletajs,t.id as trase, SUM(r.metieni) as speletaja_rezultats, SUM(g.maksimalais_metienu_skaits) as trases_metienu_skaits,(SELECT CASE WHEN (SELECT ts2.speletajs_FK FROM Turnirs t JOIN TurnirsSpeletajs ts2 ON ts2.turnirs_FK = t.id JOIN Rezultats r2 ON r2.TurnirsSpeletajs_FK = ts2.id WHERE ts2.turnirs_FK = ts.turnirs_FK GROUP BY ts2.speletajs_FK ORDER BY SUM(r2.metieni) ASC LIMIT 1) = ts.speletajs_FK THEN 1 ELSE 0 end ) as uzvaretajs FROM TurnirsSpeletajs ts JOIN Speletajs s ON s.id = ts.speletajs_FK JOIN Rezultats r ON r.TurnirsSpeletajs_FK = ts.id JOIN TraseGrozs tg ON tg.id = r.trase_grozs_FK JOIN Grozs g ON tg.grozs_FK = g.id JOIN Trase t ON tg.trase_FK = t.id GROUP BY speletajs_FK, turnirs_FK, t.id */;
+/*!50001 VIEW `ShowAllTurnirsSummary` AS SELECT ts.turnirs_FK as turnirs, ts.speletajs_FK as speletajs,t.id as trase, SUM(r.metieni) as speletaja_rezultats, SUM(g.optimalais_metienu_skaits) as trases_metienu_skaits,(SELECT CASE WHEN (SELECT ts2.speletajs_FK FROM Turnirs t JOIN TurnirsSpeletajs ts2 ON ts2.turnirs_FK = t.id JOIN Rezultats r2 ON r2.TurnirsSpeletajs_FK = ts2.id WHERE ts2.turnirs_FK = ts.turnirs_FK GROUP BY ts2.speletajs_FK ORDER BY SUM(r2.metieni) ASC LIMIT 1) = ts.speletajs_FK THEN 1 ELSE 0 end ) as uzvaretajs FROM TurnirsSpeletajs ts JOIN Speletajs s ON s.id = ts.speletajs_FK JOIN Rezultats r ON r.TurnirsSpeletajs_FK = ts.id JOIN TraseGrozs tg ON tg.id = r.trase_grozs_FK JOIN Grozs g ON tg.grozs_FK = g.id JOIN Trase t ON tg.trase_FK = t.id GROUP BY speletajs_FK, turnirs_FK, t.id */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
