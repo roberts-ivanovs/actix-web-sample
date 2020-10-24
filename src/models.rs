@@ -59,7 +59,9 @@ pub struct TurnirsSpeletajs {
 pub struct Rezultats {
     pub id: u32,
     pub metieni: u32,
-    pub trase_grozs_FK: u32,
-    pub TurnirsSpeletajs_FK: u32,
+    pub trase: Trase,
+    pub grozs: Grozs,
+    pub speletajs: Speletajs,
+    pub turnirs: Turnirs,
     pub novecojis: u32,
 }

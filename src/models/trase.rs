@@ -12,10 +12,10 @@ pub struct BestPlayerResult {
 }
 
 impl Trase {
-    pub fn get_trases(conn: &mut PooledConn, id: u32) -> Result<Vec<Trase>, mysql::Error> {
+    pub fn get_trases(conn: &mut PooledConn, parks_fk: u32) -> Result<Vec<Trase>, mysql::Error> {
         let query = format!(
             "SELECT id, laiks_trases_iziesanai, parks_FK FROM ShowAllTrase WHERE parks_FK={}",
-            id
+            parks_fk
         );
         let trases: Vec<Trase> =
             conn.query_map(query, |(id, laiks_trases_iziesanai, parks_fk)| Trase {
@@ -24,6 +24,32 @@ impl Trase {
                 parks_fk,
             })?;
         Ok(trases)
+    }
+
+    pub fn get(conn: &mut PooledConn, id: u32) -> Result<Option<Trase>, mysql::Error> {
+        let query = format!(
+            r#"
+        SELECT
+            id,
+            laiks_trases_iziesanai,
+            parks_fk
+        FROM Trase WHERE id={}"#,
+            id
+        );
+
+        let trase = conn
+            .query_first::<(u32, Option<String>, u32), String>(query)
+            .unwrap_or(None);
+
+        let res = match trase {
+            Some(val) => Some(Trase {
+                id: val.0,
+                laiks_trases_iziesanai: val.1,
+                parks_fk: val.2,
+            }),
+            None => None,
+        };
+        Ok(res)
     }
 
     pub fn get_best_players_in_trase(

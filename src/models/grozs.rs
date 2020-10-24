@@ -52,8 +52,6 @@ impl Grozs {
             id
         );
 
-        // println!("{}", query);
-
         let grozs = conn
             .query_first::<(u32, Option<u32>, u32), String>(query)
             .unwrap_or(None);

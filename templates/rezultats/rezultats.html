@@ -1,10 +1,37 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block left %}
 
-{% block left %}
+<h3>Rezultātu pārskats</h3>
+<h3>
+  Spēlētājs:
+  <a href="/speletajs/{{ speletajs.id }}"
+    >{{ speletajs.vards }} {{ speletajs.uzvards }}</a
+  >
+</h3>
+<h3>
+  Turnīrs:
+  <a href="/turnirs/{{ turnirs.id }}">{{ turnirs.turnira_nosaukums }}</a>
+</h3>
 
+{% endblock left %} {% block content %}
 
-{% endblock left %}
+<h2>Detalizēti rezultāti</h2>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Metieni</th>
+    <th>Optimālais metienu skaits</th>
+    <th>Attālums līdz grozam</th>
+    <th>Rezultāts ir novecojis</th>
+  </tr>
+  {% for rezultats in rezultats_all -%}
+  <tr>
+    <td>{{ rezultats.id }}</td>
+    <td>{{ rezultats.metieni }}</td>
+    <td>{{ rezultats.grozs.optimalais_metienu_skaits }}</td>
+    <td>{{ rezultats.grozs.attalums_lidz_grozam }}</td>
+    <td>{{ rezultats.novecojis }}</td>
+  </tr>
+  {%- endfor %}
+</table>
 
-{% block content %}
-TURNIRI
 {% endblock content %}

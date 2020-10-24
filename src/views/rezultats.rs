@@ -1,6 +1,6 @@
 use crate::{
     models::Parks,
-    models::{Rezultats, Trase},
+    models::{Rezultats, Speletajs, Trase, Turnirs},
     DB_WRAPPER,
 };
 use actix_web::{error, get, post, web, Error, HttpRequest, HttpResponse, Result};
@@ -14,10 +14,15 @@ pub async fn rezultats_all_handler(
 ) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
     let rezultats_instances =
-        Rezultats::get_rezultats_in_turnirs_for_speletajs(&mut conn, (info.0).0, (info.0).1).unwrap();
+        Rezultats::get_rezultats_in_turnirs_for_speletajs(&mut conn, (info.0).0, (info.0).1)
+            .unwrap();
+    let speletajs = Speletajs::get(&mut conn, (info.0).0);
+    let turnirs = Turnirs::get(&mut conn, (info.0).1).unwrap();
+
     let mut context = Context::new();
     context.insert("rezultats_all", &rezultats_instances);
-
+    context.insert("speletajs", &speletajs);
+    context.insert("turnirs", &turnirs);
 
     println!("{:#?}", &rezultats_instances);
     let s = tmpl
