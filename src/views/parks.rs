@@ -4,10 +4,7 @@ use std::collections::HashMap;
 use tera::Context;
 
 #[get("/")]
-pub async fn park_all_handler(
-    tmpl: web::Data<tera::Tera>,
-    query: web::Query<HashMap<String, String>>,
-) -> Result<HttpResponse, Error> {
+pub async fn park_all_handler(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
     let mut conn = DB_WRAPPER.get_conn();
     let park_instances = Parks::get_parks(&mut conn).unwrap();
     let mut context = Context::new();

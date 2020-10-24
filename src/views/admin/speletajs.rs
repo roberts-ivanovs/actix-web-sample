@@ -70,7 +70,7 @@ pub async fn create_speletajs_get(tmpl: web::Data<tera::Tera>) -> Result<HttpRes
         vards: String::new(),
         uzvards: String::new(),
         dzimsanas_dati: Some(String::new()),
-        atjaunots: String::new()
+        atjaunots: String::new(),
     };
     context.insert("original", &empty_speletajs);
     let s = tmpl

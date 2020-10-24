@@ -1,5 +1,6 @@
 pub mod admin;
 pub mod parks;
+pub mod rezultats;
 pub mod speletajs;
 pub mod trase;
 pub mod turnirs;

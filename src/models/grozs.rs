@@ -76,7 +76,6 @@ impl Grozs {
     }
 
     pub fn update(conn: &mut PooledConn, grozs: Grozs) -> Result<bool, mysql::Error> {
-
         let optimalais_metienu_skaits = match grozs.optimalais_metienu_skaits {
             Some(val) => format!("{}", val),
             None => "NULL".to_owned(),

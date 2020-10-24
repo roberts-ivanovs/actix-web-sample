@@ -1,8 +1,10 @@
 pub mod grozs;
 pub mod parks;
+pub mod rezultats;
 pub mod speletajs;
 pub mod trase;
 pub mod turnirs;
+
 use mysql::serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -51,4 +53,13 @@ pub struct TurnirsSpeletajs {
     pub id: u32,
     pub turnirs_FK: u32,
     pub speletajs_FK: u32,
+}
+
+#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct Rezultats {
+    pub id: u32,
+    pub metieni: u32,
+    pub trase_grozs_FK: u32,
+    pub TurnirsSpeletajs_FK: u32,
+    pub novecojis: u32,
 }

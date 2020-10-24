@@ -31,6 +31,7 @@ use views::{
     admin::speletajs::create_speletajs_get, admin::speletajs::create_speletajs_post,
     admin::speletajs::delete_speletajs, admin::speletajs::list_speletajs,
     admin::speletajs::update_speletajs_get, admin::speletajs::update_speletajs_post,
+    rezultats::rezultats_all_handler,
 };
 use views::{
     speletajs::speletajs_all_handler, speletajs::speletajs_single_handler,
@@ -76,6 +77,7 @@ async fn main() -> std::io::Result<()> {
                     .service(speletajs_all_handler)
                     .service(speletajs_single_handler),
             )
+            .service(web::scope("/rezultats").service(rezultats_all_handler))
             .service(
                 web::scope("/parks")
                     .service(park_all_handler)

@@ -20,6 +20,7 @@
                 <th >Trase</th>
                 <th >Trases metienu skaits</th>
                 <th >Speletaja rezultats</th>
+                <th >Detalizēti metienu rezultāti</th>
             </tr>
             {% for viena_turnira_rezultats in turnirs_result -%}
                 <tr>
@@ -27,6 +28,7 @@
                     <td><a href="/trase/{{ viena_turnira_rezultats.trase }}">{{ viena_turnira_rezultats.trase }}</a></td>
                     <td>{{ viena_turnira_rezultats.trases_metienu_skaits }}</td>
                     <td>{{ viena_turnira_rezultats.speletaja_rezultats }}</td>
+                    <td><a href="/rezultats/{{ viena_turnira_rezultats.speletajs.id }}/{{ viena_turnira_rezultats.turnirs }}">Visi rezultāti</a></td>
                 </tr>
             {%- endfor %}
         </table>

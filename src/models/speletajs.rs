@@ -14,7 +14,7 @@ impl Speletajs {
                 vards,
                 uzvards,
                 dzimsanas_dati,
-                atjaunots
+                atjaunots,
             },
         )?;
         Ok(speletajs)
