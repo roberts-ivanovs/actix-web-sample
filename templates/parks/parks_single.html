@@ -1,24 +1,23 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
 
+  {% block left %}
+    {% if parks %}
+    <h1>{{ parks.nosaukums }}</h2>
+    <div>{{ parks.apraksts }}</div>
+    <div>{{ parks.adrese }}</div>
+    <div>{{ parks.telefona_numurs }}</div>
+    <div>{{ parks.darba_laiks_sakums }} - {{parks.darba_laiks_beigas}}</div>
+    {% else %} Nepareizs parks? {% endif %}
+  {% endblock left %}
+
+{% block content %}
 <div>
-  {% if parks %}
-  <h2>{{ parks.nosaukums }}</h2>
-  <div>{{ parks.apraksts }}</div>
-  <div>{{ parks.adrese }}</div>
-  <div>{{ parks.telefona_numurs }}</div>
-  <div>{{ parks.darba_laiks_sakums }} - {{parks.darba_laiks_beigas}}</div>
-  {% else %} Sorry, parks isn't defined. {% endif %}
-
 
   {% if trases %}
   <h3>Parka trases</h3>
-  <div>
-    <ul>
       {% for trase in trases -%}
-      <li><a href="/trase/{{ trase.id }}"> Trase NR. {{ trase.id }}</a></li>
+      <a class="button stack" href="/trase/{{ trase.id }}"> Trase NR. {{ trase.id }}</a>
       {%- endfor %}
-    </ul>
-  </div>
   {% endif %}
 </div>
 {% endblock content %}
