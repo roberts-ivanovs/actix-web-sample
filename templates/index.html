@@ -1,21 +1,24 @@
-{% extends "base.html" %} {% block content %}
-<ul>
-  <li>
-    <a href="parks/">Visi parki</a>
-  </li>
-  <li>
-    <a href="admin/">Administrācijas panelis</a>
-  </li>
-  <li>
-    <a href="turnirs/">Visi turniri</a>
-  </li>
-  <li>
-    <a href="speletajs/">Visi speletaji</a>
-  </li>
-</ul>
+{% extends "base.html" %}
 
-<hr />
+{% block left %}
+Disku golfs ir ārpustelpu sporta
+spēle, kurā spēlētājam īpašs lidojošais disks jāiemet īpašā grozā. Kāpēc golfs?
+- tāpēc, ka uzdevums, līdzīgi kā tradicionālajā golfā, ir nonākt pie mērķa, šajā
+gadījumā groza, ar pēc iespējas mazāku metienu skaitu. Disku golfu spēlē īpašos
+disku golfa laukumos, kuros parasti ir 18, retāk - 9 grozi. Ceļu uz katru grozu
+sāk no starta laukuma, bet laukumā esošie šķēršļi - koki, reljefs, ūdenstilpnes
+- spēli padara interesantāku. Nozīme ir ne tikai metiena spēkam un tehnikai, bet
+arī stratēģijai, pareizi pieņemtam lēmumam šķēršļa apiešanā vai metiena
+trajektorijas izvēlē. Disku golfa stiprā puse ir pieejamība: to var spēlēt
+jebkurā vecumā, turklāt diski - tieši tādi paši, ar kādiem spēlē profesionāļi -
+nopērkami par 10-20 eiro. Disku golfa laukumos inventāru var arī iznomāt, taču
+spēles maģija ātri apbur un laiks līdz savai pirmajai spēles somai ar trim,
+pieciem, pat desmit dažādiem diskiem ir īss!
 
+<a href="http://www.ldgf.lv/kas-ir-diskugolfs/"> Disku golfa federācija </a>
+{% endblock left %}
+
+{% block content%}
 <h3>Grūtākie grozi sistēmā</h3>
 <table>
   <tr>
