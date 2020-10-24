@@ -1,4 +1,10 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block left %}
+<h3>Disku golfa parks</h3>
+{% endblock left %}
+
+{% block content %}
 
 <form method="POST">
   {% if original -%}
@@ -7,50 +13,48 @@
   <input type="hidden" name="id" required value="-1" />
   {%- endif %}
 
+  <label for="nosaukums">Nosaukums</label>
+  <input
+    type="text"
+    name="nosaukums"
+    required
+    value="{% if original -%}{{ original.nosaukums }}{%- endif %}"
+  />
 
-  <div>
-    <input
-      type="text"
-      name="nosaukums"
-      required
-      value="{% if original -%}{{ original.nosaukums }}{%- endif %}"
-    />
-  </div>
-  <div>
-    <input
-      type="text"
-      name="adrese"
-      value="{% if original -%}{{ original.adrese }}{%- endif %}"
-    />
-  </div>
-  <div>
-    <input
-      type="text"
-      name="telefona_numurs"
-      value="{% if original -%}{{ original.telefona_numurs }}{%- endif %}"
-    />
-  </div>
-  <div>
-    <input
-      type="text"
-      name="apraksts"
-      value="{% if original -%}{{ original.apraksts }}{%- endif %}"
-    />
-  </div>
-  <div>
-    <input
-      type="time"
-      name="darba_laiks_sakums"
-      value="{% if original -%}{{ original.darba_laiks_sakums }}{%- endif %}"
-    />
-  </div>
-  <div>
-    <input
-      type="time"
-      name="darba_laiks_beigas"
-      value="{% if original -%}{{ original.darba_laiks_beigas }}{%- endif %}"
-    />
-  </div>
+  <label for="adrese">Adrese</label>
+  <input
+    type="text"
+    name="adrese"
+    value="{% if original -%}{{ original.adrese }}{%- endif %}"
+  />
+
+  <label for="telefona_numurs">Tel. nr.</label>
+  <input
+    type="text"
+    name="telefona_numurs"
+    value="{% if original -%}{{ original.telefona_numurs }}{%- endif %}"
+  />
+
+  <label for="apraksts">Apraksts</label>
+  <input
+    type="text"
+    name="apraksts"
+    value="{% if original -%}{{ original.apraksts }}{%- endif %}"
+  />
+
+  <label for="darba_laiks_sakums">Darba laika sākums</label>
+  <input
+    type="time"
+    name="darba_laiks_sakums"
+    value="{% if original -%}{{ original.darba_laiks_sakums }}{%- endif %}"
+  />
+
+  <label for="darba_laiks_sakums">Darba laika beigas</label>
+  <input
+    type="time"
+    name="darba_laiks_beigas"
+    value="{% if original -%}{{ original.darba_laiks_beigas }}{%- endif %}"
+  />
 
   <div>
     <input type="submit" name="METHOD" value="SAVE" />

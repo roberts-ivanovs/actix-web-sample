@@ -1,26 +1,34 @@
 {% extends "base.html" %} {% block content %}
 
 <form method="POST">
-    {% if original -%}
-    <input type="hidden" name="id" required value="{{ original.id }}" />
-    {% else %}
-    <input type="hidden" name="id" required value="-1" />
-    {%- endif %}
+  {% if original -%}
+  <input type="hidden" name="id" required value="{{ original.id }}" />
+  {% else %}
+  <input type="hidden" name="id" required value="-1" />
+  {%- endif %}
 
+  <label for="vards">Vārds</label>
+  <input
+    type="text"
+    name="vards"
+    required
+    value="{% if original -%}{{ original.vards }}{%- endif %}"
+  />
 
-    <div>
-        <input type="text" name="vards" required value="{% if original -%}{{ original.vards }}{%- endif %}" />
-    </div>
-    <div>
-        <input type="text" name="uzvards" value="{% if original -%}{{ original.uzvards }}{%- endif %}" />
-    </div>
-    <div>
-        <input type="date" name="dzimsanas_dati"
-            value="{% if original -%}{{ original.dzimsanas_dati }}{%- endif %}" />
-    </div>
+  <label for="uzvards">uzvārds</label>
+  <input
+    type="text"
+    name="uzvards"
+    value="{% if original -%}{{ original.uzvards }}{%- endif %}"
+  />
 
-    <div>
-        <input type="submit" name="METHOD" value="SAVE" />
-    </div>
+  <label for="dzimsanas_dati">Dzimšanas datums</label>
+  <input
+    type="date"
+    name="dzimsanas_dati"
+    value="{% if original -%}{{ original.dzimsanas_dati }}{%- endif %}"
+  />
+
+  <input type="submit" name="METHOD" value="SAVE" />
 </form>
 {% endblock content %}

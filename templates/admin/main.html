@@ -1,19 +1,14 @@
 {% extends "base.html" %}
 
+{% block left %}
+Galvenā administratora saskarne, lai veiktu nepieciešamās datu manipulācijas sistēmā
+{% endblock left %}
+
 {% block content %}
-    <ul>
-      <li>
-        <a href="parks/">CRUD Parki</a>
-      </li>
-      <li>
-        <a href="grozs/">CRUD Grozi</a>
-      </li>
-      <li>
-        <a href="speletajs/">CRUD Speletaji</a>
-      </li>
-      <li>
-        <a href="turnirs/">CRUD Turniri</a>
-      </li>
-    </ul>
+
+<a class="button stack" href="parks/">CRUD Parki</a>
+<a class="button stack" href="grozs/">CRUD Grozi</a>
+<a class="button stack" href="speletajs/">CRUD Speletaji</a>
+<a class="button stack" href="turnirs/">CRUD Turniri</a>
 
 {% endblock content %}

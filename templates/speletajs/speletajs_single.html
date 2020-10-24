@@ -1,16 +1,21 @@
-{% extends "base.html" %} {% block content %} {% if speletajs %}
+{% extends "base.html" %}
 
+{% block left %}
+
+{% if speletajs %}
+<h2>{{ speletajs.vards }} {{ speletajs.uzvards }}</h2>
 <h4>Spēlētāja uzvaras: {{ uzvaras_proc }} %</h4>
 <h4>Videjais metienu skaits: {{ videjais_metienu_skaits }}</h4>
 
-<table>
-  <tr>
-    <th>Spēlētāja vārds</th>
-    <th>{{ speletajs.vards }} {{ speletajs.uzvards }}</th>
-  </tr>
-</table>
+{% endif %}
+
+{% endblock left %}
+
+{% block content %}
+
+
 {% if turnirs_details %}
-<h2>Turnira rezultati</h2>
+<h2>Turniru rezultati</h2>
 <table>
   <tr>
     <th>Turnīrs</th>
@@ -22,13 +27,13 @@
   </tr>
   {% for viena_turnira_rezultats in turnirs_details -%}
   <tr>
-    <td>{{ viena_turnira_rezultats.turnirs.turnira_nosaukums}}</td>
+    <td><a href="/turnirs/{{ viena_turnira_rezultats.turnirs.id}}">{{ viena_turnira_rezultats.turnirs.turnira_nosaukums}}</a></td>
     <td>{{ viena_turnira_rezultats.turnirs.turnira_datums}}</td>
-    <td>{{ viena_turnira_rezultats.trase}}</td>
+    <td><a href="/trase/{{ viena_turnira_rezultats.trase}}"> {{ viena_turnira_rezultats.trase}}</a></td>
     <td>{{ viena_turnira_rezultats.trases_metienu_skaits }}</td>
     <td>{{ viena_turnira_rezultats.speletaja_rezultats }}</td>
     <td>{{ viena_turnira_rezultats.uzvaretajs }}</td>
   </tr>
   {%- endfor %}
 </table>
-{% endif %} {% else %} Sorry, turnirs isn't defined. {% endif %} {% endblock content %}
+{% else %} Sorry, turnirs isn't defined. {% endif %} {% endblock content %}

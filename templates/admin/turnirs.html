@@ -1,6 +1,13 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
 
-<a href="new/">IZVEIDOT JAUNU TURNIRU</a>
+
+{% block left %}
+<h3>Sistēmas parku pārskats</h3>
+<a href="new/" class='button success'>IZVEIDOT JAUNU TURNIRU</a>
+{% endblock left %}
+
+{% block content %}
+
 <table>
   <tr>
     <th>NOSAUKUMS</th>
@@ -10,15 +17,15 @@
   </tr>
 
   {% for turnirs in turniri -%}
-  <form method="POST">
-    <tr>
+  <tr>
+    <form method="POST">
       <input type="hidden" name="TURNIRS" value="{{ turnirs.id }}" />
-      <td>{{ turnirs.turnira_nosaukums }}</td>
+      <td><a href="/turnirs/{{ turnirs.id}}">{{ turnirs.turnira_nosaukums }}</a></td>
       <td>{{ turnirs.turnira_datums }}</td>
       <td><a href="{{ turnirs.id }}">EDIT </a></td>
       <td><input type="submit" name="METHOD" value="DELETE" /></td>
-    </tr>
-  </form>
+    </form>
+  </tr>
   {%- endfor %}
 </table>
 {% endblock content %}

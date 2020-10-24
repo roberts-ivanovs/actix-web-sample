@@ -1,7 +1,13 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
 
 
-<a href="new/">IZVEIDOT JAUNU SPELETAJU</a>
+
+{% block left %}
+<h3>Sistēmas parku pārskats</h3>
+<a href="new/" class='button success'>IZVEIDOT JAUNU SPELETAJU</a>
+{% endblock left %}
+{% block content %}
+
 <table>
     <tr>
         <th>Vards</th>
@@ -12,16 +18,16 @@
     </tr>
 
     {% for speletajs in speletaji -%}
-    <form method="POST">
-        <tr>
+    <tr>
+        <form method="POST">
             <input type="hidden" name="SPELETAJS" value="{{ speletajs.id }}" />
-            <td>{{ speletajs.vards }}</td>
+            <td> <a href="/speletajs/{{speletajs.id}}">{{ speletajs.vards }}</a></td>
             <td>{{ speletajs.uzvards }}</td>
             <td>{{ speletajs.dzimsanas_dati }}</td>
             <td><a href="{{ speletajs.id }}">EDIT </a></td>
             <td><input type="submit" name="METHOD" value="DELETE" /></td>
-        </tr>
-    </form>
+        </form>
+    </tr>
     {%- endfor %}
 </table>
 {% endblock content %}

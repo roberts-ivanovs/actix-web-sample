@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
+{% block left %}
+Disku golfa parki var saturēt vairākas trases, kurās spelētāji var spēlēt
+{% endblock left %}
+
 {% block content %}
-  <ul>
     {% for park in parks -%}
-    <li><a href="{{ park.id }}">{{ park.nosaukums }}</a></li>
+      <a href="{{ park.id }}" class="button stack">{{ park.nosaukums }}</a>
+
     {%- endfor %}
-  </ul>
 {% endblock content %}

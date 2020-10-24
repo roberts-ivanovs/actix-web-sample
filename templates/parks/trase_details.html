@@ -1,6 +1,14 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block left %}
 
-<h3>Vispārigs trases pārskatas</h3>
+<h3>Saturs</h3>
+<a href="#overview" class="button stack">Pārskats</a>
+<a href="#grozi" class="button stack">Grozi</a>
+<a href="#hard-grozi" class="button stack">Grūtākie grozi</a>
+<a href="#best-players" class="button stack">Labākie spēlētāji</a>
+
+{% endblock left %} {% block content %}
+
+<h3 id="overview">Vispārigs trases pārskatas</h3>
 <table>
   <tr>
     <th>Grozu skaits</th>
@@ -19,7 +27,7 @@
 
 <hr />
 
-<h3>Trases grozu secība</h3>
+<h3 id="grozi">Trases grozu secība</h3>
 <table>
   <tr>
     <th>Kārtas nr.</th>
@@ -44,7 +52,7 @@
 </table>
 
 <hr />
-<h3>3 Grūtākie grozi trasē</h3>
+<h3 id="hard-grozi">3 Grūtākie grozi trasē</h3>
 <table>
   <tr>
     <th>Grozs</th>
@@ -60,7 +68,7 @@
 </table>
 
 <hr />
-<h3>Labākie spēlētāji</h3>
+<h3 id="best-players">Labākie spēlētāji</h3>
 <table>
   <tr>
     <th>Spēlētājs</th>
@@ -69,7 +77,11 @@
 
   {% for player in best_players_in_trase -%}
   <tr>
-    <td>{{ player.speletajs.vards }} {{ player.speletajs.uzvards }}</td>
+    <td>
+      <a href="/speletajs/{{ player.speletajs.id }}">
+        {{ player.speletajs.vards }} {{ player.speletajs.uzvards }}</a
+      >
+    </td>
     <td>{{ player.metienu_skaits_trase }}</td>
   </tr>
   {%- endfor %}

@@ -12,6 +12,9 @@ use crate::views::admin::turnirs::delete_turnirs;
 use crate::views::admin::turnirs::list_turnirs;
 use crate::views::admin::turnirs::update_turnirs_get;
 use crate::views::admin::turnirs::update_turnirs_post;
+
+use actix_files::Files;
+
 use crate::views::index_handler;
 use actix_http::{body::Body, Response};
 use actix_web::dev::ServiceResponse;
@@ -119,6 +122,7 @@ async fn main() -> std::io::Result<()> {
                     )
                     .service(admin_root),
             )
+            .service(Files::new("/", "/static/").prefer_utf8(true))
             .service(web::scope("").wrap(error_handlers()))
     })
     .bind("127.0.0.1:8080")?

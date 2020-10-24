@@ -1,7 +1,11 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
 
+{% block left %}
+<h3>Sistēmas parku pārskats</h3>
+<a href="new/" class='button success'>IZVEIDOT JAUNU PARKU</a>
+{% endblock left %}
 
-<a href="new/">IZVEIDOT JAUNU PARKU</a>
+{% block content %}
 <table>
   <tr>
     <th>ID</th>
@@ -11,15 +15,15 @@
   </tr>
 
   {% for park in parks -%}
-  <form method="POST">
-    <tr>
+  <tr>
+    <form method="POST">
       <input type="hidden" name="PARKS" value="{{ park.id }}" />
       <td>{{ park.id }}</td>
-      <td>{{ park.nosaukums }}</td>
+      <td><a href="/parks/{{park.id}}">{{ park.nosaukums }}</a></td>
       <td><a href="{{ park.id }}">EDIT </a></td>
       <td><input type="submit" name="METHOD" value="DELETE" /></td>
-    </tr>
-  </form>
+    </form>
+  </tr>
   {%- endfor %}
 </table>
 {% endblock content %}

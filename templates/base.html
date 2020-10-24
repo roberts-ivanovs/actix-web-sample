@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="initial-scale=1.0">
-  {% block head %}
-  {% endblock head %}
-  <title>Disku golfs</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic" />
+    {% block head %} {% endblock head %}
+    <title>Disku golfs</title>
+  </head>
+  <body>
+    <nav class="demo">
+      <a href="/" class="brand">
+        <span>Disku golfa sistēma</span>
+      </a>
 
-  {% block content %}
-  {% endblock content %}
+      <!-- responsive-->
+      <input id="bmenub" type="checkbox" class="show" />
+      <label for="bmenub" class="burger pseudo button">menu</label>
 
-</body>
+      <div class="menu">
+        <a href="/parks/" class="pseudo button icon-picture">Visi parki</a>
+        <a href="/turnirs/" class="pseudo button icon-puzzle">Visi turniri</a>
+        <a href="/speletajs/" class="pseudo button icon-puzzle"
+          >Visi speletaji</a
+        >
+        <a href="/admin/" class="button icon-puzzle">Administrācijas panelis</a>
+      </div>
+    </nav>
+
+    <div class="flex four" style="margin-top: 5rem">
+      <div style="padding: 2rem">
+        <article class="card">{% block left %} {% endblock left %}</article>
+      </div>
+      <div class="two-third" style="padding: 2rem">
+        {% block content %} {% endblock content %}
+      </div>
+    </div>
+  </body>
 </html>
