@@ -9,21 +9,12 @@
 
 
   <div>
-    Soda punkti
-    <input
-      type="number"
-      name="soda_punkti"
-      required
-      value="{% if original -%}{{ original.soda_punkti }}{%- endif %}"
-    />
-  </div>
-  <div>
     Maksimālais metienu skaits
     <input
       min="0"
       type="number"
-      name="maksimalais_metienu_skaits"
-      value="{% if original -%}{{ original.maksimalais_metienu_skaits }}{%- endif %}"
+      name="optimalais_metienu_skaits"
+      value="{% if original -%}{{ original.optimalais_metienu_skaits }}{%- endif %}"
     />
   </div>
   <div>

@@ -71,8 +71,7 @@ pub async fn create_grozs_get(tmpl: web::Data<tera::Tera>) -> Result<HttpRespons
     let mut context = Context::new();
     let empty_grozs = Grozs {
         id: 0,
-        soda_punkti: Some(0),
-        maksimalais_metienu_skaits: Some(0),
+        optimalais_metienu_skaits: Some(0),
         attalums_lidz_grozam: 0,
     };
     context.insert("original", &empty_grozs);

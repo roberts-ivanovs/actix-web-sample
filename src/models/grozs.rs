@@ -19,7 +19,7 @@ impl Grozs {
         let mut iter_conn = DB_WRAPPER.get_conn();
         let mut iter_conn2 = DB_WRAPPER.get_conn();
         let grozi_hardest: Vec<HardGrozs> = conn.query_map(
-            "SELECT * FROM ShowHardestGrozs",
+            "SELECT trase_id, grozs_id, Videjais_rezultats FROM ShowHardestGrozs",
             |(trase_id, grozs_id, rezultats)| HardGrozs {
                 trase: trase_id,
                 grozs: Grozs::get(&mut iter_conn, grozs_id).unwrap(),
@@ -31,11 +31,10 @@ impl Grozs {
 
     pub fn get_grozi(conn: &mut PooledConn) -> Result<Vec<Grozs>, mysql::Error> {
         let grozs: Vec<Grozs> = conn.query_map(
-            "SELECT id, soda_punkti, maksimalais_metienu_skaits, attalums_lidz_grozam FROM Grozs",
-            |(id, soda_punkti, maksimalais_metienu_skaits, attalums_lidz_grozam)| Grozs {
+            "SELECT id, optimalais_metienu_skaits, attalums_lidz_grozam FROM Grozs",
+            |(id, optimalais_metienu_skaits, attalums_lidz_grozam)| Grozs {
                 id,
-                soda_punkti,
-                maksimalais_metienu_skaits,
+                optimalais_metienu_skaits,
                 attalums_lidz_grozam,
             },
         )?;
@@ -47,23 +46,23 @@ impl Grozs {
             r#"
         SELECT
             id,
-            soda_punkti,
-            maksimalais_metienu_skaits,
+            optimalais_metienu_skaits,
             attalums_lidz_grozam
         FROM Grozs WHERE id={}"#,
             id
         );
 
+        // println!("{}", query);
+
         let grozs = conn
-            .query_first::<(u32, Option<i32>, Option<u32>, u32), String>(query)
+            .query_first::<(u32, Option<u32>, u32), String>(query)
             .unwrap_or(None);
 
         let res = match grozs {
             Some(val) => Some(Grozs {
                 id: val.0,
-                soda_punkti: val.1,
-                maksimalais_metienu_skaits: val.2,
-                attalums_lidz_grozam: val.3,
+                optimalais_metienu_skaits: val.1,
+                attalums_lidz_grozam: val.2,
             }),
             None => None,
         };
@@ -77,18 +76,14 @@ impl Grozs {
     }
 
     pub fn update(conn: &mut PooledConn, grozs: Grozs) -> Result<bool, mysql::Error> {
-        let soda_punkti = match grozs.soda_punkti {
-            Some(val) => format!("{}", val),
-            None => "NULL".to_owned(),
-        };
-        let maksimalais_metienu_skaits = match grozs.maksimalais_metienu_skaits {
+
+        let optimalais_metienu_skaits = match grozs.optimalais_metienu_skaits {
             Some(val) => format!("{}", val),
             None => "NULL".to_owned(),
         };
         let query = format!(
-            "UPDATE Grozs SET soda_punkti='{soda_punkti}', maksimalais_metienu_skaits='{maksimalais_metienu_skaits}', attalums_lidz_grozam='{attalums_lidz_grozam}' WHERE id='{id}'",
-            soda_punkti=soda_punkti,
-            maksimalais_metienu_skaits=maksimalais_metienu_skaits,
+            "UPDATE Grozs SET optimalais_metienu_skaits='{optimalais_metienu_skaits}', attalums_lidz_grozam='{attalums_lidz_grozam}' WHERE id='{id}'",
+            optimalais_metienu_skaits=optimalais_metienu_skaits,
             attalums_lidz_grozam=grozs.attalums_lidz_grozam,
             id=grozs.id,
         );
@@ -97,22 +92,17 @@ impl Grozs {
     }
 
     pub fn create(conn: &mut PooledConn, grozs: Grozs) -> Result<bool, mysql::Error> {
-        let soda_punkti = match grozs.soda_punkti {
-            Some(val) => format!("{}", val),
-            None => "NULL".to_owned(),
-        };
-        let maksimalais_metienu_skaits = match grozs.maksimalais_metienu_skaits {
+        let optimalais_metienu_skaits = match grozs.optimalais_metienu_skaits {
             Some(val) => format!("{}", val),
             None => "NULL".to_owned(),
         };
         let query = format!(
             "INSERT INTO Grozs(
-                soda_punkti, maksimalais_metienu_skaits, attalums_lidz_grozam
+                optimalais_metienu_skaits, attalums_lidz_grozam
             ) VALUES (
-                '{soda_punkti}', '{maksimalais_metienu_skaits}', '{attalums_lidz_grozam}'
+                '{optimalais_metienu_skaits}', '{attalums_lidz_grozam}'
             )",
-            soda_punkti = soda_punkti,
-            maksimalais_metienu_skaits = maksimalais_metienu_skaits,
+            optimalais_metienu_skaits = optimalais_metienu_skaits,
             attalums_lidz_grozam = grozs.attalums_lidz_grozam,
         );
         conn.query_drop(query)?;
