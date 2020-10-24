@@ -125,6 +125,23 @@ impl Speletajs {
             }
         }
     }
+    pub fn videjais_metienu_skaits(
+        conn: &mut PooledConn,
+        speletaja_id: u32,
+    ) -> Result<f32, mysql::Error> {
+        let uzvaras_proc = conn.query_first::<f32, String>(format!(
+            "SELECT videjais_metienu_skaits_speletajam({});",
+            speletaja_id
+        ));
+        match uzvaras_proc {
+            Ok(val) => {
+                return Ok(val.unwrap());
+            }
+            Err(_) => {
+                return Ok(0.);
+            }
+        }
+    }
 }
 
 #[derive(Serialize, Deserialize)]

@@ -80,7 +80,8 @@ impl Trase {
                 kartas_numurs,
                 punkti,
                 videjais_metienu_skaits: Grozs::get_videjais_metienu_skaits(&mut iter_conn2, grozs)
-                    .unwrap().unwrap(),
+                    .unwrap()
+                    .unwrap(),
             },
         )?;
         Ok(turnirs_summary)

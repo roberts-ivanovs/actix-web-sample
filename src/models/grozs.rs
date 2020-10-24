@@ -125,10 +125,10 @@ impl Grozs {
     ) -> Result<Option<Option<f32>>, mysql::Error> {
         let query = format!("SELECT videjais_metienu_skaits_grozam({});", id);
 
-        println!("HERERE---------------\n");
-        let turnirs = conn.query_first::<Option<f32>, String>(query).unwrap_or(None);
+        let turnirs = conn
+            .query_first::<Option<f32>, String>(query)
+            .unwrap_or(None);
 
-        println!("--------------HERERE\n");
         Ok(turnirs)
     }
 }

@@ -27,12 +27,15 @@ pub async fn speletajs_single_handler(
     let mut conn = DB_WRAPPER.get_conn();
     let speletaj_instances = Speletajs::get(&mut conn, (info.0).0).unwrap();
     let uzvaras_proc = Speletajs::uzvaras_proc(&mut conn, (info.0).0).unwrap();
+    let videjais_metienu_skaits =
+        Speletajs::videjais_metienu_skaits(&mut conn, (info.0).0).unwrap();
     let turnirs_details =
         Speletajs::get_turniri_statistics(&mut conn, &speletaj_instances).unwrap();
     let mut context = Context::new();
     context.insert("speletajs", &speletaj_instances);
     context.insert("turnirs_details", &turnirs_details);
     context.insert("uzvaras_proc", &uzvaras_proc);
+    context.insert("videjais_metienu_skaits", &videjais_metienu_skaits);
     let s = tmpl
         .render("speletajs/speletajs_single.html", &context)
         .map_err(|_| error::ErrorInternalServerError("Template error"))?;
