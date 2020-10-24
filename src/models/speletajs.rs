@@ -8,12 +8,13 @@ use super::Speletajs;
 impl Speletajs {
     pub fn get_all_speletaji(conn: &mut PooledConn) -> Result<Vec<Speletajs>, mysql::Error> {
         let speletajs: Vec<Speletajs> = conn.query_map(
-            "SELECT id, vards, uzvards, dzimsanas_dati FROM Speletajs",
-            |(id, vards, uzvards, dzimsanas_dati)| Speletajs {
+            "SELECT id, vards, uzvards, dzimsanas_dati, atjaunots FROM Speletajs",
+            |(id, vards, uzvards, dzimsanas_dati, atjaunots)| Speletajs {
                 id,
                 vards,
                 uzvards,
                 dzimsanas_dati,
+                atjaunots
             },
         )?;
         Ok(speletajs)
@@ -26,13 +27,14 @@ impl Speletajs {
             id,
             vards,
             uzvards,
-            dzimsanas_dati
+            dzimsanas_dati,
+            atjaunots
         FROM Speletajs WHERE id={}"#,
             id
         );
 
         let speletajs = conn
-            .query_first::<(u32, String, String, Option<String>), String>(query)
+            .query_first::<(u32, String, String, Option<String>, String), String>(query)
             .unwrap_or(None);
 
         let res = match speletajs {
@@ -41,6 +43,7 @@ impl Speletajs {
                 vards: val.1,
                 uzvards: val.2,
                 dzimsanas_dati: val.3,
+                atjaunots: val.4,
             }),
             None => None,
         };

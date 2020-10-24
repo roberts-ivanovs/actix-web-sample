@@ -49,10 +49,13 @@ pub async fn update_speletajs_post(
     path: web::Path<(u32,)>,
     query_data: web::Form<Speletajs>,
 ) -> Result<HttpResponse, Error> {
+    println!("UPDATING SPELETAJS\n\n\n");
     let id = format!("{}", (path.0).0);
     let base_path = extract_base_path(req.path(), &id);
     let mut conn = DB_WRAPPER.get_conn();
     let updated = Speletajs::update(&mut conn, query_data.0);
+
+    println!("IZDEVAS UPDATOT {:#?} \n\n", updated);
     match updated {
         Ok(_) => Ok(redirect_to(base_path)),
         Err(_) => Ok(redirect_to(req.path())),
@@ -67,6 +70,7 @@ pub async fn create_speletajs_get(tmpl: web::Data<tera::Tera>) -> Result<HttpRes
         vards: String::new(),
         uzvards: String::new(),
         dzimsanas_dati: Some(String::new()),
+        atjaunots: String::new()
     };
     context.insert("original", &empty_speletajs);
     let s = tmpl

@@ -43,6 +43,7 @@ pub struct Speletajs {
     pub vards: String,
     pub uzvards: String,
     pub dzimsanas_dati: Option<String>,
+    pub atjaunots: String,
 }
 
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]

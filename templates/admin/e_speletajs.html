@@ -1,8 +1,15 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block left %}
+<h2>Pedējo reizi atjaunots: {{ original.atjaunots }}</h2>
+{% endblock left %}
+{% block content %}
+
 
 <form method="POST">
   {% if original -%}
   <input type="hidden" name="id" required value="{{ original.id }}" />
+  <input type="hidden" name="atjaunots" required value="{{ original.atjaunots }}" />
   {% else %}
   <input type="hidden" name="id" required value="-1" />
   {%- endif %}
