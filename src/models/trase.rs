@@ -33,7 +33,7 @@ impl Trase {
         let mut iter_conn = DB_WRAPPER.get_conn();
         let best_players_in_trase: Vec<BestPlayerResult> = conn.query_map(
             format!(
-                "SELECT trase_FK, s_id, rezultats FROM ShowBestPlayersInTrase WHERE trase_FK={}",
+                "SELECT trase_FK, s_id, rezultats FROM ShowBestPlayersInTrase WHERE trase_FK={} LIMIT 3",
                 trase_fk
             ),
             |(trase_FK, speletajs, metienu_skaits_trase)| BestPlayerResult {

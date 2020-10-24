@@ -898,7 +898,7 @@ FROM
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ShowBestPlayersInTrase` AS SELECT tg.trase_FK as trase_FK, ts.speletajs_FK as s_id, SUM(r.metieni) as rezultats FROM Rezultats r JOIN TraseGrozs tg ON r.trase_grozs_FK = tg.id JOIN TurnirsSpeletajs ts ON ts.id = r.TurnirsSpeletajs_FK GROUP BY trase_FK, s_id ORDER BY rezultats ASC LIMIT 3 */;
+/*!50001 VIEW `ShowBestPlayersInTrase` AS SELECT tg.trase_FK as trase_FK, ts.speletajs_FK as s_id, SUM(r.metieni) as rezultats FROM Rezultats r JOIN TraseGrozs tg ON r.trase_grozs_FK = tg.id JOIN TurnirsSpeletajs ts ON ts.id = r.TurnirsSpeletajs_FK GROUP BY trase_FK, s_id ORDER BY rezultats ASC */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
