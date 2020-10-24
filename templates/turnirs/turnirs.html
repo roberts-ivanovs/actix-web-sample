@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
+{% block left %}
+<h3>Sistēmas turnīru pārskats</h3>
+<a href="add/" class='button success'>IZVEIDOT JAUNU TURNIRU</a>
+{% endblock left %}
+
 {% block content %}
-<a href="add/">IZVEIDOT JAUNU TURNIRU</a>
-<ul>
-    {% for turnirs in turniri -%}
-    <li><a href="{{ turnirs.id }}">{{ turnirs.turnira_nosaukums }}</a></li>
-    {%- endfor %}
-</ul>
+{% for turnirs in turniri -%}
+<a class="button stack"  href="{{ turnirs.id }}">{{ turnirs.turnira_nosaukums }}</a>
+{%- endfor %}
 {% endblock content %}

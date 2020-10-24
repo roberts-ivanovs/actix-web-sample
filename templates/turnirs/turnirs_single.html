@@ -1,37 +1,38 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block left %}
+{% if turnirs %}
+    <h3>{{ turnirs.turnira_nosaukums }}</h3>
+    <h4>Datums: {{ turnirs.turnira_datums }}</h4>
+{% endif %}
+{% endblock left %}
+
+
+
+{% block content %}
 
 {% if turnirs %}
-    <table>
-        <tr>
-            <th>Turnira nosaukums</th>
-            <th style="margin-left: 2cm;">Turnira datums un laiks</th>
-        </tr>
-        <tr>
-            <th>{{ turnirs.turnira_nosaukums }}</th>
-            <th style="margin-left: 2cm;">{{ turnirs.turnira_datums }}</th>
-        </tr>
-    </table>
     {% if turnirs_result %}
         <h2>Turnira rezultati</h2>
         <table>
             <tr>
                 <th>Speletajs</th>
-                <th style="margin-left: 2cm;">Trase</th>
-                <th style="margin-left: 2cm;">Trases metienu skaits</th>
-                <th style="margin-left: 2cm;">Speletaja rezultats</th>
+                <th >Trase</th>
+                <th >Trases metienu skaits</th>
+                <th >Speletaja rezultats</th>
             </tr>
             {% for viena_turnira_rezultats in turnirs_result -%}
                 <tr>
-                    <th>{{ viena_turnira_rezultats.speletajs.vards}} {{ viena_turnira_rezultats.speletajs.uzvards}}</th>
-                    <th style="margin-left: 2cm;">{{ viena_turnira_rezultats.trase }}</th>
-                    <th style="margin-left: 2cm;">{{ viena_turnira_rezultats.trases_metienu_skaits }}</th>
-                    <th style="margin-left: 2cm;">{{ viena_turnira_rezultats.speletaja_rezultats }}</th>
+                    <td><a href="/speletajs/{{ viena_turnira_rezultats.speletajs.id }}">{{ viena_turnira_rezultats.speletajs.vards}} {{ viena_turnira_rezultats.speletajs.uzvards}}</a></td>
+                    <td><a href="/trase/{{ viena_turnira_rezultats.trase }}">{{ viena_turnira_rezultats.trase }}</a></td>
+                    <td>{{ viena_turnira_rezultats.trases_metienu_skaits }}</td>
+                    <td>{{ viena_turnira_rezultats.speletaja_rezultats }}</td>
                 </tr>
             {%- endfor %}
         </table>
     {% endif %}
-{% else %} 
-    Sorry, turnirs isn't defined. 
+{% else %}
+    Sorry, turnirs isn't defined.
 {% endif %}
 
 {% endblock content %}
